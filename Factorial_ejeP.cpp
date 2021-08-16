@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 /*
@@ -90,22 +91,26 @@ long int factorial(int n)
     }
 }
 
+
+
+
 int main(int argc, const char * argv[]) {
     
-    int n = -1;
-    
+    /*
+    int n = -1;*/
     /* Entrar el número a calcular el factorial */
+    /*
     do {
         std::cout << "Entre el número: ";
         std::cin >> n;
     }
-    while (n < 0);
+    while (n < 0);*/
     
     /* Calcular el factorial de n */
-    long int resultado = factorial(n);
+    /*long int resultado = factorial(n);*/
     
-    /* Mostrar el resultado */
-    std::cout << "El factorial de " << n << " = " << resultado << std::endl;
+    /* Mostrar el resultado 
+    std::cout << "El factorial de " << n << " = " << resultado << std::endl;*/
     
     return 0;
 }
