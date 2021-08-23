@@ -136,52 +136,63 @@ int fibonacciIterativo(int h)
 
 int main() {
 
-    int n = 0;
+    int opcion;
+    std::cout << "Opcion 1: Fibonacci Recursivo" << std::endl;
+    std::cout << "Opcion 2: Fibonacci con uso de Tablas" << std::endl;
+    std::cout << "Opcion 3: Fibonacci con uso de variables temporales" << std::endl;
+    cin>> opcion;
+
+    if (opcion == 1)
+    {
+        int n = 0;
         /* Entrar el número n de la serie */
-    do {
-        std::cout << "Entre el número: ";
-        std::cin >> n;
+        do {
+            std::cout << "Entre el número: ";
+            std::cin >> n;
+        }
+        while (n < 0);
+    
+        /* Calcular el valor de la serie */
+        int resultado = fibonacci(n);
+    
+        /* Mostrar el resultado */
+        std::cout << "Fib("<< n << ") = " << resultado << std::endl;
     }
-    while (n < 0);
+    else if (opcion == 2)
+    {
+        int r = 0;
     
-    /* Calcular el valor de la serie */
-    int resultado = fibonacci(n);
+        /* Entrar el número n de la serie */
+        do {
+            std::cout << "Entre el número: ";
+            std::cin >> r;
+        }
+        while (r < 0);
+
+        /* Calcular el valor de la serie */
+        int resultado2 = fibonacciTabla(r);
     
-    /* Mostrar el resultado */
-    std::cout << "Fib("<< n << ") = " << resultado << std::endl;
-    
-    ////////////////////////////////////////////////////////////
-    int r = 0;
-    
-    /* Entrar el número n de la serie */
-    do {
-        std::cout << "Entre el número: ";
-        std::cin >> r;
+        /* Mostrar el resultado */
+        std::cout << "Fib("<< r << ") = " << resultado2 << std::endl;
+        
     }
-    while (n < 0);
-
-    /* Calcular el valor de la serie */
-    int resultado2 = fibonacciTabla(r);
+    else if (opcion == 3)
+    {
+           int h = 0;
     
-    /* Mostrar el resultado */
-    std::cout << "Fib("<< r << ") = " << resultado2 << std::endl;
+        /* Entrar el número n de la serie */
+        do {
+            std::cout << "Entre el número: ";
+            std::cin >> h;
+        }
+        while (h < 0);
 
-    //////////////////////////////////
-
-    int h = 0;
+        /* Calcular el valor de la serie */
+        int resultado3 = fibonacciIterativo(h);
     
-    /* Entrar el número n de la serie */
-    do {
-        std::cout << "Entre el número: ";
-        std::cin >> h;
+        /* Mostrar el resultado */
+        std::cout << "Fib("<< h << ") = " << resultado3 << std::endl; 
     }
-    while (h < 0);
-
-    /* Calcular el valor de la serie */
-    int resultado3 = fibonacciIterativo(h);
     
-    /* Mostrar el resultado */
-    std::cout << "Fib("<< h << ") = " << resultado3 << std::endl;
-
     return 0;
 }
