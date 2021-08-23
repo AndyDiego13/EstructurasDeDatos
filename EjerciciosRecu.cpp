@@ -66,7 +66,7 @@ void palindromo()
     {
         std::cout << "La palabra: " << palabra << " es un palíndromo" << std::endl;
     }
-}
+}	
 
 int main()
 {
