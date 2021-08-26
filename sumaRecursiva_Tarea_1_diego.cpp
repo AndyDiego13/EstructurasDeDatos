@@ -18,7 +18,7 @@ using namespace std;
 
 //Esta función es la que va a realizar la suma recursiva, solo tiene un parametro entero "n" regresa el resultado recursivo siendo evaluado por dos condicioneles if
 //Complejidad de esta funcion 5
-// Orden Constante O(1)
+// Orden Lineal O(n)
 int sumaRecursiva(int n){ //1
 
     if (n == 1){ //1

@@ -12,7 +12,7 @@
 
 //Programa que suma n numeros enteros
 
-//Orden cosntante O(1)
+//Orden Lineal O(n)
 #include <iostream>
 using namespace std;
 
