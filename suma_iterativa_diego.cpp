@@ -8,34 +8,11 @@
 
     25/Agosto/2021
 
-
-#include<iostream>
-
-
-using namespace std;
-
-int suma (int x, int n, int resultado)
-{
-    int x, n, resultado;
-    
-    if (n==0)
-    {
-        return 0;
-    }
-
-    else
-    {
-
-    }
-}
-
-int main ()
-{
-
-}*/
+*/
 
 //Programa que suma n numeros enteros
 
+//Orden cosntante O(1)
 #include <iostream>
 using namespace std;
 
