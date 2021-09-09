@@ -33,3 +33,51 @@ class Moto
     bool itsSold();
     void display();
 };
+
+Moto::Moto(string _code, string _brand, int _model, int _km, string _cylinder)
+{
+    code = _code;
+    brand  = _brand;
+    model = _model;
+    km = _km;
+    cylinder = _cylinder;
+}
+
+string Moto::getCode()
+{
+    return code;
+}
+
+string Moto::getBrand()
+{
+    return brand;
+}
+
+int Moto::getModel()
+{
+    return model;
+}
+
+int Moto::getKm()
+{
+    return km;
+}
+
+string Moto::getCylinder()
+{
+    return cylinder;
+}
+
+bool Moto::itsSold()
+{
+    sold = true;
+}
+
+void Moto::display()
+{
+    std::cout << "Code: " << code << std::endl;
+    std::cout << "Brand: " << brand << std::endl;
+    std::cout << "Model: " << model << std::endl;
+    std::cout << "Km: " << km << std::endl;
+    std::cout << "Status: " << sold << std::endl;
+}
