@@ -6,69 +6,79 @@
 
     8/Sept/2021
 */
+
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-class Vehicle
+class Van
 {
     private:
     string code;
     string brand;
     int model;
     int km;
+    string traction;
     bool sold;
 
     public:
-    Vehicle(string code, string brand, int model, int km);
+    Van(string code, string brand, int model, int km, string traction);
     string getCode();
     string getBrand();
     int getModel();
     int getKm();
+    string getTraction();
     bool itsSold();
     void display();
 
 };
 
-Vehicle::Vehicle(string _code, string _brand, int _model, int _km)
+Van::Van (string _code, string _brand, int _model, int _km, string _traction)
 {
     code = _code;
     brand = _brand;
     model = _model;
     km = _km;
+    traction = _traction;
 }
 
-string Vehicle::getCode()
+string Van::getCode()
 {
     return code;
 }
 
-string Vehicle::getBrand()
+string Van::getBrand()
 {
     return brand;
 }
 
-int Vehicle::getModel()
+int Van::getModel()
 {
     return model;
 }
 
-int Vehicle::getKm()
+int Van::getKm()
 {
     return km;
 }
 
-bool Vehicle::itsSold()
+string Van::getTraction()
+{
+    return traction;
+}
+
+bool Van::itsSold()
 {
     sold = true;
 }
 
-void Vehicle::display()
+void Van::display()
 {
     std::cout << "Code: " << code << std::endl;
     std::cout << "Brand: " << brand << std::endl;
     std::cout << "Model: " << model << std::endl;
     std::cout << "Km: " << km << std::endl;
+    std::cout << "Traction: " << traction << std::endl;
     std::cout << "Status: " << sold << std::endl;
 }
