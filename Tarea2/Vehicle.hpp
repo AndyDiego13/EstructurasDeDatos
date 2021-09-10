@@ -6,6 +6,9 @@
 
     8/Sept/2021
 */
+
+ ///se puede modelar con herencia
+ // clases venta, clase autos, clase comprador
 #include <iostream>
 #include <string>
 
