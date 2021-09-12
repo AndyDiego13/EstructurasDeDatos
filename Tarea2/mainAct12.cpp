@@ -9,29 +9,18 @@
 
 #include <iostream>
 #include <vector>
-#include <initializer_list>
 #include "Motocicleta.hpp"
 #include "Camioneta.hpp"
 
-int main(int argc, char const *argv[])
+int main()
 {
-    std::vector<Automovil *> autos;
-
-    auto a1 = new Automovil(); //Auto * a1 = new Auto;
-    auto m1 = new Motocicleta();
-    auto c1 = new Camioneta();
-    auto a2 = new Automovil();
-
-    autos.push_back(a1);
-    //autos.push_back(m1);
-    autos.push_back(c1);
-    autos.push_back(a2);
-
-    for (auto a : autos)
+    struct sales
     {
-        std::cout << *a << std::endl;
-        delete a;
-    }
+        int sale;
+    };
+
+    sales *s = new sales[20];
     
+
     return 0;
 }

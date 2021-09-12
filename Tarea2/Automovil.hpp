@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 class Automovil
 {
@@ -25,6 +26,8 @@ class Automovil
     int model;
     int km;
     bool sold;
+    std::vector<Automovil> automoviles;
+    int automoviles_available;
 
     public:
     Automovil();
@@ -33,6 +36,9 @@ class Automovil
     int getModel();
     int getKm();
     bool itsSold();
+    void addAutomovil(Automovil new_automovil);
+    void showCarsByYear(int model);
+    void display();
     virtual std::ostream & print(std::ostream &) const;
     friend std::ostream & operator << (std::ostream &, const Automovil &);
 
