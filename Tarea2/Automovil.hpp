@@ -6,9 +6,11 @@
 
     8/Sept/2021
 */
+///se puede modelar con herencia
+// clases venta, clase autos, clase comprador
+#ifndef Automovil_hpp
+#define Automovil_hpp
 
- ///se puede modelar con herencia
- // clases venta, clase autos, clase comprador
 #include <iostream>
 #include <string>
 
@@ -35,3 +37,4 @@ class Automovil
     friend std::ostream & operator << (std::ostream &, const Automovil &);
 
 };
+#endif // !Automovil_hpp

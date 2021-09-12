@@ -15,15 +15,15 @@
 
 int main(int argc, char const *argv[])
 {
-    std::vector<Auto *> autos;
+    std::vector<Automovil *> autos;
 
-    auto a1 = new Auto(); //Auto * a1 = new Auto;
+    auto a1 = new Automovil(); //Auto * a1 = new Auto;
     auto m1 = new Motocicleta();
     auto c1 = new Camioneta();
-    auto a2 = new Auto();
+    auto a2 = new Automovil();
 
     autos.push_back(a1);
-    autos.push_back(m1);
+    //autos.push_back(m1);
     autos.push_back(c1);
     autos.push_back(a2);
 
