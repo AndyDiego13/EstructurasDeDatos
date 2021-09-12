@@ -12,21 +12,19 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class Vehicle
 {
     private:
-    string code;
-    string brand;
+    std::string code;
+    std::string brand;
     int model;
     int km;
     bool sold;
 
     public:
-    Vehicle(string code, string brand, int model, int km);
-    string getCode();
-    string getBrand();
+    Vehicle(std::string code, std::string brand, int model, int km);
+    std::string getCode();
+    std::string getBrand();
     int getModel();
     int getKm();
     bool itsSold();
@@ -34,7 +32,7 @@ class Vehicle
 
 };
 
-Vehicle::Vehicle(string _code, string _brand, int _model, int _km)
+Vehicle::Vehicle(std::string _code, std::string _brand, int _model, int _km)
 {
     code = _code;
     brand = _brand;
@@ -42,12 +40,12 @@ Vehicle::Vehicle(string _code, string _brand, int _model, int _km)
     km = _km;
 }
 
-string Vehicle::getCode()
+std::string Vehicle::getCode()
 {
     return code;
 }
 
-string Vehicle::getBrand()
+std::string Vehicle::getBrand()
 {
     return brand;
 }
