@@ -38,6 +38,7 @@ class Automovil
     bool itsSold();
     void addAutomovil(Automovil new_automovil);
     void showCarsByYear(int model);
+    void showCars();
     void display();
     virtual std::ostream & print(std::ostream &) const;
     friend std::ostream & operator << (std::ostream &, const Automovil &);

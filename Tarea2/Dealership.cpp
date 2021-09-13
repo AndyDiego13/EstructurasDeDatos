@@ -17,9 +17,19 @@ std::string Dealership::getName()
     return name;
 }
 
+void Dealership::setName(std::string _name)
+{
+    name = _name;
+}
+
 std::string Dealership::getLastName()
 {
     return lastName;
+}
+
+void Dealership::setLastName(std::string _lastName)
+{
+    lastName = _lastName;
 }
 
 std::string Dealership::getIne()
@@ -27,17 +37,12 @@ std::string Dealership::getIne()
     return ine;
 }
 
+void Dealership::setIne(std::string _ine)
+{
+    ine = _ine;
+}
+
 int Dealership::getEarnings()
 {
     return earnings;
-}
-
-void Dealership::menu()
-{
-    //Se muestran las opciones
-    std::cout << "-----DEALERSHIP-----" << std::endl;
-    std::cout << "Opcion menu:" << std::endl;
-    std::cout << "1. Sign up" << std::endl;
-    std::cout << "2. Select what type of car are you looking for" << std::endl;
-    
 }

@@ -20,11 +20,13 @@ class Dealership
     int earnings;
 
     public:
-    Dealership();
+    Dealership(std::string _name, std::string _lastName, std::string _ine);
     std::string getName();
+    void setName(std::string _name);
     std::string getLastName();
+    void setLastName(std::string _lastName);
     std::string getIne();
+    void setIne(std::string _ine);
     int getEarnings();
-    void menu();
 
 };

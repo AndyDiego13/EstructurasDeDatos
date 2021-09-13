@@ -15,9 +15,11 @@ class Camioneta: public Automovil
 {
     private:
     std::string traction;
+    std::vector <Camioneta> camioneta;
 
     public:
     Camioneta();
+    void showCamionetas();
     virtual std::ostream & print(std::ostream &) const;
     friend std::ostream & operator << (std::ostream &, const Camioneta &);
 };

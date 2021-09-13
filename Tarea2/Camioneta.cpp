@@ -16,6 +16,14 @@ Camioneta::Camioneta()
     traction = "4WD";
 }
 
+void Camioneta::showCamionetas()
+{
+    for (int i = 0; i < camioneta.size(); i++)
+    {
+        camioneta[i].display();
+    }
+}
+
 std::ostream & Camioneta::print(std::ostream & os) const
 {
     os << "Camioneta: " << tipo << "- Traccion: " << traction << std::endl;

@@ -15,6 +15,14 @@ Motocicleta::Motocicleta()
     tipo = "Moto";
 }
 
+void Motocicleta::showMotocicletas()
+{
+    for (int i = 0; i < mts.size(); i++)
+    {
+        mts[i].display();
+    }   
+}
+
 std::ostream & Motocicleta::print(std::ostream & os) const
 {
     os << "Moto:" << tipo << std::endl;

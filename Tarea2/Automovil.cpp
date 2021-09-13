@@ -13,6 +13,14 @@ void Automovil::addAutomovil(Automovil new_automovil)
     automoviles_available++;
 }
 
+void Automovil::showCars()
+{
+    for (int i = 0; i < automoviles.size(); i++)
+    {
+        automoviles[i].display();
+    }
+}
+
 void Automovil::showCarsByYear(int model)
 {
     for (int i = 0; i < automoviles.size(); i++)
