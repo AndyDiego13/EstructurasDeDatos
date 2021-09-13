@@ -16,6 +16,8 @@
 
 std::vector <Dealership> users;
 
+#define T 10 
+
 Dealership createAccount()
 {
     std::cout << "------ Sign up -----" << std::endl;
@@ -87,9 +89,11 @@ int main()
     Automovil auts;
     Motocicleta motos;
     Camioneta camion;
+
+    auts.addAutomovil(Automovil());
     struct sales
     {
-        int sale;
+        int sale; 
     };
 
     sales *s = new sales[20];

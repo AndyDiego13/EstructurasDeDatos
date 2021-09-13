@@ -2,9 +2,13 @@
 #include "Automovil.hpp"
 #include <iostream>
 
-Automovil::Automovil()
+Automovil::Automovil(std::string _code, std::string _brand, int _model, int _km)
 {
-    tipo = "Auto";
+    code = _code;
+    brand = _brand;
+    model = _model;
+    km = _km;
+    
 }
 
 void Automovil::addAutomovil(Automovil new_automovil)
@@ -59,7 +63,7 @@ void Automovil::details()
 
 Automovil sale()
 {
-    Automovil dhip[10];
+    auto dhip = new Automovil();
     std::cout << "What vehicle want: " << std::endl;
     int t;
     std::cin >> t;

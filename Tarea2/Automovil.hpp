@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <thread>
 
 class Automovil
 {
@@ -31,7 +32,9 @@ class Automovil
     int automoviles_available;
 
     public:
+    Automovil(std::string code, std::string brand, int model, int km);
     Automovil();
+    //std::thread automovil(std::string code, std::string brand, int model, int km);
     std::string getCode();
     std::string getBrand();
     int getModel();
@@ -48,4 +51,5 @@ class Automovil
     friend std::ostream & operator << (std::ostream &, const Automovil &);
 
 };
+
 #endif // !Automovil_hpp
