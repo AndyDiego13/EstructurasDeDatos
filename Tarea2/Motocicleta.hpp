@@ -16,6 +16,7 @@ class Motocicleta: public Automovil
     std::vector <Motocicleta> mts;
     public:
     Motocicleta();
+    ~ Motocicleta();
     void showMotocicletas();
     virtual std::ostream & print(std::ostream &) const;
     friend std::ostream & operator << (std::ostream &, const Motocicleta &);

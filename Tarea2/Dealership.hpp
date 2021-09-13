@@ -21,6 +21,7 @@ class Dealership
 
     public:
     Dealership(std::string _name, std::string _lastName, std::string _ine);
+    ~ Dealership();
     std::string getName();
     void setName(std::string _name);
     std::string getLastName();

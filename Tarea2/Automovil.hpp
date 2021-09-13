@@ -34,6 +34,7 @@ class Automovil
     public:
     Automovil(std::string code, std::string brand, int model, int km);
     Automovil();
+    ~ Automovil();
     //std::thread automovil(std::string code, std::string brand, int model, int km);
     std::string getCode();
     std::string getBrand();
