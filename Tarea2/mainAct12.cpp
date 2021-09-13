@@ -140,7 +140,15 @@ int main()
             break;
         
         case 3:
-            
+            auts.sale();
+            break;
+        
+        case 4:
+            auts.sale();
+            break;
+
+        case 5:
+            break;
         
         default:
             break;

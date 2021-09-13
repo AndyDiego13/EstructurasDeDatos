@@ -11,6 +11,8 @@
 #include <string>
 #include <vector>
 #include "Dealership.hpp"
+#include "Automovil.hpp"
+
 
 std::string Dealership::getName()
 {
@@ -40,9 +42,4 @@ std::string Dealership::getIne()
 void Dealership::setIne(std::string _ine)
 {
     ine = _ine;
-}
-
-int Dealership::getEarnings()
-{
-    return earnings;
 }

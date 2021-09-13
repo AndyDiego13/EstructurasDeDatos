@@ -26,6 +26,7 @@ class Automovil
     int model;
     int km;
     bool sold;
+    int earnings;
     std::vector<Automovil> automoviles;
     int automoviles_available;
 
@@ -40,6 +41,9 @@ class Automovil
     void showCarsByYear(int model);
     void showCars();
     void display();
+    void details();
+    void sale();
+    int getEarnings();
     virtual std::ostream & print(std::ostream &) const;
     friend std::ostream & operator << (std::ostream &, const Automovil &);
 

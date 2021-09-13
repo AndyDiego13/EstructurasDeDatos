@@ -20,6 +20,7 @@ class Camioneta: public Automovil
     public:
     Camioneta();
     void showCamionetas();
+    
     virtual std::ostream & print(std::ostream &) const;
     friend std::ostream & operator << (std::ostream &, const Camioneta &);
 };
