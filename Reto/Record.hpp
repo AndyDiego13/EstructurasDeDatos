@@ -12,12 +12,8 @@ class Record{
     public:
     std::string fecha;
     std::string hora;
-    std::string ipOrigen;
-    int puertoOrigen;
     std::string nombreOrigen;
-    std::string ipDestino;
-    int puertoDestino;
     std::string nombreDestino;
 
-    Record(std::string f, std::string h, std::string ipO, int pO, std::string nO, std::string ipD, int pD, std::string nD);
+    Record(std::string f, std::string h, std::string nO, std::string nD);
 };

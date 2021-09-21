@@ -10,36 +10,39 @@ Descripción:
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <vector>
 #include "Data.hpp"
 #include "Record.hpp"
 
+using namespace std;
 
-void Datos::leerDatos()
+void Datos::leerDatos(string path)
 {
-    ifstream fileIn;
+    std::ifstream fileIn;
     fileIn.open(path); //Con path nos referimos al directorio
         
-    string line, partes;
-    vector<string> valores;
+    std::string line, partes;
+    std::vector<std::string> valores;
         
     while(fileIn.good())
     {
-        getline(fileIn, Line);
-        istringstream sIn(Line); // Es nuestro separador de comas
+        getline(fileIn, line);
+        istringstream sIn(line); // Es nuestro separador de comas
 
-        while(getLine(sIn, partes, ','))
+        while(getline(sIn, partes, ','))
         {
             valores.push_back(partes);
         }
 
         //Ya que los datos son generados en Windows, y Windows usa /r/n ponemos el siguiente "if"
-        if(valores(7).find(´\r´)!=valores[7].npos)
+        if(valores[7].find('\r') != valores[7].npos)
         {
             valores[7]= valores[7].substr(0, valores[7].size()-1);
         }
-            Record r(valores[0],valores[1], valores[4], valores[7]);
-            conexiones.push_back(r);
-            valores.clear();
+        Record r(valores[0], valores[1], valores[4], valores[7]);
+        conexiones.push_back(r);
+        valores.clear();
     }
 }
 
