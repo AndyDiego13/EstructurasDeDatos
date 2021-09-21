@@ -8,18 +8,18 @@ Fecha de entrega: 21/09/2021
 #include<iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include "Record.hpp"
 
-
+using namespace std;
 
 class Datos
 {
     public:
-    string path;
-    vector<Record> conexiones;
-    Datos();
+    vector<Record> *conexiones;
+    std::string path;
 
-    void leerDatos(string path);
+    void leerDatos(std::string path);
 
     void imprimirDatos();
 
@@ -27,4 +27,4 @@ class Datos
     int compararPorNombreOrigen(Record a, Record b);
     int compararPornNombreDestino(Record a, Record b);
 
-}
+};
