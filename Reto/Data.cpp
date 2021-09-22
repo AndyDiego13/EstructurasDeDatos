@@ -20,7 +20,7 @@ using namespace std;
 void Datos::leerDatos(string path)
 {
     std::ifstream fileIn;
-    fileIn.open(path); //Con path nos referimos al directorio
+    fileIn.open(path); //En este caso con path nos referimos al directorio
         
     std::string line, partes;
     std::vector<std::string> valores;

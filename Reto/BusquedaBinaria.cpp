@@ -9,21 +9,21 @@ Fecha de entrega: 21/09/2021
 #include <fstream>
 #include <sstream>
 
-template<class T>
-int busquedaBinaria(vector<T> a, T buscado, int comparador(T a, T b))
+template<class T, class M>
+int busquedaBinaria(vector<T> a, M buscado, int comparador(T a, M b))
 {
     int inicio = 0;
     int fin = a.size() -1;
 
-    while(fin == inicio)
+    while(fin >= inicio)
     {
         int medio = (inicio + fin)/2;
-        if (comparador(a[medio], buscado) = 0;
+        if (comparador(a[medio], buscado) == 0)
         {
             return medio;
         }
 
-        else if(comparador(buscado, a[medio]) >0)
+        else if(comparador(a[medio], buscado)< 0)
         {
             inicio = medio + 1;
         }

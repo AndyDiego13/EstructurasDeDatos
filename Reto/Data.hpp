@@ -12,10 +12,15 @@ Serrano Diego Andrea - A01028728
 
 Fecha de entrega: 21/09/2021
 */
+
+#ifndef Data_hpp
+#define Data_hpp
+
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include "Record.hpp"
+
 
 using namespace std;
 
@@ -34,3 +39,5 @@ class Datos
     int compararPornNombreDestino(Record a, Record b);
 
 };
+
+#endif // !Data_hpp

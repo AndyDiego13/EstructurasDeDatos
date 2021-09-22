@@ -10,14 +10,50 @@ Fecha de entrega: 21/09/2021
 #include "Data.hpp"
 #include "BusquedaBinaria.cpp"
 
-int main(int argc, char const *argv[])
+int compararPorNombreDestino(Record a, std::string b)
+{
+    if (a.nombreDestino < b)
+    {
+        return -1;
+    }
+    else if(a.nombreDestino == b)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    } 
+}
+
+int compararPorNombreOrigen(Record a, Record b)
+{
+    if(a.nombreOrigen < b.nombreOrigen)
+    {
+        return -1;
+    }
+    else if (a.nombreOrigen == b.nombreOrigen)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+
+int main()
 {   
     Datos d;
-    d.leerDatos("/Users/andydiego13/Downloads/equipo7.csv");
+    d.leerDatos("/Users/andydiego13/Downloads/copiadeequipo7.csv");
 
     //Pregunta 1
     std::cout << "Datos leídos" << std::endl;
     d.imprimirDatos();
+
+    //Pregunta 2
+    // 
 
     //Pregunta 3
     //Record r("","","jeffrey.reto.com","");
@@ -34,14 +70,21 @@ int main(int argc, char const *argv[])
     //Pregunta 6
     //Record r("", "", "freemailserver.com","");
 
-    Record r("","","","999");
-    Record f("","","","1");
-    Record g("","","","55");
+    //Record r("","","","999");
+    //Record f("","","","1");
+    //Record g("","","","55");
 
-    //int pos = busquedaBinaria(d.conexiones, g, d.compararPornNombreDestino(f,r));
+    std::string a = "freemailserver.com";
 
+    int pos = busquedaBinaria(d.conexiones, a, compararPorNombreDestino);
 
-
+    if (pos != -1)
+    {
+        std::cout << "Encontrado" << std::endl;
+        
+    }
+    
+    
 
 
 
