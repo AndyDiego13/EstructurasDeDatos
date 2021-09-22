@@ -6,6 +6,12 @@ Fecha de entrega: 21/09/2021
 */
 
 #include<iostream>
+/*
+García Puebla Diego Fernando - A01028597
+Serrano Diego Andrea - A01028728
+
+Fecha de entrega: 21/09/2021
+*/
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -16,7 +22,7 @@ using namespace std;
 class Datos
 {
     public:
-    vector<Record> *conexiones;
+    vector<Record> conexiones;
     std::string path;
 
     void leerDatos(std::string path);
