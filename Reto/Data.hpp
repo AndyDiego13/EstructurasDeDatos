@@ -29,6 +29,8 @@ class Datos
     public:
     vector<Record> conexiones;
     std::string path;
+    //Datos();
+    virtual ~Datos() {};
 
     void leerDatos(std::string path);
 
