@@ -17,10 +17,10 @@ Descripción:
 
 using namespace std;
 
-void Datos::leerDatos(string path)
+void Datos::leerDatos(string _path)
 {
     std::ifstream fileIn;
-    fileIn.open(path); //En este caso con path nos referimos al directorio
+    fileIn.open(_path); //En este caso con path nos referimos al directorio
         
     std::string line, partes;
     std::vector<std::string> valores;
@@ -28,7 +28,7 @@ void Datos::leerDatos(string path)
     while(fileIn.good())
     {
         getline(fileIn, line);
-        istringstream sIn(line); // Es nuestro separador de comas
+        std::istringstream sIn(line); // Es nuestro separador de comas
 
         while(getline(sIn, partes, ','))
         {

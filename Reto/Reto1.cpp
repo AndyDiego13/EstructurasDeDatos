@@ -45,12 +45,12 @@ int compararPorNombreOrigen(Record a, Record b)
 
 int main()
 {   
-    Datos d;
-    d.leerDatos("/Users/andydiego13/Downloads/copiadeequipo7.csv");
+    Datos datos;
+    datos.leerDatos("/Users/andydiego13/Downloads/copiadeequipo7.csv");
 
     //Pregunta 1
     std::cout << "Datos leídos" << std::endl;
-    d.imprimirDatos();
+    datos.imprimirDatos();
 
     //Pregunta 2
     // 
@@ -76,7 +76,7 @@ int main()
 
     std::string a = "freemailserver.com";
 
-    int pos = busquedaBinaria(d.conexiones, a, compararPorNombreDestino);
+    int pos = busquedaBinaria(datos.conexiones, a, compararPorNombreDestino);
 
     if (pos != -1)
     {

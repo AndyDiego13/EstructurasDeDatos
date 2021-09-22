@@ -6,16 +6,6 @@ Fecha de entrega: 21/09/2021
 */
 
 #include<iostream>
-/*
-García Puebla Diego Fernando - A01028597
-Serrano Diego Andrea - A01028728
-
-Fecha de entrega: 21/09/2021
-*/
-
-#ifndef Data_hpp
-#define Data_hpp
-
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -32,7 +22,7 @@ class Datos
     //Datos();
     virtual ~Datos() {};
 
-    void leerDatos(std::string path);
+    void leerDatos(std::string _path);
 
     void imprimirDatos();
 
@@ -41,5 +31,3 @@ class Datos
     int compararPornNombreDestino(Record a, Record b);
 
 };
-
-#endif // !Data_hpp
