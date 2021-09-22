@@ -12,5 +12,5 @@ template<class T, class M>
 class busquedaBinaria
 {
     public:
-    int busquedaBinaria(vector<T> a, M buscado, int comparador(T a, M b));
+    int busquedaBinaria(std::vector<T> a, M buscado, int comparador(T a, M b));
 };

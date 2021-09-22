@@ -7,8 +7,9 @@ Fecha de entrega: 21/09/2021
 
 #include <iostream>
 #include "Record.hpp"
-#include "Data.hpp"
+//#include "Data.hpp"
 #include "BusquedaBinaria.cpp"
+
 
 int compararPorNombreDestino(Record a, std::string b)
 {
@@ -45,12 +46,14 @@ int compararPorNombreOrigen(Record a, Record b)
 
 int main()
 {   
-    Datos datos;
-    datos.leerDatos("/Users/andydiego13/Downloads/copiadeequipo7.csv");
+    //Datos d;
+
+    //d.leerDatos("/Users/andydiego13/Downloads/equipo7.csv");
 
     //Pregunta 1
-    std::cout << "Datos leídos" << std::endl;
-    datos.imprimirDatos();
+    std::cout << "Datos leídos" << std::endl; 
+    //d.imprimirDatos();
+
 
     //Pregunta 2
     // 
@@ -72,18 +75,7 @@ int main()
 
     //Record r("","","","999");
     //Record f("","","","1");
-    //Record g("","","","55");
 
-    std::string a = "freemailserver.com";
-
-    int pos = busquedaBinaria(datos.conexiones, a, compararPorNombreDestino);
-
-    if (pos != -1)
-    {
-        std::cout << "Encontrado" << std::endl;
-        
-    }
-    
     
 
 

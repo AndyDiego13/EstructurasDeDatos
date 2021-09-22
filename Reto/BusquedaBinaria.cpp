@@ -10,7 +10,7 @@ Fecha de entrega: 21/09/2021
 #include <sstream>
 
 template<class T, class M>
-int busquedaBinaria(vector<T> a, M buscado, int comparador(T a, M b))
+int busquedaBinaria(std::vector<T> a, M buscado, int comparador(T a, M b))
 {
     int inicio = 0;
     int fin = a.size() -1;
