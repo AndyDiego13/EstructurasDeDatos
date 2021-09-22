@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
     Record f("","","","1");
     Record g("","","","55");
 
-    int pos = busquedaBinaria(d.conexiones, g, d.compararPornNombreDestino(f,r));
+    //int pos = busquedaBinaria(d.conexiones, g, d.compararPornNombreDestino(f,r));
 
 
 
