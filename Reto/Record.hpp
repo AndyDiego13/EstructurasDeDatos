@@ -19,7 +19,13 @@ class Record{
     std::string nombreOrigen;
     std::string nombreDestino;
 
-    Record(std::string f, std::string h, std::string nO, std::string nD);
+    Record(std::string f, std::string h, std::string nO, std::string nD)
+    {
+        fecha = f;
+        hora = h;
+        nombreOrigen = nO;
+        nombreDestino = nD;
+    }
     
 };
 

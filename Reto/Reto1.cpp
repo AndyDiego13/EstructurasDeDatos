@@ -8,7 +8,7 @@ Fecha de entrega: 21/09/2021
 #include <iostream>
 #include "Record.hpp"
 #include "Datos.hpp"
-#include "BusquedaBinaria.cpp"
+#include "BusquedaBinaria.hpp"
 
 
 int compararPorNombreDestino(Record a, std::string b)
@@ -60,31 +60,26 @@ int main()
     // 
 
     //Pregunta 3
-    //Record r("","","jeffrey.reto.com","");
-    //Record r("", "", "betty.reto.com", "");
-    //Record r("", "", "katherine.reto.com","");
-    //Record r("", "", "scott.reto.com", "");
-    //Record r("", "", "benjamin.reto.com", "");
-    //Record r("","","samuel.reto.com","");
-    //Record r("", "", "raymond.reto.com","");
+    //std::string a = "jeffrey.reto.com";
+    //std::string a = "betty.reto.com";
+    //std::string a = "katherine.reto.com";
+    //std::string a = "scott.reto.com";
+    //std::string a = "benjamin.reto.com";
+    //std::string a = "samuel.reto.com";
+    //std::string a = "raymond.reto.com";
 
     //Pregunta 5
-    //Record r("", "", "server.reto.com","");
+    //std::string a = "server.reto.com";
 
     //Pregunta 6
-    //Record r("", "", "freemailserver.com","");
-
-    //Record r("","","","999");
-    //Record f("","","","1");
-
-    
-
     std::string a = "freemailserver.com";
-    int pos = busquedaBinaria(d.conexiones, a, compararPorNombreDestino);
+    
+    int pos = busquedaBinaria(d.conexiones, a,compararPorNombreDestino);
     if(pos != -1)
     {
         std::cout << "Encontrado" << std::endl;
     }
+    
     
 
 

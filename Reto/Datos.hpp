@@ -20,7 +20,7 @@ class Datos
     std::string path;
     std::vector<Record> conexiones;
     Datos(){};
-    ~Datos() = default;
+    //~Datos() = default;
 
     void leerDatos(std::string path)
     {
