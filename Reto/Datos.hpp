@@ -28,7 +28,7 @@ class Datos
         fileIn.open(path); //path es el directorio
 
         std::string line, partes;
-        std::vector<string> valores;
+        std::vector<std::string> valores;
         
 
 
@@ -47,7 +47,7 @@ class Datos
             {
                 valores[7] = valores[7].substr(0, valores[7].size()-1);
             }
-            Record r(valores[0], valores[1], valores[4], valores[7]);
+            Record r(valores[0], valores[1], valores[2], valores[3],valores[4], valores[5], valores[6], valores[7]);
             conexiones.push_back(r);
             valores.clear();
         }
@@ -57,6 +57,21 @@ class Datos
     {
         std::cout << "Número de registros en archivo: " << conexiones.size() << std::endl;
     }
+
+	int contarPorDia(std::string dia)
+	{
+		int contador = 0;
+
+		for (int i = 0; i < conexiones.size(); i++)
+		{
+			if ()
+			{
+				/* code */
+			}
+			
+		}
+			
+	}
 
     int compararPorFecha(Record a, Record b)
 	{
