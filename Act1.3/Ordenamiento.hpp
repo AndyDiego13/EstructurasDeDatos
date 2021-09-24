@@ -36,16 +36,6 @@ private:
 
 
 
-
-
-
-
-
-
-
-
-
-
 template <class T>
 bool Ordenamiento<T>::asc(T a, T b)
 {
@@ -96,7 +86,6 @@ std::vector<T> Ordenamiento<T>::insercion(std::vector<T> e, bool compara (T,T))
         
         e[j+1] = index;
     }
-    //copy(e.begin(), e.end(), std::ostream_iterator<T>(std::cout, " "));
     return e;
 }
 
@@ -117,7 +106,7 @@ std::vector<T> Ordenamiento<T>::seleccion(std::vector<T> e, bool compara (T,T))
         }
         std::swap(e[minimo], e[i]);
     }
-    //copy(e.begin(), e.end(), std::ostream_iterator<T>(std::cout, " "));
+    copy(e.begin(), e.end(), std::ostream_iterator<T>(std::cout, " "));
     return e;
 }
 
@@ -151,7 +140,6 @@ std::vector<T> Ordenamiento<T>::quicksort(std::vector<T> e, int primero, int ult
         e = quicksort ( e, primero, derecho-1, compara);
         e = quicksort ( e, izquierdo, ultimo, compara);
     }
-    //copy(e.begin(), e.end(), std::ostream_iterator<T>(std::cout, " "));
     return e;
 }
 
@@ -192,7 +180,6 @@ std::vector<T> Ordenamiento<T>::merge(std::vector<T> e, int l, int m, int n, boo
             e[k] = aux[i++];
         else
             e[k] = aux[j--];
-    //copy(e.begin(), e.end(), std::ostream_iterator<T>(std::cout, " "));
     return e;
 }
 

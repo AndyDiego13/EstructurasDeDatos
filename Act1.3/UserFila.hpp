@@ -1,10 +1,12 @@
-//
-//  UserFila.hpp
-//  Ataque
-//
-//  Created by Matías Méndez on 23/09/20.
-//  Copyright © 2020 Matías Méndez. All rights reserved.
-//
+/*
+  UserFila.hpp
+
+García Puebla Diego Fernando - A01028597
+Serrano Diego Andrea - A01028728
+
+Fecha de entrega: 23/09/2021
+
+*/
 
 #ifndef UserFila_hpp
 #define UserFila_hpp
@@ -28,51 +30,77 @@ public:
     //constructor
     UserFila(string f, string h, string iO, string pO, string nO, string iD, string pD, string nD):
     fecha(f), hora(h), ipOrigen(iO), puertoOrigen(pO), nombreOrigen(nO), ipDestino(iD),puertoDestino(pD), nombreDestino(nD) {}
+    UserFila(){}
     
     //destructor
     ~UserFila(){}
     
     //sobrecarga de operador para imrimir y poder ser ocupado en otras clases
-    friend std::ostream & operator<<(std::ostream & os, const UserFila & userFila);
+    friend std::ostream & operator<<(std::ostream & os, const UserFila & userFila)
+    {
+        
+        os << userFila.fecha << " - ";
+        os << userFila.hora << " - ";
+        os << userFila.ipOrigen << " - ";
+        os << userFila.puertoOrigen << " - ";
+        os << userFila.nombreOrigen << " - ";
+        os << userFila.ipDestino << " - ";
+        os << userFila.puertoDestino << " - ";
+        os << userFila.nombreDestino << " - ";
+        os << endl;
+    
+    
+        return os;
+
+    }
            
     
-string getFecha(){
-    return fecha;
-}
+    string getFecha()
+    {
+        return fecha;
+    }
 
-string getHora(){
-    return hora;
-}
+    string getHora()
+    {
+        return hora;
+    }
 
-string getIpO(){
-    return ipOrigen;
-}
+    string getIpO()
+    {
+        return ipOrigen;
+    }
 
-string getPuertoO(){
-    return puertoOrigen;
-}
+    string getPuertoO()
+    {
+        return puertoOrigen;
+    }
 
-string getNombreO(){
-    return nombreOrigen;
-}
+    string getNombreO()
+    {
+        return nombreOrigen;
+    }
 
-string getIpD(){
-    return ipDestino;
-}
+    string getIpD()
+    {
+        return ipDestino;
+    }
 
-string getPuertoD(){
-    return puertoDestino;
-}
+    string getPuertoD()
+    {
+        return puertoDestino;
+    }
 
-string getNombreD(){
-    return nombreDestino;
-}
+    string getNombreD()
+    {
+        return nombreDestino;
+    }
 
-//para comparar todo por fecha
+    //para comparar todo por fecha
 
-bool fecha_asc(UserFila co, UserFila b){
-    return co.fecha < b.fecha;
-}
+    static bool fecha_asc(UserFila co, UserFila b)
+    {
+        return co.fecha < b.fecha;
+    }
 };
 
 

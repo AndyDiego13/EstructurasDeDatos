@@ -25,7 +25,7 @@ Fecha de entrega: 23/09/2021
 using namespace std;
 
 class Administrador{
-    protected:
+    private:
         string fileName;
         vector<UserFila> registros;
         
@@ -35,28 +35,28 @@ class Administrador{
         Administrador(){}
         ~Administrador(){}
 
-        /*
+        
         auto read_fila()
         {
             /* Crear un vector de vector de strings */
-            //vector<UserFila> lineas;
+            vector<UserFila> lineas;
 
             /* Crear un input filestream para leer el archivo CSV */
-            //ifstream file(fileName);
+            ifstream file(fileName);
 
             /* Verificar si no hubo error al abrir el archivo */
-            //if(!file.is_open()) throw runtime_error("No se puede abrir el archivo");
+            if(!file.is_open()) throw runtime_error("No se puede abrir el archivo");
 
             /* Definir variable que almacena cada línea */
-            //string linea;
+            string linea;
     
             /* Leer datos línea a línea */
-            //while(getline(file, linea))
-            //{
+            while(getline(file, linea))
+            {
                 /* Crear un steam de la línea */
-                //stringstream ss(linea);
+                stringstream ss(linea);
     
-                /* Variables que almacenan cada campo leído 
+                /* Variables que almacenan cada campo leído */
                 string f;
                 string h;
                 string iO;
@@ -65,9 +65,9 @@ class Administrador{
                 string iD;
                 string pD;
                 string nD;
-                */
+                
         
-                /* Iterar sobre la línea para extraer cada campo 
+                /* Iterar sobre la línea para extraer cada campo */
                 getline(ss, f, ',');
                 getline(ss, h, ',');
                 getline(ss, iO, ',');
@@ -77,37 +77,30 @@ class Administrador{
                 //esto no funciona porque yo quiero ingresar un int y getline no se ocupara ints
                 getline(ss, pD, ',');
                 getline(ss, nD, ',');
-                */
+                
         
         
-                /* Insertar la fila con los campos separados en un vector 
+                /* Insertar la fila con los campos separados en un vector */
                 lineas.push_back(UserFila( f, h, iO, pO, nO, iD, pD, nD));
             }
-            */
+            
 
-            /* Cerrar el archivo 
+            /* Cerrar el archivo */
             file.close();
-            */
+            
 
-            /* Regresar el vector de líneas leídas 
+            /* Regresar el vector de líneas leídas */
             return lineas;
         }
-        */
+        
         
 
         int contarRegistros(){
         //atributo de clase
     
-            return size;
+            std::cout<< "Numero de registros: " << size << std::endl;
         }
         int contarXdia(string dia){
-    
-            //int tam = (int) registros.size()-1;
-    
-            //registros = Ordenamiento<UserFila>::quicksort(registros,0, tam, UserFila::fecha_asc);
-    
-            //usamos ordenamiento por sleccion porque fue más rápido ne esta coasion que quicksort y mergesort
-   
     
             int cont = 0;
     
@@ -132,6 +125,18 @@ class Administrador{
         cout << " Valores encontrados : " << cont << " para : "<<  nombre << endl;
     }
 
+    void busqNombreMail(string nombreDestino){
+        int cont = 0;
+    
+        for (int i = 0; i < size; i++){
+            if(registros[i].getNombreD() == nombreDestino + ".com" ){
+                //cout << registros[i];
+                cont = cont +1;
+            }
+        }
+        cout << " Valores encontrados : " << cont << " para : "<<  nombreDestino << endl;
+    }
+
     void busqRedInterna(){
 
         int i=0;
@@ -147,6 +152,24 @@ class Administrador{
             cout<< cut<<endl;
             i++;
         }
+    }
+
+    int busquedaSecuencial( vector<UserFila> d, bool (*condicion)(UserFila r) )
+    {
+        for(int i = 0; i<d.size(); i++)
+        {
+            if( condicion(d[i]) ) return i;
+        }
+        return -1;
+    }
+
+    void busqNombreIp(vector<UserFila> d)
+    {
+        int h = busquedaSecuencial(d, [](UserFila r){return r.getIpO() != "-";});
+        std::string iporigen = d[h+1].getIpO();
+        for (int i = 0; i < 3; i++) iporigen.pop_back();
+        iporigen.append(".212");
+        std::cout<< "La ip de la red interna: " << iporigen << std::endl;
     }
 
     void mostrarMail(){
@@ -175,15 +198,19 @@ class Administrador{
     
         int puertoDesINT;
         int cont = 0;
-    
+
+        for(int j = 0; j < size; j++)
+        {
+            std::cout << registros[j].getPuertoD() << std::endl;
+        }
+
         for (int i = 0; i < size; i++){
             puertoDesINT =  atoi( registros[i].getPuertoD().c_str() ) ;
             if( inf < puertoDesINT && puertoDesINT < sup ){
-                //cout << registros[i];
                 cont = cont + 1;
             }
         }
-        cout << " Valores encontrados : " << cont << endl;
+        cout << " Valores encontrados de los puertos menores a 1000 : " << cont << endl;
 
     }
       
