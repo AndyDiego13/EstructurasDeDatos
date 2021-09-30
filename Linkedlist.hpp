@@ -284,6 +284,62 @@ Node<T> * LinkedList<T>::remove_front()
 /* Eliminar el ultimo elemento
     Complejidad: O(n)
 */
+template<class T>
+Node<T> * LinkedList<T>::remove_back()
+{
+    return this -> remove(this -> _size -1);
+}
+
+/* Eliminar todos los elementos de la lista y liberar la memoria ocupada
+    Complejidad: O(n)
+*/
+template<class T>
+void LinkedList<T>::clear()
+{
+    /* Cuando la lista esta vacia */
+    if (this -> empty())
+    {
+        return;
+    }
+
+    /* Obtener una referencia al primer nodo */
+    while (tmp != nullptr)
+    {
+        /* Mover first al siguiente elemento */
+        this -> _first = tmp -> getNext();
+
+        /*Liberar la memoria del nodo*/
+        delete tmp;
+
+        /*Aumentar al primero */
+        tmp = this -> _first;
+    }
+    
+    /* Establecer el size en 0 */
+    this -> _size = 0;
+
+    /* Establecer first en nullptr */
+    this -> _first = nullptr;
+}
+
+/* Obtener el nodo que se encuentra en una posicion
+    Complejidad: O(n)
+*/
+template<class T>
+Node<T> * LinkedList<T>::at(int position) const
+{
+    /* Cuando la lista esta vacia o position es invalida*/
+    if (this -> empty() || position < 0 || position >= this -> _size)
+    {
+        return nullptr;
+    }
+
+    /* Buscar el nodo que se encuentra en position */
+    int pos = 0;
+
+    /* obtener una referencia al primer nodo */
+    
+}
 
 
 
