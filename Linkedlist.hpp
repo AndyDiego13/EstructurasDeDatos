@@ -338,9 +338,174 @@ Node<T> * LinkedList<T>::at(int position) const
     int pos = 0;
 
     /* obtener una referencia al primer nodo */
-    
+    Node<T> * tmp = this -> _first;
+
+    /* Desplazarse por la lista hasta encontrar el nodo */
+    while (tmp != nullptr && pos++ < position)
+    {
+        tmp = tmp -> getNext();
+    }
+
+    return tmp;
 }
 
+/* obtener la posicion de un nodo
+    Complejidad: O(n)
+*/
+template<class T>
+int LinkedList<T>::index(Node<T> *node) const
+{
+    /* Cuando la lista esta vacia o node es nullptr */
+    if (this -> empty() || node == nullptr)
+    {
+        return -1;
+    }
+
+    /* buscar el valor del nodo y regresar su posicion */
+    return this -> index(node -> getInfo());
+}
+
+/* obtener la posicion de un valor
+    complejidad: O(n)
+*/
+template<class T>
+int LinkedList<T>::index(const T & value) const
+{
+    /* Cuando la lista esta vacia */
+    if (this -> empty())
+    {
+        return -1;
+    }
+
+    /* buscar value y regresar su posicion */
+    int pos = 0;
+
+    /* obtener una referencia al primer nodo */
+    Node<T> *tmp = this -> _first;
+
+    /* desplazar por la lista hasta encontrar el value */
+    while (tmp != nullptr && tmp -> getInfo() != value)
+    {
+        tmp = tmp -> getNext();
+        ++pos;
+    }
+
+    /* Si el value no se encuentra en la lista */
+    if (pos == this -> _size)
+    {
+        return -1;
+    }
+    
+    return pos;
+}
+
+/* obtener la cantidad de ocurrencias de un elemento 
+    Complejidad: O(n)
+*/
+template<class T>
+int LinkedList<T>::count(const T & value) const
+{
+    /* Obtener una referencia al primer elemento */
+    Node<T> * tmp = this -> _first;
+
+    /* Contador de ocurrencias */
+    int ocurr = 0;
+
+    /* recorrer la lista */
+    while (tmp != nullptr)
+    {
+        /* comparar con el valor buscado */
+        if (tmp -> getInfo() == value)
+        {
+            ++ocurr;
+        }
+
+        /* Desplazarse al siguiente elemento */
+        tmp = tmp -> getNext();
+    }
+
+    return ocurr;   
+}
+
+/* invertir una lista 
+    complejidad: O(n)
+*/
+template<class T>
+void LinkedList<T>::reverse()
+{
+    /* obtener una referencia al segundo elemento */
+    Node<T> * next = this -> _first -> getNext();
+
+    Node<T> * previous = nullptr;
+
+    /*Recorrer la lista */
+    while (next != nullptr)
+    {
+        /* invertir el apuntador next del nodo first para que apunte al nodo anterior */
+        this -> _first -> setNext(previous);
+
+        /* Mover previous a la posicion de _first */
+        previous = this -> _first;
+
+        /* mover _first al siguiente nodo */
+        this -> _first = next;
+
+        /* mover next al nodo despues de el */
+        next = next -> getNext();
+    }
+
+    /* invertir el apuntador next del ultimo nodo para que apunte al nodo anterior */
+    this -> _first -> setNext(previous);
+}
+
+/* obtener el elemento de una posicion 
+    complejidad: O(n)
+*/
+template<class T>
+Node<T> * LinkedList<T>::operator [](const int position)
+{
+    return this -> at(position);
+}
+
+/* mostrar el contenido de la lista 
+    Complejidad: O(n)
+*/
+template<class T>
+std::ostream & operator << (std::ostream &os, const LinkedList<T> &list)
+{
+    /* recorrer los elememtos con un iterador */
+    for (const Node<T> &node : list)
+    {
+        os << node << " ";
+    }
+
+    return os;  
+}
+
+/* clonar una lista 
+    complejidad: O(n)
+*/
+template<class T>
+LinkedList<T> * LinkedList<T>::clone()
+{
+    /* crear una lista vacia */
+    LinkedList<T> * list = new LinkedList<T>();
+
+    /* obtener una referencia al primer elemento */
+    Node<T> * tmp = this -> _first;
+
+    /* recorrer la lista */
+    while (tmp != nullptr)
+    {
+        /* insertar un elemento en la lista nueva */
+        list -> insert_back(tmp -> getInfo());
+
+        /* desplazarse al siguiente elemento */
+        tmp = tmp -> getNext();
+    }
+
+    return list;   
+}
 
 
 #endif // LinkedList_hpp
