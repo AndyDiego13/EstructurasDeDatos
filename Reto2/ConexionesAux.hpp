@@ -3,7 +3,7 @@
 
     Created by:  
     - Serrano Diego Andrea (A01028728)
-    - García Puebla Diego fernando (A01028597)
+    - García Puebla Diego Fernando (A01028597)
     
     Fecha de realizacion: 05 / 10 /2021
 
@@ -31,12 +31,10 @@ class ConexionesAux //Clase auxiliar (para las conexiones entre computadoras)
     }
     ~ConexionesAux() {};
 
-    std::string getIp();
+    std::string getIp()
+    {
+        return ip;
+    }
 };
-
-std::string ConexionesAux::getIp()
-{
-    return ip;
-}
 
 #endif // !ConexionesAux_hpp
