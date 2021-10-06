@@ -1,5 +1,7 @@
 /*
     Situacion Problema - Ataques Cibernéticos
+    ConexionesComputadora.hpp
+
     Created by: 
     - Serrano Diego Andrea (A01028728)
     - Garcia Puebla Diego Fernando (A01028597)
@@ -30,7 +32,7 @@ class ConexionesComputadora //Nuestra clase principal de conexiones entre las co
             this -> nombre = nombre;
         }
 
-        ~ConexionesComputadora() {};
+        ~ConexionesComputadora() {}; //Destructor
         
         void insertConexionesEntrantes(std::string ip, int puerto, std::string conex);
         void insertConexionesSalientes(std::string ip, int puerto, std::string conex);

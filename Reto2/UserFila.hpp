@@ -1,10 +1,12 @@
 /*
-  UserFila.hpp
+    Situacion Problema - Ataques Cibernéticos
+    UserFila.hpp
 
-García Puebla Diego Fernando - A01028597
-Serrano Diego Andrea - A01028728
-
-Fecha de entrega: 23/09/2021
+    Created by:  
+    - Serrano Diego Andrea (A01028728)
+    - García Puebla Diego Fernando (A01028597)
+    
+    Fecha de realizacion: 05 / 10 /2021
 
 */
 
@@ -13,6 +15,8 @@ Fecha de entrega: 23/09/2021
 
 #include <stdio.h>
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 class UserFila {

@@ -1,5 +1,6 @@
 /*
     Situacion Problema - Ataques Cibernéticos
+    ConexionesAux.hpp
 
     Created by:  
     - Serrano Diego Andrea (A01028728)
@@ -29,7 +30,7 @@ class ConexionesAux //Clase auxiliar (para las conexiones entre computadoras)
         this -> puerto = puerto;
         this -> conex = conex;
     }
-    ~ConexionesAux() {};
+    ~ConexionesAux() {}; //Destructor
 
     std::string getIp()
     {
