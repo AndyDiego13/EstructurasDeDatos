@@ -49,7 +49,7 @@ class LinkedList
 
         /* Insertar un elemento en una posicion dada */
         void insert(const T &, int);
-        void inser(Node<T> *, int);
+        void insert(Node<T> *, int);
 
         /* Insertar un elemento al inicio */
         void insert_front(const T &);
@@ -106,6 +106,12 @@ class LinkedList
 
         /* Clonar una lista */
         LinkedList<T> * clone();
+
+
+        /* Funcion aux union */
+        void unionAux(LinkedList<T> * dr, LinkedList<T> * sr);
+        /* Funcion union */
+        Node<T> * union(LinkedList<T> *a, LinkedList<T> *b);
 };
 
 template <class T>
@@ -349,6 +355,7 @@ Node<T> * LinkedList<T>::at(int position) const
     return tmp;
 }
 
+
 /* obtener la posicion de un nodo
     Complejidad: O(n)
 */
@@ -506,6 +513,55 @@ LinkedList<T> * LinkedList<T>::clone()
 
     return list;   
 }
+
+template<class T>
+void LinkedList<T>::unionAux(Node<T> *dr, Node<T> * sr)
+{
+    Node<T> *newNode = *sr;
+    assert(newNode != NULL);
+
+    *sr = newNode -> next;
+
+    newNode -> next = *dr;
+
+    *dr = newNode;
+}
+
+
+template <class T>
+Node<T> * LinkedList<T>::union(Node<T> *a, Node<T> *b)
+{
+    Node<T> dm;
+
+    Node<T> *tl = &dm;
+
+    dm.next = NULL;
+
+    while(1)
+    {
+        if(a == NULL
+        {
+            tl -> next = b;
+        }
+        else if(b == NULL)
+        {
+            tl -> next = a;
+            break;
+        }
+        if(a -> info <= b -> info)
+        {
+            unionAux(&(tl -> next), &a);
+        }
+        else
+        {
+            unionAux(&(tl -> next), &b);
+        }
+        tl = tl -> next;
+    }
+    return (dm.next);
+
+}
+
 
 
 #endif // LinkedList_hpp

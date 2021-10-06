@@ -58,21 +58,6 @@ class Datos
         std::cout << "Número de registros en archivo: " << conexiones.size() << std::endl;
     }
 
-	int contarPorDia(std::string dia)
-	{
-		int contador = 0;
-
-		for (int i = 0; i < conexiones.size(); i++)
-		{
-			if ()
-			{
-				/* code */
-			}
-			
-		}
-			
-	}
-
     int compararPorFecha(Record a, Record b)
 	{
 		if(a.fecha < b.fecha)
