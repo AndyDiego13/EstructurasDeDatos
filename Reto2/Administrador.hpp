@@ -97,12 +97,15 @@ class Administrador{
         
         
 
-        int contarRegistros(){
-        //atributo de clase
+        int contarRegistros()
+        {
+            //atributo de clase
     
             std::cout<< "Numero de registros: " << size << std::endl;
         }
-        int contarXdia(string dia){
+
+        int contarXdia(string dia)
+        {
     
             int cont = 0;
     
@@ -115,7 +118,8 @@ class Administrador{
             return cont;
         }
 
-    void busqNombre(string nombre){
+    void busqNombre(string nombre)
+    {
         int cont = 0;
     
         for (int i = 0; i < size; i++){
@@ -127,7 +131,8 @@ class Administrador{
         cout << " Valores encontrados : " << cont << " para : "<<  nombre << endl;
     }
 
-    void busqNombreMail(string nombreDestino){
+    void busqNombreMail(string nombreDestino)
+    {
         int cont = 0;
     
         for (int i = 0; i < size; i++){
@@ -139,7 +144,8 @@ class Administrador{
         cout << " Valores encontrados : " << cont << " para : "<<  nombreDestino << endl;
     }
 
-    void busqRedInterna(){
+    void busqRedInterna()
+    {
 
         int i=0;
         //lo que ocurre es que se voltea la dirección IP de origin y todo lo que está en el útilmo octeto se borra

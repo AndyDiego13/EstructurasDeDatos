@@ -149,6 +149,7 @@ bool confirmarIp(UserFila uf)
     return uf.getIpO() == ipUsuario;
 }
 
+//Obtener la ip base
 std::string takeIpBase(vector<UserFila> d)
 {
     int i = busquedaSecuencial(d,[](UserFila r) {return r.getIpO() != "-";});
@@ -170,9 +171,10 @@ std::string takeIpUsuario(std::string base, int usuario)
 }
 
 /*Sirve para preguntar al usuario un numero para poder generar la IP interna correpondiente, según la direccion de red*/
-{
-int askNumber(vector<UserFila> datos) 
-    string ipBase = takeIpBase(datos);
+
+int askNumber(vector<UserFila> datos)
+{ 
+    std::string ipBase = takeIpBase(datos);
     int direcUsuario;
 
     while (direcUsuario < 1 || direcUsuario > 150)
@@ -199,18 +201,18 @@ void fill(vector<UserFila> datos, ConexionesComputadora &conexInput)
         if (datos[i].getIpD() == conexInput.ip)
         {
             conexInput.insertConexionesEntrantes(
-                datos[i].getIpO(),
-                datos[i].getPuertoO(),
-                datos[i].getNombreO()
+                datos[i].ipOrigen,
+                datos[i].origenPuerto,
+                datos[i].nombreOrigen
             );
         }
 
         if (datos[i].getIpO() == conexInput.ip)
         {
             conexInput.insertConexionesSalientes(
-                datos[i].getIpD(),
-                datos[i].getPuertoD(),
-                datos[i].getNombreD()
+                datos[i].ipDestino,
+                datos[i].destinoPuerto,
+                datos[i].nombreDestino
             );
         }
     }
@@ -228,13 +230,75 @@ bool interna(std::string ipBase, std::string ipInput)
     return true;
 }
 
+bool tresSeguidas(ConexionesComputadora &conexInput)
+{
+    auto conx1 = conexInput.conexionesSalientes.begin();
+    auto conx2 = std::next(conx1, 1);
+    auto conx3 = std::next(conx2, 1);
+
+    for (int i = 0; i < conexInput.conexionesSalientes.size() -3; i++)
+    {
+        if (conx1 -> getIp() == conx2 -> getIp() && conx2->getIp() == conx3->getIp())
+        {
+            return true;
+        }
+        conx1 = std::next(conx1, 1);
+        conx2 = std::next(conx2, 1);
+        conx3 = std::next(conx3, 1); 
+    }
+
+    return false;  
+}
+
 int main()
 {
     Administrador admin (read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7_usar.csv"));
 
     vector <UserFila> registros = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7_usar.csv" );
 
-    
-    
+    int usuarioIndex = askNumber(registros);
+    std::string ipBase = takeIpBase(registros);
+
+    std::string nombreUsuario = registros[usuarioIndex].nombreOrigen;
+
+    ConexionesComputadora conexUsuario = ConexionesComputadora(ipUsuario, nombreUsuario);
+    std::cout << "La ip interna es: " << conexUsuario.ip << std::endl;
+
+    fill(registros, conexUsuario);
+
+    std::cout << std::endl;
+
+    /* La conexion conocida que estamos usando para resolver las preguntas es la de betty*/
+    ConexionesComputadora compuConocida = ConexionesComputadora("172.22.162.7","betty.reto.com");
+    fill(registros, compuConocida);
+
+    /* Pregunta 1 */
+    std::cout << "-------------------------------------------------------------------------" << std::endl;
+    std::cout << "¿Qué dirección IP estás usando?" << std::endl;
+    std::cout << "Se está utilizando la dirección ip: " << compuConocida.ip << std::endl;
+
+    /* Pregunta 2 */
+    std::cout << "-------------------------------------------------------------------------" << std::endl;
+    std::cout << "¿Cuál fue la dirección IP de la última conexión que recibió esta computadora?" << std::endl;
+    std::string ultimaConex = compuConocida.ultimaConexionEntrante();
+    std::cout << "La IP de la última conexión que recibio esta computadora es: " << ultimaConex << std::endl;
+    std::cout << "¿Es interna o externa?" << std::endl;
+    std::cout << "\t"<< (interna(ipBase, ultimaConex) ? "Es interna" : "Es externa") << std::endl;
+
+    /* Pregunta 3 */
+    std::cout << "-------------------------------------------------------------------------" << std::endl;
+    std::cout << "¿Cuántas conexiones entrantes tiene esta computadora?" << std:: endl;
+    std::cout << "Esta computadora tiene " << compuConocida.conexionesEntrantes.size() << " conexiones entrantes." <<std::endl;
+
+    /* Pregunta 4 */
+    std::cout << "-------------------------------------------------------------------------" << std::endl;
+    std:: cout << "¿Cuántas conexiones salientes tiene esta computadora?" << std:: endl;
+    std:: cout << "Esta computadora tiene " << compuConocida.conexionesSalientes.size() << " conexiones salientes." << std::endl;
+
+    /* Pregunta 5 (Extra) */
+    std::cout << "-------------------------------------------------------------------------" << std::endl;
+    std:: cout << "¿Tiene esta computadora 3 conexiones seguidas a un mismo sitio web?" << std::endl;
+    std:: cout << "\t" << (tresSeguidas(compuConocida) ? "Si tiene tres conexiones seguidas" : "No tiene tres conexiones seguidas") << std:: endl;
+      
     return 0;
 }

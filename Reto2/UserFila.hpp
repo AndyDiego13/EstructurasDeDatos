@@ -20,7 +20,7 @@
 using namespace std;
 
 class UserFila {
-private:
+public:
     string fecha;
     string hora;
     string ipOrigen;
@@ -30,11 +30,58 @@ private:
     string puertoDestino;
     string nombreDestino;
     
-public:
-    //constructor
-    UserFila(string f, string h, string iO, string pO, string nO, string iD, string pD, string nD):
-    fecha(f), hora(h), ipOrigen(iO), puertoOrigen(pO), nombreOrigen(nO), ipDestino(iD),puertoDestino(pD), nombreDestino(nD) {}
-    UserFila(){}
+
+    int origenPuerto;
+    int destinoPuerto;
+    
+    //Constructor
+    UserFila(string f, string h, string iO, string pO, string nO, string iD, string pD, string nD)
+    {
+        fecha = f;
+        hora = h;
+        ipOrigen = iO;
+
+        if (pO == "-")
+        {
+            origenPuerto = 0;
+        }
+        else
+        {
+            try
+            {
+                origenPuerto = stoi(pO);
+            }
+            catch(const std::invalid_argument& ia)
+            {
+                origenPuerto = 0;
+                std::cout << "error" << pO << std::endl;
+            }
+            
+        }
+
+        nombreOrigen = nO;
+        ipDestino = iD;
+
+        if (pD == "-")
+        {
+            destinoPuerto = 0;
+        }
+        else
+        {
+            try
+            {
+                destinoPuerto = stoi(pD);
+            }
+            catch(const std::invalid_argument& ia)
+            {
+                destinoPuerto = 0;
+                std::cout << "error" << pD <<std::endl;
+            }
+            
+        }
+        nombreDestino = nD;
+    }
+    //UserFila(){}
     
     //destructor
     ~UserFila(){}
@@ -58,17 +105,19 @@ public:
 
     }
            
-    
+    //Obtener Fecha
     string getFecha()
     {
         return fecha;
     }
 
+    //Obtener Hora
     string getHora()
     {
         return hora;
     }
 
+    //Obtener Ip Origen
     string getIpO()
     {
         return ipOrigen;
@@ -79,16 +128,19 @@ public:
         return puertoOrigen;
     }
 
+    //Obtener nombre del puerto origen
     string getNombreO()
     {
         return nombreOrigen;
     }
 
+    //Obtener ip Destino
     string getIpD()
     {
         return ipDestino;
     }
 
+    //Obtener nombre del puerto destino
     string getPuertoD()
     {
         return puertoDestino;
@@ -105,6 +157,8 @@ public:
     {
         return co.fecha < b.fecha;
     }
+
+
 };
 
 
