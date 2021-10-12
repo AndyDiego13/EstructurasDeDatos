@@ -142,6 +142,7 @@ int busquedaSecuencial(vector<UserFila> d, bool(*condicion)(UserFila a, UserFila
     return -1;  
 }
 
+
 std::string ipUsuario;
 
 bool confirmarIp(UserFila uf)
