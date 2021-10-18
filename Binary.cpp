@@ -1,3 +1,13 @@
+/*
+    "Binary.cpp"
+    
+    Created by:
+    Serrano Diego Andrea - A01028728
+    Garcia Puebla Diego Fernando - A01028597 
+
+    Fecha: 18/10/2021
+*/
+
 #include <iostream>
 #include "TreeNode.hpp"
 #include "BinaryTree.hpp"
@@ -76,7 +86,32 @@ int main(int argc, const char * argv[]) {
     std::cout << std::endl;
 
     std::cout << "nuevo nivel" << std::endl;
-    tree->inorderNivel(2);
+    tree->inorderNivel(3);
+
+    std::cout << "height" << std::endl;
+    std::cout << tree->height2(root) << std::endl;
+
+    std::cout << "ancestor" << std::endl;
+    int an = 6;
+    tree->printAncestor(root, an);
+
+    std::cout << "what level i am" << std::endl;
+    int level;
+    for (level = 1; level <= 8; level++)
+    {
+        int l = tree->getLevel(root, level);
+        if (l)
+        {
+            std::cout << "The level of " << level << " is " << tree->getLevel(root, level) << std::endl;
+        }
+        else
+        {
+            std::cout << level << " is not present in tree" <<std::endl;
+        } 
+    }
+    
+
+    
     
     std::cout << "(C) Se eliminan todos los nodos del árbol" << std::endl;
     tree->clear();
@@ -91,7 +126,7 @@ int main(int argc, const char * argv[]) {
     
     /* Creación de un BST vacío */
     std::cout << std::endl;
-    std::cout << "--- Demostración del uso de un Binary Search Tree ---" << std::endl;
+    std::cout << "--- Demostracion del uso de un Binary Search Tree ---" << std::endl;
     std::cout << std::endl;
     
     /* Crear un árbol */

@@ -1,6 +1,11 @@
-/* 
-    Ejemplo clase 
-    11/Octubre/2021
+/*
+    "BTS.hpp"
+    
+    Created by:
+    Serrano Diego Andrea - A01028728
+    Garcia Puebla Diego Fernando - A01028597 
+
+    Fecha: 18/10/2021
 */
 
 #ifndef BST_hpp
@@ -43,6 +48,7 @@ TreeNode<T> * BST<T>::search(const T & value) const
     return nullptr;
 }
 
+//Insertar
 template <class T>
 bool BST<T>::insert(T & value)
 {

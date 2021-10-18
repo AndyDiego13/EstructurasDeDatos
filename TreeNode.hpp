@@ -1,6 +1,11 @@
 /* 
-    Ejemplo clase
-    11/Octubre/2021
+    "TreeNode.hpp"
+    
+    Created by:
+    Serrano Diego Andrea - A01028728
+    Garcia Puebla Diego Fernando - A01028597 
+
+    Fecha: 18/10/2021
 */
 
 #ifndef TreeNode_hpp
@@ -16,6 +21,8 @@ public:
     TreeNode<T> * right = nullptr;
     
     TreeNode<T> * parent = nullptr;
+    
+    int deep;
     
     /* Constructores */
     TreeNode() { };

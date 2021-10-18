@@ -1,6 +1,11 @@
 /* 
-    Ejemplo clase 
-    11/Octubre/2021
+    "BinaryTree.hpp"
+    
+    Created by:
+    Serrano Diego Andrea - A01028728
+    Garcia Puebla Diego Fernando - A01028597 
+
+    Fecha: 18/10/2021
 */
 
 #ifndef BinaryTree_hpp
@@ -48,6 +53,14 @@ public:
 
     void inorderNivel(TreeNode<T> *, int, int);
     void inorderNivel(int);
+
+    void height();
+    int height2(TreeNode<T> *);
+
+    bool printAncestor(TreeNode<T> *, int);
+
+    int whatLevelAmI(TreeNode<T> *, int, int);
+    int getLevel(TreeNode<T> *, int);
     
 };
 
@@ -160,6 +173,7 @@ void BinaryTree<T>::inOrden() const
     this->inOrden( this->root );
 }
 
+//Complejidad Computacional: Lineal - O(n)
 template <class T>
 void BinaryTree<T>::inOrden(TreeNode<T> * node) const
 {
@@ -175,12 +189,14 @@ void BinaryTree<T>::inOrden(TreeNode<T> * node) const
     }
 }
 
+//Complejidad Computacional: Lineal - O(n)
 template <class T>
 void BinaryTree<T>::postOrden() const
 {
     this->postOrden( this->root );
 }
 
+//Complejidad Computacional: Lineal - O(n)
 template <class T>
 void BinaryTree<T>::postOrden(TreeNode<T> * node) const
 {
@@ -197,12 +213,14 @@ void BinaryTree<T>::postOrden(TreeNode<T> * node) const
 }
 
 
+//Complejidad Computacional: Lineal - O(n)
 template <class T>
 int BinaryTree<T>::topN() const
 {
     return this->topN( this->root, 4, 0 );
 }
 
+//Complejidad Computacional: Lineal - O(n)
 template <class T>
 int BinaryTree<T>::topN(TreeNode<T> * node, int n, int cont) const
 {
@@ -223,6 +241,7 @@ int BinaryTree<T>::topN(TreeNode<T> * node, int n, int cont) const
     return cont;
 }
 
+//Complejidad Computacional: Lineal - O(n)
 template <class T>
 void BinaryTree<T>::inorderNivel(TreeNode<T> *temp, int nivel, int nivelBuscado)
 {
@@ -244,6 +263,96 @@ void BinaryTree<T>::inorderNivel(int buscador)
 {
     inorderNivel(root, 1, buscador);
     std::cout << std::endl;
+}
+
+//Metodo para obtener la altura de nuestro árbol
+//Complejidad Computacional: Lineal - O(n)
+template<class T>
+int BinaryTree<T>::height2(TreeNode<T> *temp)
+{
+    if (temp == nullptr)
+    {
+        return 0;
+    }
+    else
+    {
+        int left = height2(temp->getLeft());
+        int right = height2(temp->getRight());
+        
+        if (left > right)
+        {
+            temp->deep = left +1;
+        }
+
+        temp->deep = right +1;
+        return temp->deep;
+    }
+}
+
+template<class T>
+void BinaryTree<T>::height()
+{
+    height(root);
+}
+
+//Complejidad Computacional: Lineal - O(n)
+template<class T>
+bool BinaryTree<T>::printAncestor(TreeNode<T> *temp, int ancestor)
+{
+    if (temp == nullptr)
+    {
+        return false;
+    }
+    if (temp->info == ancestor)
+    {
+        return true;
+    }
+
+    bool searchL = printAncestor(temp->left, ancestor);
+    bool searchR = false;
+    if (!searchL)
+    {
+        searchR = printAncestor(temp->right, ancestor);
+    }
+
+    if (searchL || searchR)
+    {
+        std::cout << temp->info << " " << std::endl;
+    }
+
+    return searchL || searchR;
+}
+
+//Complejidad Computacional: Lineal - O(n)
+template<class T>
+int BinaryTree<T>::whatLevelAmI(TreeNode<T> *temp, int data, int level)
+{
+    if (temp == nullptr)
+    {
+        return 0;
+    }
+
+    if (temp->info == data)
+    {
+        return level;
+    }
+
+    int downlevel = whatLevelAmI(temp->left, data, level +1);
+
+    if (downlevel != 0)
+    {
+        return downlevel;
+    }
+
+    downlevel = whatLevelAmI(temp->right, data, level +1);
+    
+    return downlevel; 
+}
+
+template<class T>
+int BinaryTree<T>::getLevel(TreeNode<T> *temp, int data)
+{
+    return whatLevelAmI(temp, data, 1);
 }
 
 #endif /* BinaryTree_hpp */
