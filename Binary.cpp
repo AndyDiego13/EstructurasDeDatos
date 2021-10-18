@@ -85,17 +85,17 @@ int main(int argc, const char * argv[]) {
     tree->postOrden();
     std::cout << std::endl;
 
-    std::cout << "nuevo nivel" << std::endl;
+    std::cout << "(V) Se imprime el árbol con respecto a un nivel" << std::endl;
     tree->inorderNivel(3);
 
-    std::cout << "height" << std::endl;
+    std::cout << "(Height) Se imprime la altura del árbol" << std::endl;
     std::cout << tree->height2(root) << std::endl;
 
-    std::cout << "ancestor" << std::endl;
+    std::cout << "(Ancestors) Se imprimen los ancestros de un elemento dado" << std::endl;
     int an = 6;
     tree->printAncestor(root, an);
 
-    std::cout << "what level i am" << std::endl;
+    std::cout << "(What level i am) Se imprimen los niveles en lo que se encuentran los elementos del árbol" << std::endl;
     int level;
     for (level = 1; level <= 8; level++)
     {
@@ -109,9 +109,6 @@ int main(int argc, const char * argv[]) {
             std::cout << level << " is not present in tree" <<std::endl;
         } 
     }
-    
-
-    
     
     std::cout << "(C) Se eliminan todos los nodos del árbol" << std::endl;
     tree->clear();
