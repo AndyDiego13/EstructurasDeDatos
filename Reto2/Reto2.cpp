@@ -300,6 +300,6 @@ int main()
     std::cout << "-------------------------------------------------------------------------" << std::endl;
     std:: cout << "¿Tiene esta computadora 3 conexiones seguidas a un mismo sitio web?" << std::endl;
     std:: cout << "\t" << (tresSeguidas(compuConocida) ? "Si tiene tres conexiones seguidas" : "No tiene tres conexiones seguidas") << std:: endl;
-      
+  
     return 0;
 }

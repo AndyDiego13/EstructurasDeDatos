@@ -25,6 +25,7 @@ private:
     /* Ocultar algunos métodos heredados */
     //using BinaryTree<T>::insert;
 };
+
 template <class T>
 TreeNode<T> * BST<T>::search(const T & value) const
 {
