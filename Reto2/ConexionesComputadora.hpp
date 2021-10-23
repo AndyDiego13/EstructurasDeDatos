@@ -34,6 +34,7 @@ class ConexionesComputadora //Nuestra clase principal de conexiones entre las co
 
         ~ConexionesComputadora() {}; //Destructor
         
+        
         void insertConexionesEntrantes(std::string ip, int puerto, std::string conex);
         void insertConexionesSalientes(std::string ip, int puerto, std::string conex);
 
