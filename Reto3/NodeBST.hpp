@@ -143,8 +143,44 @@ void NodeBST::showInOrder()
 
 void NodeBST::showInOrder(int n)
 {
-    
+    n--;
+    if (n == 0)
+    {
+        return;
+    }
+    if (right !=  nullptr)
+    {
+        right ->showInOrder(n);
+    }
+    std::cout << value.first << ":\t" << value.second << std::endl;
+
+    if (left != nullptr)
+    {
+        left ->showInOrder(n);
+    }
 }
 
+void NodeBST::showInOrderRec(int n, int i)
+{
+    if (n == 1)
+    {
+        return;
+    }
+    i++;
+
+    std::cout << "i:" << i << std::endl;
+
+    if (right != nullptr)
+    {
+        right ->showInOrderRec(n,i);
+    }
+
+    std::cout << value.first << ":\t" << value.second << std::endl;
+
+    if (left != nullptr)
+    {
+        left ->showInOrderRec(n,i);
+    }
+}
 
 #endif // !NodeBST_hpp
