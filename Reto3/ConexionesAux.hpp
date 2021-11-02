@@ -23,7 +23,7 @@ class ConexionesAux //Clase auxiliar (para las conexiones entre computadoras)
     std::string ip;
     int puerto;
     std::string conex;
-    std::string fecha;
+    tm fechaTm;
 
     /* Constructor reto2
     ConexionesAux(std::string ip, int puerto, std::string conex)
@@ -34,18 +34,23 @@ class ConexionesAux //Clase auxiliar (para las conexiones entre computadoras)
     }
     */
 
-    ConexionesAux(std::string ip, int puerto, std::string conex, std::string fecha)
+    ConexionesAux(std::string ip, int puerto, std::string conex, tm fechaTm)
     {
         this -> ip = ip;
         this -> puerto = puerto;
         this -> conex = conex;
-        this -> fecha = fecha;
+        this -> fechaTm = fechaTm;
     }
     ~ConexionesAux() {}; //Destructor
 
     std::string getIp()
     {
         return ip;
+    }
+
+    void printFecha()
+    {
+        std::cout << this->fechaTm.tm_mday << "/" << this->fechaTm.tm_mon + 1 << "/" << this->fechaTm.tm_year + 1900 <<std::endl;
     }
 };
 

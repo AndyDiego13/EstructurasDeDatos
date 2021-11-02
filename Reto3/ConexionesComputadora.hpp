@@ -16,7 +16,9 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
 #include "ConexionesAux.hpp"
+#include "UserFila.hpp"
 
 class ConexionesComputadora //Nuestra clase principal de conexiones entre las computadoras
 {
@@ -40,24 +42,24 @@ class ConexionesComputadora //Nuestra clase principal de conexiones entre las co
         */
 
        /* Funciones insertar conexiones para el reto 3*/
-       void insertConexionesEntrantes(std::string ip, int puerto, std::string conex, std::string fecha);
-       void insertConexionesSalientes(std::string ip, int puerto, std::string conex, std::string fecha);
+       void insertConexionesEntrantes(std::string ip, int puerto, std::string conex, tm fechaTm);
+       void insertConexionesSalientes(std::string ip, int puerto, std::string conex, tm fechaTm);
        
        std::string ultimaConexionEntrante();
 
-       void fill(vector<UserFila> datos);
+       void fill(std::vector<UserFila> datos);
 
 };
 
-void ConexionesComputadora::insertConexionesEntrantes(std::string ip, int puerto, std::string conex, std::string fecha)
+void ConexionesComputadora::insertConexionesEntrantes(std::string ip, int puerto, std::string conex, tm fechaTm)
 {
-    ConexionesAux ca(ip, puerto, conex, fecha);
+    ConexionesAux ca(ip, puerto, conex, fechaTm);
     conexionesEntrantes.push_front(ca);
 }
 
-void ConexionesComputadora::insertConexionesSalientes(std::string ip, int puerto, std::string conex, std::string fecha)
+void ConexionesComputadora::insertConexionesSalientes(std::string ip, int puerto, std::string conex, tm fechaTm)
 {
-    ConexionesAux ca(ip, puerto, conex, fecha);
+    ConexionesAux ca(ip, puerto, conex, fechaTm);
     conexionesSalientes.push_back(ca);
 }
 
@@ -66,25 +68,27 @@ std::string ConexionesComputadora::ultimaConexionEntrante() //Metodo que nos ayu
     return conexionesEntrantes.front().getIp();
 }
 
-void ConexionesComputadora::fill(vector<UserFila> datos)
+void ConexionesComputadora::fill(std::vector<UserFila> datos)
 {
     for (int i = 0; i < datos.size(); i++)
     {
-        if (datos[i].getIpD() == conexInput.ip)
+        if (datos[i].getIpD() == this->ip)
         {
-            conexInput.insertConexionesEntrantes(
+            this->insertConexionesEntrantes(
                 datos[i].ipOrigen,
                 datos[i].origenPuerto,
-                datos[i].nombreOrigen
+                datos[i].nombreOrigen,
+                datos[i].fechaTm
             );
         }
 
-        if (datos[i].getIpO() == conexInput.ip)
+        if (datos[i].getIpO() == this->ip)
         {
-            conexInput.insertConexionesSalientes(
+            this->insertConexionesSalientes(
                 datos[i].ipDestino,
                 datos[i].destinoPuerto,
-                datos[i].nombreDestino
+                datos[i].nombreDestino,
+                datos[i].fechaTm
             );
         }
     }
