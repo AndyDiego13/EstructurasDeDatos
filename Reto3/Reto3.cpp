@@ -206,7 +206,7 @@ void top(BSTr &arbol, int n, tm date, std::map<std::string, int> &numRep, std::m
         arbol.insertNode(it->first, it->second);
     }
 
-    std::cout << "El top " << n << " del día " << date.tm_mday << "/" << date.tm_mon + 1 << "/" << date.tm_year << " es: " <<std::endl;
+    std::cout << "El top " << n << " del día " << date.tm_mday << "/" << date.tm_mon + 1 << "/" << date.tm_year+1900 << " es: " <<std::endl;
     arbol.printKth(n);
 
     std::map<std::string, int> conexionesTemp;

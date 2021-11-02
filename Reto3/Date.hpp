@@ -43,7 +43,7 @@ class Date
 
         std::string toString()
         {
-            return std::to_string(this->date.tm_mday) + "/" + std::to_string(this->date.tm_mon + 1) + "/" + std::to_string(this->date.tm_year);
+            return std::to_string(this->date.tm_mday) + "/" + std::to_string(this->date.tm_mon + 1) + "/" + std::to_string(this->date.tm_year+1900);
         }
 
 };
