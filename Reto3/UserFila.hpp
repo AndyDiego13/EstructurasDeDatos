@@ -119,7 +119,7 @@ public:
 
     void printDate()
     {
-        std::cout << this->fechaTm.tm_mday << "/" << this->fechaTm.tm_mon +1 << "/" << this->fechaTm.tm_year +1900 <<std::endl;
+        std::cout << this->fechaTm.tm_mday << "/" << this->fechaTm.tm_mon +1 << "/" << this->fechaTm.tm_year <<std::endl;
     }
 
     void print()
