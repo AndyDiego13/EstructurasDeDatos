@@ -20,7 +20,7 @@ class NodeBST
         int deep;
 
         /* Destructores */
-        virtual ~NodeBST();
+        ~NodeBST();
 
         /* Constructores */
         NodeBST() {};

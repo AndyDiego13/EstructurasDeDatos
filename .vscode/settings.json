@@ -68,6 +68,22 @@
         "thread": "cpp",
         "__tree": "cpp",
         "map": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "clocale": "cpp",
+        "codecvt": "cpp",
+        "compare": "cpp",
+        "condition_variable": "cpp",
+        "numeric": "cpp",
+        "queue": "cpp",
+        "random": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "*.tcc": "cpp",
+        "concepts": "cpp",
+        "memory_resource": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "cinttypes": "cpp"
     }
 }
