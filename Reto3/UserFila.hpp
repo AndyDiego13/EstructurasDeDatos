@@ -140,7 +140,7 @@ UserFila::UserFila(string f, string h, string iO, string pO, string nO, string i
 {
     struct tm tm;
     const char *_fecha = f.c_str();
-    strptime(_fecha, "%d-%m,%y", &this->fechaTm);
+    strptime(_fecha, "%d-%m-%y", &this->fechaTm);
     this->fechaString = _fecha;
     this->hora = h;
     this->ipOrigen = iO;
