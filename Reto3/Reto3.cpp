@@ -274,11 +274,17 @@ int main()
             std::cout << "\t" << it->first << "\t : se mantuvo " << it->second << " días" << std::endl;
         } 
     }
-    
-    
 
+    std::cout << "3. ¿Existe algún sitio que aparezca en el top 5 con una cantidad más alta de tráfico que lo normal?" << std::endl;
+    std::cout << "Los siguientes sitios tiene más tráfico de lo normal: " << std::endl;
+
+    for ( std::map<std::string, int>::iterator it = promDaily.begin(); it != promDaily.end(); ++it)
+    {
+        if ((it->second)/allDates.size() > 100)
+        {
+            std::cout << "\t" << it->first << "\t : " << it->second << std::endl;
+        } 
+    }
     
-
-
     return 0;
 }
