@@ -263,6 +263,18 @@ int main()
             std::cout << "\t" << it->first << "\t" << it->second << std::endl;
         }
     }
+
+    std::cout << "2. ¿Existe algún sitio que entre al top 5 a partir de un día y de ahí aparezca en todos los días subsecuentes" << std::endl;
+    std::cout << "Se mantuvieron en el top 5: " << std::endl;
+
+    for (std::map<std::string, int>::iterator it = numRep.begin(); it != numRep.end(); ++it)
+    {
+        if (it->second > 1)
+        {
+            std::cout << "\t" << it->first << "\t : se mantuvo " << it->second << " días" << std::endl;
+        } 
+    }
+    
     
 
     
