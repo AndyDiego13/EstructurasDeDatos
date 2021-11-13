@@ -1,16 +1,15 @@
 #pragma once
 #include <iostream>
 
-class Queue
+class Stack
 {
     private:
-
         class Node
         {
             public:
-                int contenido;
                 Node *next;
                 Node *before;
+                int contenido;
 
                 ~Node(){}
 
@@ -19,15 +18,16 @@ class Queue
                     this->contenido = contenido;
                     this->before = before;
                     this->next = next;
-
                 }
-       };
-       Node *head; // head list
-       Node *tail; // tail list
-       size_t size; // list size
+        };
 
+        Node *head;
+        Node *tail;
+        size_t size;
+    
     public:
-        ~Queue()
+
+        ~Stack()
         {
             while (head->next != NULL)
             {
@@ -37,10 +37,9 @@ class Queue
 
             size = 0;
             delete head;
-            
         }
 
-        Queue(Node *head = NULL, Node *tail = NULL)
+        Stack(Node *head = NULL, Node *tail = NULL)
         {
             this->head = head;
             this->tail = tail;
@@ -48,51 +47,53 @@ class Queue
         }
 
         size_t getSize();
-        int popOut(); // borrar el primer elemento
+        int popOut();
         bool isEmpty();
 
-        void push(int); // agregar item al final
+        void push(int);
         void clear();
-
 };
 
-size_t Queue::getSize()
+size_t Stack::getSize()
 {
     return size;
 }
 
-int Queue::popOut()
+int Stack::popOut()
 {
     int cont;
+
     if (size == 1)
     {
-        cont = head->contenido;
         size = 0;
+        cont = tail->contenido;
         head = NULL;
         tail = NULL;
     }
     else if (size > 1)
     {
-        cont = head->contenido;
-        head = head->next;
-        delete head->before;
-        head->before = NULL;
+        cont = tail->contenido;
+        tail = tail->before;
+        delete tail->next;
+
+        tail->next = NULL;
         size--;
     }
 
-    return cont;
+    return cont; 
 }
 
-bool Queue::isEmpty()
+bool Stack::isEmpty()
 {
     if (head == NULL)
     {
         return true;
     }
+
     return false; 
 }
 
-void Queue::push(int add)
+void Stack::push(int add)
 {
     if (size == 0)
     {
@@ -106,10 +107,11 @@ void Queue::push(int add)
         tail->next = curr;
         tail = curr;
     }
-    size++; 
+
+    size++;
 }
 
-void Queue::clear()
+void Stack::clear()
 {
     if (head != NULL)
     {
@@ -118,9 +120,9 @@ void Queue::clear()
             head = head->next;
             delete head->before;
         }
+
         size = 0;
         head = NULL;
-        tail = NULL; 
-    }
+        tail = NULL;
+    } 
 }
-
