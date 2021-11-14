@@ -1,5 +1,3 @@
-#ifndef DualList_hpp
-#define DualList_hpp
 
 #pragma once
 #include <iostream>
@@ -56,7 +54,8 @@ class DualList
 
         void pushBackI(int);
         void pushFront(int);
-        void pushBack(DualList);
+        // No funciona
+        //void pushBack(DualList);
 
         void popBack();
         void popFront();
@@ -142,7 +141,7 @@ void DualList::pushFront(int add)
     
     size++;
 }
-
+/* No funciona idk why
 void DualList::pushBack(DualList addToEnd)
 {
     Node *headAddToEnd = addToEnd.head;
@@ -153,5 +152,4 @@ void DualList::pushBack(DualList addToEnd)
         headAddToEnd = headAddToEnd->next;
     }
 }
-
-#endif // !DualList_hpp
+*/
