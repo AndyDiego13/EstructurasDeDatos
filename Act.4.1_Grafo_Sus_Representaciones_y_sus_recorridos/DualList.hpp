@@ -1,3 +1,6 @@
+#ifndef DualList_hpp
+#define DualList_hpp
+
 #pragma once
 #include <iostream>
 
@@ -150,3 +153,5 @@ void DualList::pushBack(DualList addToEnd)
         headAddToEnd = headAddToEnd->next;
     }
 }
+
+#endif // !DualList_hpp
