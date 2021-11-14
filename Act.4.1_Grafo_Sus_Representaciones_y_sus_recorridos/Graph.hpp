@@ -537,3 +537,266 @@ bool Graph::ifTree()
     return true;
 }
 
+int *Graph::pruferDeCode()
+{
+    if (!ifTree() || direct)
+    {
+        throw std::invalid_argument("Tipo de grafo invalido");
+    }
+    if (vertix <= 2)
+    {
+        return NULL;
+    }
+
+    int *prufC = new int[vertix - 2];
+    int **gCopy = new int*[vertix];
+
+    for (int i = 0; i < vertix; i++)
+    {
+        gCopy[i] = new int[vertix];
+
+        for (int j = 0; j < vertix; j++)
+        {
+            gCopy[i][j] = graphMatrix[i][j];
+        }  
+    }
+
+    int curVer = 0;
+    int connectNum = 0;
+    int nextVer = 0;
+    int curPruf = 0;
+
+    bool exit = false;
+
+    while (curPruf < vertix - 2)
+    {
+        for (int j = 0; j < vertix; j++)
+        {
+            if (gCopy[curVer][j] == 1)
+            {
+                connectNum++;
+
+                if (connectNum > 1)
+                {
+                    curVer++;
+                    exit = true;
+                    break;
+                }
+                
+                nextVer = j;
+            }
+        }
+
+        if (connectNum == 0)
+        {
+            exit = true;
+            curVer++;
+        }
+
+        if (!exit)
+        {
+            gCopy[nextVer][curVer] = 0;
+            gCopy[curVer][nextVer] = 0;
+
+            pruferDeCode[curPruf] = nextVer;
+
+            if (nextVer < curVer)
+            {
+                curVer = nextVer;
+            }
+            else
+            {
+                curPruf++;
+            }
+        }
+
+        connectNum = 0;
+        nextVer = 0;
+        exit = false; 
+    }
+
+    return prufC;  
+}
+
+void Graph::pruferDeCode(int *prufC, int prufLength)
+{
+    for (int i = 0; i < prufLength; i++)
+    {
+        if (prufC[i] >= prufLength + 2)
+        {
+            throw std::invalid_argument("Codigo de prufer invalido");
+        }
+    }
+
+    vertix = prufLength + 2;
+    int *verNum = new int[vertix];
+    int **graphTemp = (int**)malloc(sizeof(int*) * vertix);
+    int pos = 0;
+    int posPruf = 0;
+
+    for (int i = 0; i < vertix; i++)
+    {
+        verNum[i] = i;
+        graphTemp[i] = (int*)malloc(vertix *sizeof(int));
+
+        for (int j = 0; j < vertix; j++)
+        {
+            graphTem[i][j] = 0;
+        }
+    }
+
+    for (; posPruf < vertix - 2; i++)
+    {
+        for (int i = posPruf; i < vertix - 2; i++)
+        {
+            if (verNum[pos] == prufC[i] || verNum[pos] == -1)
+            {
+                i = posPruf - 1;
+                pos++;
+            }  
+        }
+
+        graphTemp[verNum[pos]][prufC[posPruf]] = 1;
+        graphTemp[prufC[posPruf]][verNum[pos]] = 1;
+        verNum[pos] = -1;
+        pos = 0;
+    }
+
+    int row = -1;
+    int col = -1;
+
+    for (int i = 0; i < vertix; i++)
+    {
+        if (verNum[i] != -1 && row == -1)
+        {
+            row = verNum[i];
+        }
+        else if (verNum[i] != -1)
+        {
+            col = verNum[i];
+            break;
+        }
+    }
+
+    graphTemp[row][col] = 1;
+    graphTemp[col][row] = 1;
+    graphMatrix = (int**)realloc(graphMatrix, sizeof(int*) * vertix);
+    graphMatrix = graphTemp; 
+}
+
+//falta strong connected
+
+int *Graph::getSize()
+{
+    return vertix;
+}
+
+int *Graph::dijkstra(int startPoint)
+{
+    int *distance = new int[vertix];
+    bool *visited = new bool[vertix];
+    int **gCopy = new int *[vertix];
+
+    for (int i = 0; i < vertix; i++)
+    {
+        gCopy[i] = new int[vertix];
+
+        for (int j = 0; j < vertix; j++)
+        {
+            if (graphMatrix[i][j] == 0)
+            {
+                gCopy[i][j] = intMax;
+            }
+            else
+            {
+                gCopy[i][j] = graphMatrix[i][j];
+            }   
+        }
+    }
+
+    for (size_t i = 0; i < vertix; i++)
+    {
+        distance[i] = gCopy[startPoint][i];
+        visited[i] = false;
+    }
+
+    int u = 0;
+    int index = 0;
+    int min;
+
+    distance[startPoint] = 0;
+
+    for (size_t i = 0; i < vertix; i++)
+    {
+        min = intMax;
+
+        for (size_t j = 0; j < vertix; j++)
+        {
+            if ((visited[j] == false) && (distance[j] < min))
+            {
+                min = distance[i];
+                index = j;
+            }
+        }
+
+        u = index;
+        visited[u] = true;
+
+        for (size_t j = 0; j < vertix; j++)
+        {
+            if ((visited[j] == false) && (gCopy[u][j] != intMax) && (distance[u] != intMax) && ((distance[u] + gCopy[u][j]) < distance[j]))
+            {
+                distance[j] = distance[u] + gCopy[u][j];
+            }
+        }  
+    }
+
+    for (size_t i = 0; i < vertix; i++)
+    {
+        delete gCopy[i];
+    }
+
+    delete gCopy;
+    return distance;
+}
+
+IteratorG *Graph::createDftIterator(int start = 0)
+{
+    return new DftIterator(graphMatrix, vertix, start);
+}
+
+std::ostream &operator << (std::ostream &out, const &Graph gr)
+{
+    std::cout << "Grafo: " << std::endl;
+
+    for (int i = 0; i < gr.vertix; i++)
+    {
+        for (int j = 0; j < gr.vertix; j++)
+        {
+            std::cout << gr.graphMatrix[i][j] << " " << std::endl;
+        }
+
+        std::cout << std::endl; 
+    }
+
+    return out;
+}
+
+bool Graph::DftIterator::hasNext()
+{
+    if (!stack->isEmpty())
+    {
+        return true;
+    }
+
+    for (size_t i = 0; i < sizeVertix; i++)
+    {
+        if (visited[i] == false)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
