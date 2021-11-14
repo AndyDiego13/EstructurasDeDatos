@@ -800,3 +800,117 @@ bool Graph::DftIterator::hasNext()
     return false;
 }
 
+int Graph::DftIterator::next()
+{
+    if (!hasNext())
+    {
+        throw std::out_of_range("No tiene más elemetos");
+    }
+
+    visited[iCurrent] = true;
+    int temp = iCurrent;
+
+    for (size_t i = 0; i < sizeVertix; i++)
+    {
+        if ((visited[i] == false) && (itrG[iCurrent][i] == 1))
+        {
+            before = iCurrent;
+            iCurrent = i;
+            stack->push(iCurrent);
+            connection = false;
+            break;
+        }
+    }
+
+    int backcur;
+
+    while ((temp == iCurrent) && !stack->isEmpty())
+    {
+        backcur = stack->popOut();
+
+        for (size_t i = 0; i < sizeVertix; i++)
+        {
+            if ((visited[i] == false) && (itrG[backurr][i] == 1))
+            {
+                before = backcur;
+                iCurrent = i;
+                stack->push(backcur);
+                stack->push(iCurrent);
+                connection = false;
+                break;
+            } 
+        }
+    }
+
+    if (temp == iCurrent)
+    {
+        for (size_t i = 0; i < sizeVertix; i++)
+        {
+            if (visited[i] == false)
+            {
+                before = -1;
+                iCurrent = i;
+                stack->push(iCurrent);
+                connection = true;
+                break;
+            }
+        }
+        return temp;
+    }
+}
+
+int Graph::DftIterator::beforeCurrent()
+{
+    return before;
+}
+
+bool Graph::DftIterator::newConnection()
+{
+    return connection;
+}
+
+// implementacion de BFT
+
+IteratorG *Graph::createBftIterator(int start = 0)
+{
+    return new bftIterator(graphMatrix, vertix, start);
+}
+
+bool Graph::bftIterator::hasNext()
+{
+    if (!queue->isEmpty())
+    {
+        return true;
+    }
+
+    for (size_t i = 0; i < sizeVertix; i++)
+    {
+        if (visited[i] == false)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int Graph::bftIterator::next()
+{
+    if (!hasNext())
+    {
+        throw std::out_of_range("No hay más elementos");
+    }
+
+    visited[iCurrent] = true;
+    int temp = iCurrent;
+    
+    for (size_t i = 0; i < sizeVertix; i++)
+    {
+        if ((visited[i] == false) && (itrG[iCurrent][i] == 1))
+        {
+            /* c
+        }
+        
+    }
+    
+}
