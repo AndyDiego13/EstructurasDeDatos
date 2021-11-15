@@ -215,7 +215,7 @@ IteratorG *Graph::createDftIterator(int start = 0)
     return new DftIterator(graphMatrix, vertix, start);
 }
 
-std::ostream &operator << (std::ostream &out, const &Graph gr)
+std::ostream &operator << (std::ostream &out, const Graph &gr)
 {
     std::cout << "Grafo: " << std::endl;
 
@@ -280,7 +280,7 @@ int Graph::DftIterator::next()
 
         for (size_t i = 0; i < sizeVertix; i++)
         {
-            if ((visited[i] == false) && (itrG[backur][i] == 1))
+            if ((visited[i] == false) && (itrG[backcur][i] == 1))
             {
                 before = backcur;
                 iCurrent = i;
