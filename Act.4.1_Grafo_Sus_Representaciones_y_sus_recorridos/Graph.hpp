@@ -99,9 +99,9 @@ class Graph
                 }
 
                 int next();
-                virtual bool hasNext();
-                virtual bool newConnection();
-                virtual int beforeCurrent();
+                bool hasNext();
+                bool newConnection();
+                int beforeCurrent();
         };
 
         class bftIterator : public IteratorG
@@ -142,9 +142,9 @@ class Graph
                 }
 
                 int next();
-                virtual bool hasNext();
-                virtual bool newConnection();
-                virtual int beforeCurrent();
+                bool hasNext();
+                bool newConnection();
+                int beforeCurrent();
         };
 };
 
