@@ -1,38 +1,58 @@
 #include <iostream>
+#include <fstream>
 #include "Graph.hpp"
+#include "IteratorG.hpp"
 
-int main(int argc, const char * argv[]) {
-    
-    /* Crear un grafo */
-    Graph<char,int> * graph = new Graph<char,int>();
-    
-    /* Crear vértices */
-    Vertex<char, int> * a = new Vertex<char, int>('A');
-    Vertex<char, int> * b = new Vertex<char, int>('B');
-    Vertex<char, int> * c = new Vertex<char, int>('C');
-    
-    /* Adicionar vértices al grafo */
-    graph->addVertex(a);
-    graph->addVertex(b);
-    graph->addVertex(c);
-    
-    /* Adicionar aristas al grafo */
-    graph->addEdge(a, b, 1);
-    graph->addEdge(a, c, 2);
-    graph->addEdge(a, c, 3);
-    graph->addEdge(b, c, 3);
-    
-    /* Visualizando el grafo */
-    std::cout << *graph << std::endl;
-    
-    /* Eliminar un edge */
-    graph->removeEdge(a, c, 3);
-    
-    /* Visualizando el grafo */
-    std::cout << *graph << std::endl;
-    
-    /* Eliminar el grafo */
-    delete graph;
+int main() 
+{
+    std::cout << "Grafos: sus representaciones y sus recorridos" << std::endl;
 
+    Graph g(1);
+
+    //Bipatite
+    std::cout << "Bipartite: " << g.ifBipartite() << std::endl;
+
+    //Euler
+    std::cout << "Eulerian: " << g.ifEulerian() << std::endl;
+
+    //Tree
+    std::cout << "Tree: " << g.ifTree() << std::endl;
+
+    //BFT iterator
+    std::cout << "Bft Iterator: \n" << std::endl;
+    IteratorG *gBftIt = g.createBftIterator(0);
+
+    std::cout << "Next " + gBftIt->next() <<std::endl;
+
+    while (gBftIt->hNext() != 0)
+    {
+        std::cout << "Next " + gBftIt->next() << std::endl;
+    }
+
+    //DFT iterator
+    std::cout << "Dft Iterator: \n" << std::endl;
+    IteratorG *gDftIt = g.createDftIterator(0);
+
+    std::cout << "Next " + gDftIt->next() << std::endl;
+
+    while (gDftIt->hNext() != 0)
+    {
+        std::cout << "Next " + gDftIt->next() << std::endl;
+    }
+
+    //Dijkstra
+    int *dij = new int[g.getSize()];
+
+    dij = g.dijkstra(0);
+
+    std::cout << "\n Shortest path from 0 to \n" << std::endl;
+
+    for (int j = 0; j < g.getSize(); j++)
+    {
+        std::cout << j + ": " + dij[j] << std::endl;
+    }
+
+    std::cout << std::endl;
+    
     return 0;
 }

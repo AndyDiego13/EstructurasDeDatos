@@ -35,17 +35,17 @@ class Graph
             direct = directCheck();
         }
 
-        Graph(int choice, std::string filename = "in.txt");
+        //Graph(int choice, std::string filename = "in.txt");
 
         int getSize();
-        bool ifEulerian();
+        //bool ifEulerian();
         bool ifBipartite();
         bool ifTree();
         int *pruferDeCode(int *, int);
         DualList *strongConnect();
         int *dijkstra(int);
 
-        friend std::ostream &operator << (std::ostream &, const &Graph);
+        friend std::ostream& operator << (std::ostream&, const Graph&);
 
         friend bool operator == (Graph &left, int right[])
         {
@@ -154,6 +154,7 @@ class Graph
         };
 };
 
+
 Graph::Graph(int choice, std::string filename)
 {
     std::fstream file;
@@ -166,7 +167,7 @@ Graph::Graph(int choice, std::string filename)
     }
     else if (choice == 2)
     {
-        file.open(filename, ios::in);
+        file.open(filename, std::ios::in);
         file >> vertix;
         if (file.eof() || vertix == 0)
         {
@@ -345,83 +346,6 @@ bool Graph::ifCycleNumDir()
     }
 
     return false;
-}
-
-void Graph::ifEulerian()
-{
-    IteratorG *gDftIter = createDftIterator(0);
-    int maxConnect = 0;
-    int curConnect = 0;
-
-    while (gDftIter->hNext())
-    {
-        gDftIter->next();
-
-        if (!gDftIter->newConec())
-        {
-            curConnect++;
-        }
-        else
-        {
-            if (maxConnect > 1)
-            {
-                if (curConnect > 1)
-                {
-                    return false;
-                }
-            }
-
-            if (curConnect > maxConnect)
-            {
-                maxConnect = curConnect;
-            }
-            
-            curConnect = 0;
-        } 
-    }
-
-    if (curConnect > 1 && maxConnect > 1)
-    {
-        return false;
-    }
-    
-    int *countRows;
-    int *countCols;
-
-    countRows = new int[vertix];
-    countCols = new int[vertix];
-
-    for (int j = 0; j < vertix; j++)
-    {
-        countCols[j] = 0;
-    }
-    for (int i = 0; i < vertix; i++)
-    {
-        countRows[i] = 0;
-
-        for (int j = 0; j < vertix; j++)
-        {
-            if (graphMatrix[i][j] == 1)
-            {
-                countRows[i]++;
-                countCols[j]++;
-            }  
-        }
-    }
-
-    for (int i = 0; i < vertix; i++)
-    {
-        if (!direct && (countCols[i] + countRows[i]) % 2 != 0)
-        {
-            return false;
-        }
-        else if (!direct && (countCols[i] != countRows[i]))
-        {
-            return false;
-        }
-    }
-
-    return true;  
 }
 
 bool Graph::ifBipartite()
