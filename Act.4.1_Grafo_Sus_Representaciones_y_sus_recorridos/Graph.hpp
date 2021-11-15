@@ -17,7 +17,7 @@
 #include <fstream>
 #include <string>
 
-class Graph : public IteratorG
+class Graph
 {
     public:
         int **graphMatrix;
@@ -66,8 +66,8 @@ class Graph : public IteratorG
             return true;
         }
 
-        IteratorG *createDftIterator(int) override;
-        IteratorG *createBftIterator(int) override;
+        IteratorG *createDftIterator(int);
+        IteratorG *createBftIterator(int);
 
         class DftIterator : public IteratorG
         {
