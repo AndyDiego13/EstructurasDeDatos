@@ -38,9 +38,6 @@ class Graph
         //Graph(int choice, std::string filename = "in.txt");
 
         int getSize();
-        //bool ifEulerian();
-        bool ifBipartite();
-        bool ifTree();
         int *pruferDeCode(int *, int);
         DualList *strongConnect();
         int *dijkstra(int);
@@ -346,119 +343,6 @@ bool Graph::ifCycleNumDir()
     }
 
     return false;
-}
-
-bool Graph::ifBipartite()
-{
-    int *color = new int[vertix];
-
-    for (size_t i = 0; i < vertix; i++)
-    {
-        color[i] = 2;
-    }
-
-    IteratorG *gBftIter = createBftIterator(0);
-    int cur;
-
-    while (gBftIter->hNext())
-    {
-        if (gBftIter->newConec())
-        {
-            cur = gBftIter->next();
-            color[cur] = 1;
-        }
-        else
-        {
-            cur = gBftIter->next();
-        }
-
-        for (size_t i = 0; i < vertix; i++)
-        {
-            if (graphMatrix[cur][i] == 1)
-            {
-                switch (color[i])
-                {
-                case 2:
-                    if (color[cur] == 1)
-                    {
-                        color[i] = 0;
-                    }
-                    else
-                    {
-                        color[i] = 1;
-                    }
-                    
-                    break;
-                
-                default:
-                    if (color[i] == color[cur])
-                    {
-                        return false;
-                    }
-                    
-                    break;
-                }
-            }   
-        }
-    }
-    
-    return true;
-}
-
-bool Graph::ifTree()
-{
-    IteratorG *gDftIter = createDftIterator(0);
-
-    if (direct)
-    {
-        int countDeg;
-        int count = 0;
-
-        for (size_t i = 0; i < vertix; i++)
-        {
-            countDeg = 0;
-
-            for (size_t j = 0; j < vertix; j++)
-            {
-                countDeg += graphMatrix[j][i];
-
-                if (countDeg > 1)
-                {
-                    return false;
-                }
-                else if (countDeg == 0)
-                {
-                    count ++;
-                    if (count > 1)
-                    {
-                        return false;
-                    } 
-                }
-            }
-        }
-
-        if (count == 0)
-        {
-            return false;
-        } 
-    }
-    else
-    {
-        if (ifCycleNumDir())
-        {
-            return false;
-        }
-        while (gDftIter->hNext())
-        {
-            gDftIter->next();
-            if (gDftIter->newConec())
-            {
-                return false;
-            }
-        }
-    }
-
-    return true;
 }
 
 int *Graph::pruferDeCode()

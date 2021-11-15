@@ -7,16 +7,7 @@ int main()
 {
     std::cout << "Grafos: sus representaciones y sus recorridos" << std::endl;
 
-    Graph g(1);
-
-    //Bipatite
-    std::cout << "Bipartite: " << g.ifBipartite() << std::endl;
-
-    //Euler
-    std::cout << "Eulerian: " << g.ifEulerian() << std::endl;
-
-    //Tree
-    std::cout << "Tree: " << g.ifTree() << std::endl;
+    Graph g;
 
     //BFT iterator
     std::cout << "Bft Iterator: \n" << std::endl;
