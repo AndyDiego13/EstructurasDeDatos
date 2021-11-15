@@ -280,7 +280,7 @@ int Graph::DftIterator::next()
 
         for (size_t i = 0; i < sizeVertix; i++)
         {
-            if ((visited[i] == false) && (itrG[backurr][i] == 1))
+            if ((visited[i] == false) && (itrG[backur][i] == 1))
             {
                 before = backcur;
                 iCurrent = i;
