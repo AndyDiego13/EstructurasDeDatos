@@ -142,9 +142,9 @@ class Graph
                 }
 
                 int next();
-                bool hasNext();
-                bool newConnection();
-                int beforeCurrent();
+                virtual bool hasNext();
+                virtual bool newConnection();
+                virtual int beforeCurrent();
         };
 };
 
