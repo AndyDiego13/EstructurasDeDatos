@@ -10,14 +10,14 @@
 
 class Graph
 {
-    private:
+    public:
         int **graphMatrix;
         int vertix;
         bool direct;
         bool directCheck();
         bool ifCycleNumDir();
     
-    public:
+    
 
         ~Graph()
         {
@@ -38,7 +38,6 @@ class Graph
 
         int getSize();
         DualList *strongConnect();
-        int *dijkstra(int);
 
         friend std::ostream& operator << (std::ostream&, const Graph&);
 
@@ -210,74 +209,6 @@ int Graph::getSize()
     return vertix;
 }
 
-int *Graph::dijkstra(int startPoint)
-{
-    int *distance = new int[vertix];
-    bool *visited = new bool[vertix];
-    int **gCopy = new int *[vertix];
-
-    for (int i = 0; i < vertix; i++)
-    {
-        gCopy[i] = new int[vertix];
-
-        for (int j = 0; j < vertix; j++)
-        {
-            if (graphMatrix[i][j] == 0)
-            {
-                gCopy[i][j] = intMax;
-            }
-            else
-            {
-                gCopy[i][j] = graphMatrix[i][j];
-            }   
-        }
-    }
-
-    for (size_t i = 0; i < vertix; i++)
-    {
-        distance[i] = gCopy[startPoint][i];
-        visited[i] = false;
-    }
-
-    int u = 0;
-    int index = 0;
-    int min;
-
-    distance[startPoint] = 0;
-
-    for (size_t i = 0; i < vertix; i++)
-    {
-        min = intMax;
-
-        for (size_t j = 0; j < vertix; j++)
-        {
-            if ((visited[j] == false) && (distance[j] < min))
-            {
-                min = distance[i];
-                index = j;
-            }
-        }
-
-        u = index;
-        visited[u] = true;
-
-        for (size_t j = 0; j < vertix; j++)
-        {
-            if ((visited[j] == false) && (gCopy[u][j] != intMax) && (distance[u] != intMax) && ((distance[u] + gCopy[u][j]) < distance[j]))
-            {
-                distance[j] = distance[u] + gCopy[u][j];
-            }
-        }  
-    }
-
-    for (size_t i = 0; i < vertix; i++)
-    {
-        delete gCopy[i];
-    }
-
-    delete gCopy;
-    return distance;
-}
 
 IteratorG *Graph::createDftIterator(int start = 0)
 {
