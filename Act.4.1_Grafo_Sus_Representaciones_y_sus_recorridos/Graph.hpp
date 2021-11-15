@@ -908,9 +908,39 @@ int Graph::bftIterator::next()
     {
         if ((visited[i] == false) && (itrG[iCurrent][i] == 1))
         {
-            /* c
+            queue->push(i);
         }
-        
     }
-    
+
+    while (!queue->isEmpty() && (visited[iCurrent] == true))
+    {
+        iCurrent = queue->popOut();
+        connection = false;
+    }
+
+    if (queue->isEmpty() && (visited[iCurrent] == true))
+    {
+        for (size_t i = 0; i < sizeVertix; i++)
+        {
+            if (visited[i] == false)
+            {
+                iCurrent = i;
+                queue->push(iCurrent);
+                connection = true;
+                break;
+            }  
+        }
+    }
+
+    return temp;
+}
+
+int Graph::bftIterator::beforeCurrent()
+{
+    return before;
+}
+
+bool Graph::bftIterator::newConnection()
+{
+    return connection;
 }
