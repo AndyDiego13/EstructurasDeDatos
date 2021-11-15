@@ -1,3 +1,12 @@
+/*
+    "Graph.hpp"
+    
+    Created by:
+    Serrano Diego Andrea - A01028728
+    Garcia Puebla Diego Fernando - A01028597 
+
+    Fecha: 14/11/2021
+*/
 #pragma once
 #include "IteratorG.hpp"
 #include "Stack.hpp"
@@ -19,7 +28,7 @@ class Graph
     
     
 
-        ~Graph()
+        virtual ~Graph()
         {
             for (size_t i = 0; i < vertix; i++)
             {
@@ -57,8 +66,8 @@ class Graph
             return true;
         }
 
-        virtual IteratorG *createDftIterator(int);
-        virtual IteratorG *createBftIterator(int);
+        IteratorG *createDftIterator(int);
+        IteratorG *createBftIterator(int);
 
         class DftIterator : public IteratorG
         {
@@ -92,7 +101,7 @@ class Graph
                     connection = true;  
                 }
 
-                ~DftIterator()
+                virtual ~DftIterator()
                 {
                     delete visited;
                     delete *itrG;
@@ -135,7 +144,7 @@ class Graph
                     connection = true; 
                 }
 
-                ~bftIterator()
+                virtual ~bftIterator()
                 {
                     delete visited;
                     delete *itrG;
