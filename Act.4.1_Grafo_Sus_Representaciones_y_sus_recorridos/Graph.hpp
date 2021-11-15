@@ -57,8 +57,8 @@ class Graph
             return true;
         }
 
-        IteratorG *createDftIterator(int);
-        IteratorG *createBftIterator(int);
+        virtual IteratorG *createDftIterator(int);
+        virtual IteratorG *createBftIterator(int);
 
         class DftIterator : public IteratorG
         {
@@ -99,9 +99,9 @@ class Graph
                 }
 
                 int next();
-                bool hasNext();
-                bool newConnection();
-                int beforeCurrent();
+                virtual bool hasNext();
+                virtual bool newConnection();
+                virtual int beforeCurrent();
         };
 
         class bftIterator : public IteratorG

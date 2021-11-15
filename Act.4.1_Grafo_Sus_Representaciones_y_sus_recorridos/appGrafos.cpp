@@ -30,20 +30,6 @@ int main()
     {
         std::cout << "Next " + gDftIt->next() << std::endl;
     }
-
-    //Dijkstra
-    int *dij = new int[g.getSize()];
-
-    dij = g.dijkstra(0);
-
-    std::cout << "\n Shortest path from 0 to \n" << std::endl;
-
-    for (int j = 0; j < g.getSize(); j++)
-    {
-        std::cout << j + ": " + dij[j] << std::endl;
-    }
-
-    std::cout << std::endl;
     
     return 0;
 }
