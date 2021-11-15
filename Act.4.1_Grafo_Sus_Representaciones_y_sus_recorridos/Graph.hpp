@@ -35,10 +35,8 @@ class Graph
             direct = directCheck();
         }
 
-        //Graph(int choice, std::string filename = "in.txt");
 
         int getSize();
-        int *pruferDeCode(int *, int);
         DualList *strongConnect();
         int *dijkstra(int);
 
@@ -207,7 +205,7 @@ bool Graph::ifCycleNumDir()
 
 //falta strong connected
 
-int *Graph::getSize()
+int Graph::getSize()
 {
     return vertix;
 }
