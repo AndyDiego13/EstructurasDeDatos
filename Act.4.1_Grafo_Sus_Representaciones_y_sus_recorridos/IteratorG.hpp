@@ -7,6 +7,6 @@ class IteratorG
         virtual int next() = 0;
         virtual bool hNext() const;
         virtual bool newConec() const;
-        virtual int antesCur() = 0;
+        virtual int antesCur() const;
 
 };
