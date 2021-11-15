@@ -15,8 +15,8 @@ class IteratorG
 {
     public:
         virtual int next() = 0;
-        virtual bool hNext() const;
-        virtual bool newConec() const;
-        virtual int antesCur() const;
+        virtual bool hNext() const = 0;
+        virtual bool newConec() const = 0;
+        virtual int beforeCur() const = 0;
 
 };

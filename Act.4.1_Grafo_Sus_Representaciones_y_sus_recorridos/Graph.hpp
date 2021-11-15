@@ -108,9 +108,9 @@ class Graph
                 }
 
                 int next();
-                bool hasNext();
-                bool newConnection();
-                int beforeCurrent();
+                virtual bool hasNext() override;
+                virtual bool newConnection() override;
+                virtual int beforeCurrent() override;
         };
 
         class bftIterator : public IteratorG
@@ -151,9 +151,9 @@ class Graph
                 }
 
                 int next();
-                bool hasNext();
-                bool newConnection();
-                int beforeCurrent();
+                virtual bool hasNext() override;
+                virtual bool newConnection() override;
+                virtual int beforeCurrent() override;
         };
 };
 
@@ -193,7 +193,7 @@ bool Graph::ifCycleNumDir()
 
         while (gDftIter->hNext())
         {
-            bef = gDftIter->antesCur();
+            bef = gDftIter->beforeCur();
             cur = gDftIter->next();
             visited[cur] = true;
 
