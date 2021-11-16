@@ -34,6 +34,12 @@ class ConexionesComputadora //Nuestra clase principal de conexiones entre las co
             this -> nombre = nombre;
         }
 
+        ConexionesComputadora()
+        {
+            this->ip = " ";
+            this->nombre = " ";
+        }
+
         ~ConexionesComputadora() {}; //Destructor
         
         /* Funciones insertar conexiones del reto 2
