@@ -1,6 +1,6 @@
 /*
     Situacion Problema - Ataques Cibernéticos
-    ConexionesComputadora.hpp
+    GraphR4.hpp
 
     Created by: 
     - Serrano Diego Andrea (A01028728)
