@@ -9,3 +9,13 @@
     Fecha de realizacion: 18 / 10 /2021
 
 */
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include "Administrador.hpp"
+#include "UserFila.hpp"
+#include "ConexionesComputadora.hpp"
+#include "ConexionesAux.hpp"
+#include "GraphR4.hpp"
+
