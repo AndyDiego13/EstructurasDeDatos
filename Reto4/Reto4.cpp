@@ -14,12 +14,110 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <cwctype>
 #include "Administrador.hpp"
 #include "UserFila.hpp"
 #include "ConexionesComputadora.hpp"
 #include "ConexionesAux.hpp"
 #include "Date.hpp"
 #include "GraphR4.hpp"
+
+auto  read_csv_strings(std::string filename)
+{
+    /* Crear un vector (matriz) de vector de strings (vectores internos o sea filas) donde se guardara cada linea del documento */
+    vector <vector <std::string>> lineas;
+
+    /* Crear un flujo de archivos de entrada para leer el archivo CSV, o sea objeti que reciba un input */
+    ifstream file(filename);
+
+    /* Lanzar excepción: Verificar si no hubo error al abrir el archivo */
+    if (!file.is_open())throw std::runtime_error ( " No se puede abrir el archivo " );
+
+    /* Definir variable que almacena cada línea del archivo */
+    std::string linea;
+    
+    /* Leer datos línea a línea, fila a fila, ESTO SE REALIZA PARA CADA LINEA */
+    while ( getline (file, linea,','))
+    {
+        /* Crear un stream de la línea */
+       std::stringstream ss (linea);
+    
+        /* Variable que almacena cada campo leído, o sea cada columna creo */
+        std::string campo;
+        
+        /* Cada elemento de la columna se agrega un vector, es decir cada fila se vuelve a un vector. Almacenar cada campo */
+        vector <std::string> fila;
+        
+        /* Iterar sobre la línea para extraer cada campo */
+        while ( std::getline (ss, campo))
+        {
+            // se agrega cada elemento al vector de cada fila
+            fila.push_back (campo);
+        }
+        
+        /* Insertar la fila con los campos separados en un vector */
+        lineas.push_back (fila);
+    }
+
+    /* Cerrar el archivo */
+    file.close ();
+
+    /* Regresar el vector de líneas leídas */
+    return lineas;
+}
+
+            
+auto  read_csv_USERFILA (std::string filename)
+{
+    /* Crear un vector de vector de strings */
+    vector <UserFila> lineas;
+
+    /* Crear un flujo de archivos de entrada para leer el archivo CSV */
+    std::ifstream file(filename);
+
+    /* Verificar si no hubo error al abrir el archivo */
+    if (! file.is_open ()) throw  std::runtime_error ( " No se puede abrir el archivo " );
+
+    /* Definir variable que almacena cada línea */
+    std :: string linea;
+    
+    /* Leer datos línea a línea */
+    while ( std::getline (file, linea))
+    {
+        /* Crear un vapor de la línea */
+        stringstream ss (linea);
+    
+        /*  Variables que almacenan cada campo leído */
+        std::string f;
+        std::string h;
+        std::string iO;
+        std::string pO;
+        std::string nO;
+        std::string iD;
+        std::string pD;
+        std::string nD;
+        
+        /* Iterar sobre la línea para extraer cada campo */
+        getline (ss, f, ',');
+        getline (ss, h, ',');
+        getline (ss, iO, ',');
+        getline (ss, pO,',');
+        getline (ss, nO,',');
+        getline (ss, iD,',');
+        getline (ss, pD,',' );
+        getline (ss, nD,',');
+        
+        
+        /* Insertar la fila con los campos separados en un vector */
+        lineas.push_back ( UserFila (f, h, iO, pO, nO, iD, pD, nD));
+    }
+
+    /* Cerrar el archivo */
+    file.close ();
+
+    /* Regresar el vector de líneas leídas */
+    return lineas;
+}
 
 /* Imprimir vectores */
 void printVector(std::vector<UserFila> vec)
@@ -89,7 +187,7 @@ void fillCompu( std::map< std::string, ConexionesComputadora> &computadoras, std
     for (size_t i = 0; i < datos.size(); i++)
     {
         /* Continuar si la ip origen no esta en el map*/
-        if ( datos[i].ipOrigen != "-" && computadoras.find(datos[i].ipOrigen))
+        if ( datos[i].ipOrigen != "-" && computadoras.find(datos[i].ipOrigen) == computadoras.end())
         {
             ConexionesComputadora cc(datos[i].ipOrigen, datos[i].nombreOrigen);
             cc.fill(datos);
@@ -234,12 +332,55 @@ void conexWebGrafo( std::map< Date, Graph< std::string>> &grafosPorDiaWeb, std::
     }
 }
 
+bool anomalo(std::string nombre)
+{
+    if (nombre.size() >= 20)
+    {
+        return true;
+    }
+
+    for (int i = 0; i < nombre.size(); i++)
+    {
+        if (isalpha(nombre[i]) == false && nombre[i] != '.' && nombre[i] != '.' && nombre[i] != '/')
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+std::string foundAnomalo( std::map< std::string, ConexionesComputadora> computadoras)
+{
+    std::map< std::string, ConexionesComputadora>::iterator it;
+
+    for ( it = computadoras.begin(); it != computadoras.end(); ++it)
+    {
+        if (anomalo(it->second.nombre))
+        {
+            return it->first;
+        }
+    }
+    return "";
+}
+
 int main()
 {
-    Administrador ad;
-    std::vector< UserFila> datos = ad.read_fila();
+    Administrador admin(read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7_usar.csv"));
+
+    std::vector<UserFila> datos = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7_usar.csv" );
+
     std::map< std::string, ConexionesComputadora> allCompu;
     fillCompu(allCompu, datos);
+
+    // Ip interna, llamada A, la cual esta en la red interna
+    std::string ipInternaA = "172.22.162.7"; //Betty
+    ConexionesComputadora A = allCompu[ipInternaA];
+
+    // Sitio con nombre anómalo
+    std::string ipAnomalaB = foundAnomalo(allCompu);
+    ConexionesComputadora B = allCompu[ipAnomalaB];
+
+
 
     
     return 0;

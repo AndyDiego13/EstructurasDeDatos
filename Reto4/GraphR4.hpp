@@ -108,7 +108,7 @@ class Graph
                 int iSrc = itSrc - nodes.begin();
                 int iDst = itDst - nodes.begin();
 
-                addEdge(itSrc, iDst);
+                addEdge(iSrc, iDst);
             }
             else
             {
@@ -118,7 +118,7 @@ class Graph
 
         void printVeci()
         {
-            for (int i = 0; i < node.size(); i++)
+            for (int i = 0; i < nodes.size(); i++)
             {
                 if (nodes[i].getAdj().size() != 0)
                 {
