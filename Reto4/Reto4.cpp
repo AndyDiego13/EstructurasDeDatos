@@ -355,7 +355,7 @@ std::string foundAnomalo( std::map< std::string, ConexionesComputadora> computad
 
     for ( it = computadoras.begin(); it != computadoras.end(); ++it)
     {
-        if (anomalo(it->second.nombre))
+        if (anomalo(it->second.ip))
         {
             return it->first;
         }
@@ -373,20 +373,25 @@ int main()
     fillCompu(allCompu, datos);
 
     // Ip interna, llamada A, la cual esta en la red interna
-    /*
-    std::string ipInternaA = "172.22.162.7"; Betty
+    
+    std::string ipInternaA = "172.22.162.7"; //Betty
     ConexionesComputadora A = allCompu[ipInternaA];
-    */
 
     // Sitio con nombre anómalo
     //1.100.63.176 creo que tiene que ser el nombre
     //esta ip es la unica rara interna 
     // fecha: 19-8-2020, hora:10:15:34, ipOrigen:1.100.63.176, puertoOrigen:5509, no tiene nombreOrigen -, ipdestino 172.22.162.212, puertoDestino 443, nombreDestino server.reto.com
     //std::cout << ipAnomalaB << std::endl;
+    //Los nombres de los sitios raros son: 3jb6992rz5rtdc2id9c5.net y jhntee9opzbxvdv2unkx.net solo que son diferentes ip a la que me salio como anomala
+
+    // Sitio con nombre anómalo
+    std::string ipAnomalaB = foundAnomalo(allCompu);
+    ConexionesComputadora B = allCompu[ipAnomalaB];
     std::cout << "\t" << (foundAnomalo(allCompu) != "" ? "Sí." : "No.") << std::endl;
+    std::cout << ipAnomalaB << std::endl;
 
     //Sitio con mucho tráfico en un dia 
-    std::string ipTraficoC = "139.242.229.104"; //freemailserver
+    std::string ipTraficoC = "73.227.113.60"; //freemailserver
     ConexionesComputadora C = allCompu[ipTraficoC];
 
     /* 1. Utilizando un grafo con las conexiones entre las ip de la red interna, 
@@ -396,11 +401,11 @@ int main()
 
     std::map< Date, Graph< std::string>> grafosPorDia;
     std::set<Date> allDates = takeDates(datos);
-    std::map< Date, int> conexionesEntratesPorDia;
+    std::map< Date, int> conexionesEntrantesPorDia;
     std::map< Date, int> conexionesSalientesPorDia;
 
-    conexionesDiariasGrafos(grafosPorDia, allDates, ipInternaA, conexionesEntratesPorDia, conexionesSalientesPorDia, allCompu);
-
+    conexionesDiariasGrafos(grafosPorDia, allDates, ipInternaA, conexionesEntrantesPorDia, conexionesSalientesPorDia, allCompu);
+    
     std::cout << "1. Utilizando un grafo con las conexiones entre las ip de la red interna, determina la cantidad de computadoras con las que se ha conectado A por día." << std::endl;
     for ( std::map<Date, int>::iterator it = conexionesSalientesPorDia.begin(); it != conexionesSalientesPorDia.end(); ++it)
     {
@@ -409,20 +414,47 @@ int main()
     }
     
     std::cout << "¿Es el vértice que más conexiones salientes tiene hacia la red interna?" << std::endl;
-    //std::map<Date, std::string>
-
-
+    std::map<Date, std::string> maxConexionesDia = maxConexionesPorDia(grafosPorDia);
+    vertexMaxConexSalientes(maxConexionesDia, ipInternaA); 
+    
     /*
+        2. Utilizando el grafo del punto anterior, ubica la cantidad de computadoras que se han conectado hacia A por día. 
+        ¿Existen conexiones de las demás computadoras hacia A? 
+    */
+
+    std::cout << "Utilizando el grafo del punto anterior, ubica la cantidad de computadoras que se han conectado hacia A por día. ¿Existen conexiones de las demás computadoras hacia A? " << std::endl;
+    
     for ( std::map< Date, int>::iterator it = conexionesEntrantesPorDia.begin(); it != conexionesEntrantesPorDia.end(); ++it)
     {
         Date hoy = it->first;
         std::cout << hoy.toString() << ":\t" << it->second << std::endl;
     }
     std::cout << "Sí existen conexiones entrantes a la computadora con ip: " << ipInternaA << std::endl;
+    
+    /*
+        3. Utilizando un grafo de conexiones a sitios web, determina cuántas computadoras se han conectado a B por día. 
     */
 
+   std::map< Date, Graph<std::string>> grafosPorDiaWeb;
+   std::map< Date, int> conexionesEntrantesPorDiaWeb;
+   conexWebGrafo(grafosPorDiaWeb, allDates, ipAnomalaB, conexionesEntrantesPorDiaWeb, allCompu);
+   std::cout << "3.Utilizando un grafo de conexiones a sitios web, determina cuántas computadoras se han conectado a B por día. " << std::endl;
+   for ( std::map< Date, int>::iterator it = conexionesEntrantesPorDiaWeb.begin(); it != conexionesEntrantesPorDiaWeb.end(); ++it)
+   {
+       Date hoy = it->first;
+       std::cout << hoy.toString() << ":\t" << it->second << std::endl;
+   }
 
-
+   /*
+        4. Utilizando el mismo grafo del punto anterior, indica cuántas computadoras se han conectado a C por día.  
+   */
+    conexWebGrafo(grafosPorDiaWeb, allDates, ipTraficoC, conexionesEntrantesPorDiaWeb, allCompu);
+    std::cout << "4.Utilizando el mismo grafo del punto anterior, indica cuántas computadoras se han conectado a C por día. " << std::endl;
+    for ( std::map< Date, int>::iterator it = conexionesEntrantesPorDiaWeb.begin(); it != conexionesEntrantesPorDiaWeb.end(); ++it)
+    {
+        Date hoy = it->first;
+        std::cout << hoy.toString() << ":\t" << it->second << std::endl;
+    }
     
     return 0;
 }
