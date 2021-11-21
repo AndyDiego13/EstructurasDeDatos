@@ -113,9 +113,9 @@ int main()
 {
    
 
-    Administrador admin ( read_csv_USERFILA ( "/Users/andydiego13/Downloads/equipo7_usar.csv" ));
+    Administrador admin ( read_csv_USERFILA ( "/Users/andydiego13/Downloads/Requipo7.csv" ));
     
-    vector <UserFila> registros = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7_usar.csv" );
+    vector <UserFila> registros = read_csv_USERFILA (  "/Users/andydiego13/Downloads/Requipo7.csv" );
 
     //Pregunta 1
     admin.contarRegistros();

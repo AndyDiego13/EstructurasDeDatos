@@ -48,7 +48,7 @@ int main()
 {   
     Datos d;
 
-    d.leerDatos("/Users/andydiego13/Downloads/equipo7.csv");
+    d.leerDatos("/Users/andydiego13/Downloads/Requipo7.csv");
     //d.leerDatos("/Users/andydiego13/Downloads/equipo7.csv");
 
     //Pregunta 1
