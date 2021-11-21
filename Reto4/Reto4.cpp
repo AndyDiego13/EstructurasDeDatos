@@ -365,16 +365,16 @@ std::string foundAnomalo( std::map< std::string, ConexionesComputadora> computad
 
 int main()
 {
-    Administrador admin(read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7_usar.csv"));
+    Administrador admin(read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7.csv"));
 
-    std::vector<UserFila> datos = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7_usar.csv" );
+    std::vector<UserFila> datos = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7.csv" );
 
     std::map< std::string, ConexionesComputadora> allCompu;
     fillCompu(allCompu, datos);
 
     // Ip interna, llamada A, la cual esta en la red interna
     
-    std::string ipInternaA = "172.22.162.7"; //Betty
+    std::string ipInternaA = "172.22.162.70"; //Betty
     ConexionesComputadora A = allCompu[ipInternaA];
 
     // Sitio con nombre anómalo

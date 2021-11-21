@@ -234,9 +234,9 @@ void top(BSTr &arbol, int n, tm date, std::map<std::string, int> &numRep, std::m
 
 int main()
 {
-    Administrador admin(read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7_usar.csv"));
+    Administrador admin(read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7.csv"));
 
-    std::vector <UserFila> registros = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7_usar.csv" );
+    std::vector <UserFila> registros = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7.csv" );
 
     std::map<std::string, ConexionesComputadora> computadoras;
 
