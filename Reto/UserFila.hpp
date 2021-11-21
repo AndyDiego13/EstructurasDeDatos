@@ -19,146 +19,145 @@
 #include <ctime>
 
 
-class UserFila {
-public:
-    string fecha;
-    string hora;
-    string ipOrigen;
-    string puertoOrigen;
-    string nombreOrigen;
-    string ipDestino;
-    string puertoDestino;
-    string nombreDestino;
+class UserFila 
+{
+    public:
+
+        std::string fecha;
+        std::string hora;
+        std::string ipOrigen;
+        std::string puertoOrigen;
+        std::string nombreOrigen;
+        std::string ipDestino;
+        std::string puertoDestino;
+        std::string nombreDestino;
     
 
-    int origenPuerto;
-    int destinoPuerto;
+        int origenPuerto;
+        int destinoPuerto;
     
-    //Constructor
-    UserFila(string f, string h, string iO, string pO, string nO, string iD, string pD, string nD)
-    {
-        fecha = f;
-        hora = h;
-        ipOrigen = iO;
+        //Constructor
+        UserFila(string f, string h, string iO, string pO, string nO, string iD, string pD, string nD)
+        {
+            fecha = f;
+            hora = h;
+            ipOrigen = iO;
 
-        if (pO == "-")
-        {
-            origenPuerto = 0;
-        }
-        else
-        {
-            try
-            {
-                origenPuerto = stoi(pO);
-            }
-            catch(const std::invalid_argument& ia)
+            if (pO == "-")
             {
                 origenPuerto = 0;
-                std::cout << "error" << pO << std::endl;
             }
-            
-        }
-
-        nombreOrigen = nO;
-        ipDestino = iD;
-
-        if (pD == "-")
-        {
-            destinoPuerto = 0;
-        }
-        else
-        {
-            try
+            else
             {
-                destinoPuerto = stoi(pD);
+                try
+                {
+                    origenPuerto = stoi(pO);
+                }
+                catch(const std::invalid_argument& ia)
+                {
+                    origenPuerto = 0;
+                    std::cout << "error" << pO << std::endl;
+                }
+            
             }
-            catch(const std::invalid_argument& ia)
+
+            nombreOrigen = nO;
+            ipDestino = iD;
+
+            if (pD == "-")
             {
                 destinoPuerto = 0;
-                std::cout << "error" << pD <<std::endl;
             }
-            
+            else
+            {
+                try
+                {
+                    destinoPuerto = stoi(pD);
+                }
+                catch(const std::invalid_argument& ia)
+                {
+                    destinoPuerto = 0;
+                    std::cout << "error" << pD <<std::endl;
+                }
+            }
+            nombreDestino = nD;
         }
-        nombreDestino = nD;
-    }
-    //UserFila(){}
+        //UserFila(){}
     
-    //destructor
-    ~UserFila(){}
+        //destructor
+        ~UserFila(){}
     
-    //sobrecarga de operador para imrimir y poder ser ocupado en otras clases
-    friend std::ostream & operator<<(std::ostream & os, const UserFila & userFila)
-    {
+        //sobrecarga de operador para imrimir y poder ser ocupado en otras clases
+        friend std::ostream & operator<<(std::ostream & os, const UserFila & userFila)
+        {
         
-        os << userFila.fecha << " - ";
-        os << userFila.hora << " - ";
-        os << userFila.ipOrigen << " - ";
-        os << userFila.puertoOrigen << " - ";
-        os << userFila.nombreOrigen << " - ";
-        os << userFila.ipDestino << " - ";
-        os << userFila.puertoDestino << " - ";
-        os << userFila.nombreDestino << " - ";
-        os << endl;
+            os << userFila.fecha << " - ";
+            os << userFila.hora << " - ";
+            os << userFila.ipOrigen << " - ";
+            os << userFila.puertoOrigen << " - ";
+            os << userFila.nombreOrigen << " - ";
+            os << userFila.ipDestino << " - ";
+            os << userFila.puertoDestino << " - ";
+            os << userFila.nombreDestino << " - ";
+            os << endl;
     
     
-        return os;
+            return os;
 
-    }
+        }
            
-    //Obtener Fecha
-    string getFecha()
-    {
-        return fecha;
-    }
+        //Obtener Fecha
+        string getFecha()
+        {
+            return fecha;
+        }
 
-    //Obtener Hora
-    string getHora()
-    {
-        return hora;
-    }
+        //Obtener Hora
+        string getHora()
+        {
+            return hora;
+        }   
 
-    //Obtener Ip Origen
-    string getIpO()
-    {
-        return ipOrigen;
-    }
+        //Obtener Ip Origen
+        string getIpO()
+        {
+            return ipOrigen;
+        }
 
-    string getPuertoO()
-    {
-        return puertoOrigen;
-    }
+        string getPuertoO()
+        {
+            return puertoOrigen;
+        }
 
-    //Obtener nombre del puerto origen
-    string getNombreO()
-    {
-        return nombreOrigen;
-    }
+        //Obtener nombre del puerto origen
+        string getNombreO()
+        {
+            return nombreOrigen;
+        }
 
-    //Obtener ip Destino
-    string getIpD()
-    {
-        return ipDestino;
-    }
+        //Obtener ip Destino
+        string getIpD()
+        {
+            return ipDestino;
+        }
 
-    //Obtener nombre del puerto destino
-    string getPuertoD()
-    {
-        return puertoDestino;
-    }
+        //Obtener nombre del puerto destino
+        string getPuertoD()
+        {
+            return puertoDestino;
+        }
 
-    string getNombreD()
-    {
-        return nombreDestino;
-    }
+        string getNombreD()
+        {
+            return nombreDestino;
+        }
 
-    //para comparar todo por fecha
+        //para comparar todo por fecha
 
-    static bool fecha_asc(UserFila co, UserFila b)
-    {
-        return co.fecha < b.fecha;
-    }
-
-
+        static bool fecha_asc(UserFila co, UserFila b)
+        {
+            return co.fecha < b.fecha;
+        }
 };
 
 
