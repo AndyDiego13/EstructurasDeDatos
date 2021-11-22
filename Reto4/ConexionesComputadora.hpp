@@ -16,9 +16,7 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include <vector>
 #include "ConexionesAux.hpp"
-#include "UserFila.hpp"
 
 class ConexionesComputadora //Nuestra clase principal de conexiones entre las computadoras
 {
@@ -36,68 +34,35 @@ class ConexionesComputadora //Nuestra clase principal de conexiones entre las co
 
         ConexionesComputadora()
         {
-            this->ip = " ";
-            this->nombre = " ";
+            this->ip = "";
+            this->nombre = "";
         }
 
         ~ConexionesComputadora() {}; //Destructor
         
-        /* Funciones insertar conexiones del reto 2
-        void insertConexionesEntrantes(std::string ip, int puerto, std::string conex);
-        void insertConexionesSalientes(std::string ip, int puerto, std::string conex);
-        */
+        
+        void insertConexionesEntrantes(std::string ip, int puerto, std::string conex, tm fecha);
+        void insertConexionesSalientes(std::string ip, int puerto, std::string conex, tm fecha);
 
-       /* Funciones insertar conexiones para el reto 3*/
-       void insertConexionesEntrantes(std::string ip, int puerto, std::string conex, tm fechaTm);
-       void insertConexionesSalientes(std::string ip, int puerto, std::string conex, tm fechaTm);
-       
-       std::string ultimaConexionEntrante();
-
-       void fill(std::vector<UserFila> datos);
+        std::string ultimaConexionEntrante();
 
 };
 
-void ConexionesComputadora::insertConexionesEntrantes(std::string ip, int puerto, std::string conex, tm fechaTm)
+void ConexionesComputadora::insertConexionesEntrantes(std::string ip, int puerto, std::string conex, tm fecha)
 {
-    ConexionesAux ca(ip, puerto, conex, fechaTm);
+    ConexionesAux ca(ip, puerto, conex, fecha);
     conexionesEntrantes.push_front(ca);
 }
 
-void ConexionesComputadora::insertConexionesSalientes(std::string ip, int puerto, std::string conex, tm fechaTm)
+void ConexionesComputadora::insertConexionesSalientes(std::string ip, int puerto, std::string conex, tm fecha)
 {
-    ConexionesAux ca(ip, puerto, conex, fechaTm);
+    ConexionesAux ca(ip, puerto, conex, fecha);
     conexionesSalientes.push_back(ca);
 }
 
 std::string ConexionesComputadora::ultimaConexionEntrante() //Metodo que nos ayudara a obtener la ultima conexión 
 {
     return conexionesEntrantes.front().getIp();
-}
-
-void ConexionesComputadora::fill(std::vector<UserFila> datos)
-{
-    for (int i = 0; i < datos.size(); i++)
-    {
-        if (datos[i].getIpD() == this->ip)
-        {
-            this->insertConexionesEntrantes(
-                datos[i].ipOrigen,
-                datos[i].origenPuerto,
-                datos[i].nombreOrigen,
-                datos[i].fechaTm
-            );
-        }
-
-        if (datos[i].getIpO() == this->ip)
-        {
-            this->insertConexionesSalientes(
-                datos[i].ipDestino,
-                datos[i].destinoPuerto,
-                datos[i].nombreDestino,
-                datos[i].fechaTm
-            );
-        }
-    }
 }
 
 #endif // !ConexionesComputadora_hpp
