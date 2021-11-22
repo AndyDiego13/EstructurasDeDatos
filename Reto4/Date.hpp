@@ -1,3 +1,14 @@
+/*
+    Situacion Problema - Ataques Cibernéticos
+    Date.hpp
+
+    Created by: 
+    - Serrano Diego Andrea (A01028728)
+    - Garcia Puebla Diego Fernando (A01028597)
+    
+    Fecha de realizacion: 18 / 10 /2021
+
+*/
 #ifndef Date_hpp
 #define Date_hpp
 
