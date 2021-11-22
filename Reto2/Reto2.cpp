@@ -18,101 +18,15 @@
 #include "ConexionesComputadora.hpp"
 #include <string>
 
-auto  read_csv_strings(std::string filename)
+
+/* Imprimir vectores */
+void printVector( std::vector<UserFila> arr)
 {
-    /* Crear un vector (matriz) de vector de strings (vectores internos o sea filas) donde se guardara cada linea del documento */
-    vector <vector <std::string>> lineas;
-
-    /* Crear un flujo de archivos de entrada para leer el archivo CSV, o sea objeti que reciba un input */
-    ifstream file(filename);
-
-    /* Lanzar excepción: Verificar si no hubo error al abrir el archivo */
-    if (!file.is_open())throw std::runtime_error ( " No se puede abrir el archivo " );
-
-    /* Definir variable que almacena cada línea del archivo */
-    std::string linea;
-    
-    /* Leer datos línea a línea, fila a fila, ESTO SE REALIZA PARA CADA LINEA */
-    while ( getline (file, linea,','))
+    for (int i = 0; i < arr.size(); i++)
     {
-        /* Crear un stream de la línea */
-       std::stringstream ss (linea);
-    
-        /* Variable que almacena cada campo leído, o sea cada columna creo */
-        std::string campo;
-        
-        /* Cada elemento de la columna se agrega un vector, es decir cada fila se vuelve a un vector. Almacenar cada campo */
-        vector <std::string> fila;
-        
-        /* Iterar sobre la línea para extraer cada campo */
-        while ( std::getline (ss, campo))
-        {
-            // se agrega cada elemento al vector de cada fila
-            fila.push_back (campo);
-        }
-        
-        /* Insertar la fila con los campos separados en un vector */
-        lineas.push_back (fila);
+        arr[i].print();
+        std::cout << std::endl;
     }
-
-    /* Cerrar el archivo */
-    file.close ();
-
-    /* Regresar el vector de líneas leídas */
-    return lineas;
-}
-
-            
-auto  read_csv_USERFILA (std::string filename)
-{
-    /* Crear un vector de vector de strings */
-    vector <UserFila> lineas;
-
-    /* Crear un flujo de archivos de entrada para leer el archivo CSV */
-    std::ifstream file(filename);
-
-    /* Verificar si no hubo error al abrir el archivo */
-    if (! file.is_open ()) throw  std::runtime_error ( " No se puede abrir el archivo " );
-
-    /* Definir variable que almacena cada línea */
-    std :: string linea;
-    
-    /* Leer datos línea a línea */
-    while ( std::getline (file, linea))
-    {
-        /* Crear un vapor de la línea */
-        stringstream ss (linea);
-    
-        /*  Variables que almacenan cada campo leído */
-        std::string f;
-        std::string h;
-        std::string iO;
-        std::string pO;
-        std::string nO;
-        std::string iD;
-        std::string pD;
-        std::string nD;
-        
-        /* Iterar sobre la línea para extraer cada campo */
-        getline (ss, f, ',');
-        getline (ss, h, ',');
-        getline (ss, iO, ',');
-        getline (ss, pO,',');
-        getline (ss, nO,',');
-        getline (ss, iD,',');
-        getline (ss, pD,',' );
-        getline (ss, nD,',');
-        
-        
-        /* Insertar la fila con los campos separados en un vector */
-        lineas.push_back ( UserFila (f, h, iO, pO, nO, iD, pD, nD));
-    }
-
-    /* Cerrar el archivo */
-    file.close ();
-
-    /* Regresar el vector de líneas leídas */
-    return lineas;
 }
 
 /* Algoritmos de Busqueda (En este caso una Busqueda Secuencial (O(n)) ) */
@@ -145,16 +59,16 @@ int busquedaSecuencial(vector<UserFila> d, bool(*condicion)(UserFila a, UserFila
 
 std::string ipUsuario;
 
-bool confirmarIp(UserFila uf)
+bool confirmarIp(UserFila r)
 {
-    return uf.getIpO() == ipUsuario;
+    return r.ipOrigen == ipUsuario;
 }
 
 //Obtener la ip base
 std::string takeIpBase(vector<UserFila> d)
 {
-    int i = busquedaSecuencial(d,[](UserFila r) {return r.getIpO() != "-";});
-    std::string ip = d[i+1].getIpO();
+    int i = busquedaSecuencial(d,[](UserFila r) {return r.ipOrigen != "-";});
+    std::string ip = d[i+1].ipOrigen;
     for (int i = 0; i < 3; i++)
     {
         ip.pop_back();
@@ -199,20 +113,20 @@ void fill(vector<UserFila> datos, ConexionesComputadora &conexInput)
 {
     for (int i = 0; i < datos.size(); i++)
     {
-        if (datos[i].getIpD() == conexInput.ip)
+        if (datos[i].ipDestino == conexInput.ip)
         {
             conexInput.insertConexionesEntrantes(
                 datos[i].ipOrigen,
-                datos[i].origenPuerto,
+                datos[i].puerto_Origen,
                 datos[i].nombreOrigen
             );
         }
 
-        if (datos[i].getIpO() == conexInput.ip)
+        if (datos[i].ipOrigen == conexInput.ip)
         {
             conexInput.insertConexionesSalientes(
                 datos[i].ipDestino,
-                datos[i].destinoPuerto,
+                datos[i].puerto_Destino,
                 datos[i].nombreDestino
             );
         }
@@ -253,25 +167,24 @@ bool tresSeguidas(ConexionesComputadora &conexInput)
 
 int main()
 {
-    Administrador admin (read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7_usar.csv"));
+    Administrador admin;
+    std::vector<UserFila> datos = admin.file();
 
-    vector <UserFila> registros = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7_usar.csv" );
+    int usuarioIndex = askNumber(datos);
+    std::string ipBase = takeIpBase(datos);
 
-    int usuarioIndex = askNumber(registros);
-    std::string ipBase = takeIpBase(registros);
-
-    std::string nombreUsuario = registros[usuarioIndex].nombreOrigen;
+    std::string nombreUsuario = datos[usuarioIndex].nombreOrigen;
 
     ConexionesComputadora conexUsuario = ConexionesComputadora(ipUsuario, nombreUsuario);
     std::cout << "La ip interna es: " << conexUsuario.ip << std::endl;
 
-    fill(registros, conexUsuario);
+    fill(datos, conexUsuario);
 
     std::cout << std::endl;
 
     /* La conexion conocida que estamos usando para resolver las preguntas es la de betty*/
-    ConexionesComputadora compuConocida = ConexionesComputadora("172.22.162.7","betty.reto.com");
-    fill(registros, compuConocida);
+    ConexionesComputadora compuConocida = ConexionesComputadora("172.22.162.70","betty.reto.com");
+    fill(datos, compuConocida);
 
     /* Pregunta 1 */
     std::cout << "-------------------------------------------------------------------------" << std::endl;
