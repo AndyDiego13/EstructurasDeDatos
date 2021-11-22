@@ -159,7 +159,7 @@ std::string obtenerIpBase( std::vector<UserFila> d)
     return ip;
 }
 
-int main()
+int main(void)
 {
     Administrador admin;
     std::vector<UserFila> datos = admin.file();
@@ -167,11 +167,45 @@ int main()
     std::cout << "1. ¿Cuántos registros tiene tu archivo?" << std::endl
     << "El archivo tiene " << datos.size() << " registros." << endl << endl;
 
-    std::cout << "2. " << std::endl;
-   
+    std::cout << "2. ¿Cuántos récords hay del segundo día registrado? ¿Qué día es?" << std::endl;
+    int primerDiaCount = busquedaSecuencial(datos, *esPosterior, datos[0]);
+    int segundoDiaCount = busquedaSecuencial(datos, *esPosterior, datos[primerDiaCount]) - primerDiaCount;
 
-   
+    std::cout << "En el primer día (" << std::endl;
+    datos[0].printDate();
+    std::cout << ") hubieron " << primerDiaCount << "datos" << std::endl;
+
+    std::cout << "En el segundo día (" << std::endl;
+    datos[segundoDiaCount].printDate();
+    std::cout << ") hubieron " << segundoDiaCount << " datos." << std::endl << std::endl;
+
+    std::cout << "3." << std::endl;
+    int perteneceCount = busquedaSecuencial(datos, *perteneceA);
+    std::cout << ( perteneceCount == 0 ? "No." : "Sí.") << std::endl;
+
+    std::cout << "4." << std::endl;
+    std::cout << "La direccion de la red interna es: " << obtenerIpBase(datos)<< std::endl;
+
+    std::cout << "5." << std::endl;
+    int serverCount = busquedaSecuencial(datos, *callServer);
+    std::cout << (serverCount < 0 ? "No." : "Sí.") << std::endl;
+
+    std::cout << "6." << std::endl;
+    int mailCount = busquedaSecuencial(datos, *correo);
+    std::cout << "Mail" << "\t\t" << "Cantidad" << "\n" << std::endl;
+    for (const auto &x : mails)
+    {
+        std::cout << x.first << "\t" << x.second <<  "\n" <<std::endl;
+    }
     
+    std::cout << "7." << std::endl;
+    int puertoCount = busquedaSecuencial(datos, *puerto);
+    std::cout << "Puerto" << " \t" << "Cantidad" << "\n" << std::endl;
+    for ( const auto &x : puertos)
+    {
+        std::cout << x.first << " \t" << x.second << "\n" << std::endl;
+    }
+
     return 0;
 }   
 

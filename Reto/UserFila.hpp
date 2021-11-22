@@ -32,7 +32,7 @@ class UserFila
                  std::string ipDestino,
                  std::string puertoDestino,
                  std::string nombreDestino
-        )
+        );
 
         UserFila();
 
@@ -40,10 +40,10 @@ class UserFila
         std::string fechaString;
         std::string hora;
         std::string ipOrigen;
-        int puertoOrigen;
+        int puerto_Origen;
         std::string nombreOrigen;
         std::string ipDestino;
-        int puertoDestino;
+        int puerto_Destino;
         std::string nombreDestino;
 
         void print();
@@ -53,9 +53,9 @@ class UserFila
 UserFila::UserFila(std::string f, std::string h, std::string iO, std::string pO, std::string nO, std::string iD, std::string pD, std::string nD)
 {
     struct tm tm;
-    const char *f = _fecha.c_str();
-    strptime(f, "%d-%m-%y", &this->fecha);
-    this->fechaString = _fecha;
+    const char *fechas = f.c_str();
+    strptime(fechas, "%d-%m-%y", &this->fecha);
+    this->fechaString = f;
     this->hora = h;
     this->ipOrigen = iO;
     this->nombreOrigen = nO;
@@ -64,13 +64,13 @@ UserFila::UserFila(std::string f, std::string h, std::string iO, std::string pO,
 
     try
     {
-        this->origenPuerto = stoi(pO, nullptr, 10);
-        this->destinoPuerto = stoi(pO,nullptr, 10);
+        this->puerto_Origen = stoi(pO, nullptr, 10);
+        this->puerto_Destino = stoi(pO,nullptr, 10);
     }
     catch(...)
     {
-        this->origenPuerto = -1;
-        this->destinoPuerto = -1;
+        this->puerto_Origen = -1;
+        this->puerto_Destino = -1;
     }
 }
 
