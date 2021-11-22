@@ -1,6 +1,6 @@
 /*
     Situacion Problema - Ataques Cibernéticos
-    ConexionesComputadora.hpp
+    Reto4.cpp
 
     Created by: 
     - Serrano Diego Andrea (A01028728)
