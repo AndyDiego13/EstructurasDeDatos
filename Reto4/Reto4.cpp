@@ -22,111 +22,17 @@
 #include "Date.hpp"
 #include "GraphR4.hpp"
 
-auto  read_csv_strings(std::string filename)
-{
-    /* Crear un vector (matriz) de vector de strings (vectores internos o sea filas) donde se guardara cada linea del documento */
-    vector <vector <std::string>> lineas;
 
-    /* Crear un flujo de archivos de entrada para leer el archivo CSV, o sea objeti que reciba un input */
-    ifstream file(filename);
 
-    /* Lanzar excepción: Verificar si no hubo error al abrir el archivo */
-    if (!file.is_open())throw std::runtime_error ( " No se puede abrir el archivo " );
-
-    /* Definir variable que almacena cada línea del archivo */
-    std::string linea;
-    
-    /* Leer datos línea a línea, fila a fila, ESTO SE REALIZA PARA CADA LINEA */
-    while ( getline (file, linea,','))
-    {
-        /* Crear un stream de la línea */
-       std::stringstream ss (linea);
-    
-        /* Variable que almacena cada campo leído, o sea cada columna creo */
-        std::string campo;
-        
-        /* Cada elemento de la columna se agrega un vector, es decir cada fila se vuelve a un vector. Almacenar cada campo */
-        vector <std::string> fila;
-        
-        /* Iterar sobre la línea para extraer cada campo */
-        while ( std::getline (ss, campo))
-        {
-            // se agrega cada elemento al vector de cada fila
-            fila.push_back (campo);
-        }
-        
-        /* Insertar la fila con los campos separados en un vector */
-        lineas.push_back (fila);
-    }
-
-    /* Cerrar el archivo */
-    file.close ();
-
-    /* Regresar el vector de líneas leídas */
-    return lineas;
-}
-
-            
-auto  read_csv_USERFILA (std::string filename)
-{
-    /* Crear un vector de vector de strings */
-    vector <UserFila> lineas;
-
-    /* Crear un flujo de archivos de entrada para leer el archivo CSV */
-    std::ifstream file(filename);
-
-    /* Verificar si no hubo error al abrir el archivo */
-    if (! file.is_open ()) throw  std::runtime_error ( " No se puede abrir el archivo " );
-
-    /* Definir variable que almacena cada línea */
-    std :: string linea;
-    
-    /* Leer datos línea a línea */
-    while ( std::getline (file, linea))
-    {
-        /* Crear un vapor de la línea */
-        stringstream ss (linea);
-    
-        /*  Variables que almacenan cada campo leído */
-        std::string f;
-        std::string h;
-        std::string iO;
-        std::string pO;
-        std::string nO;
-        std::string iD;
-        std::string pD;
-        std::string nD;
-        
-        /* Iterar sobre la línea para extraer cada campo */
-        getline (ss, f, ',');
-        getline (ss, h, ',');
-        getline (ss, iO, ',');
-        getline (ss, pO,',');
-        getline (ss, nO,',');
-        getline (ss, iD,',');
-        getline (ss, pD,',' );
-        getline (ss, nD,',');
-        
-        
-        /* Insertar la fila con los campos separados en un vector */
-        lineas.push_back ( UserFila (f, h, iO, pO, nO, iD, pD, nD));
-    }
-
-    /* Cerrar el archivo */
-    file.close ();
-
-    /* Regresar el vector de líneas leídas */
-    return lineas;
-}
 
 /* Imprimir vectores */
-void printVector(std::vector<UserFila> vec)
+void printVector( std::vector<UserFila> arr)
 {
-    for (int i = 0; i < vec.size(); i++)
+    for (int i = 0; i < arr.size(); i++)
     {
-        vec[i].print();
+        arr[i].print();
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
 }
 
 /* Algoritmos de Busqueda (En este caso una Busqueda Secuencial (O(n)) ) */
@@ -141,7 +47,7 @@ int busquedaSecuencial(vector<UserFila> d, bool(*condicion)(UserFila r))
     }
 
     return -1;  
-}
+} 
 
 /* Busqueda Secuencial (sobrecarga) */
 int busquedaSecuencial(vector<UserFila> d, bool(*condicion)(UserFila a, UserFila b), UserFila r)
@@ -156,21 +62,20 @@ int busquedaSecuencial(vector<UserFila> d, bool(*condicion)(UserFila a, UserFila
     return -1;  
 }
 
-std::set<Date> takeDates(std::vector<UserFila> registros)
+std::set<Date> takeDates(std::vector<UserFila> datos)
 {
     std::set<Date> allDates;
-    for (int i = 0; i < registros.size(); i++)
+    for (int i = 0; i < datos.size(); i++)
     {
-        Date d(registros[i].fechaTm);
+        Date d(datos[i].fecha);
         allDates.insert(d);
     }
-    return allDates;
-    
+    return allDates;   
 }
 
 bool isInterna(std::string ipInput)
 {
-    std::string ipBase = "172.22.162.7";
+    std::string ipBase = "172.22.162.0";
 
     for (int i = 0; i < 10; i++)
     {
@@ -180,6 +85,76 @@ bool isInterna(std::string ipInput)
         }
     }
     return true;
+}
+
+int computadorasConConexionesEntrantes( std::map< std::string, ConexionesComputadora> computadoras)
+{
+    int n = 0;
+    std::map< std::string, ConexionesComputadora>::iterator it;
+
+    for ( it = computadoras.begin(); it != computadoras.end(); it++)
+    {
+        if (it->second.nombre.find("reto.com") != std::string::npos && it->second.conexionesEntrantes.size() >= 1)
+        {
+            n++;
+        } 
+    }
+    return n;
+}
+
+std::set< std::string> obtenerIpsEntrantes(std::map< std::string, ConexionesComputadora> computadoras)
+{
+    std::set<std::string> ipsUnicas;
+    std::map< std::string, ConexionesComputadora>::iterator it;
+
+    int n = 0;
+
+    for ( it = computadoras.begin(); it != computadoras.end(); it++)
+    {
+        if (it->second.nombre.find(".reto.com") == std::string::npos)
+        {
+            n++;
+
+            std::vector<ConexionesAux> conexionesV{begin(it->second.conexionesEntrantes), end(it->second.conexionesEntrantes)};
+            std::set<std::string> nombresPorComputadoraUnicos;
+
+            for (int i = 0; i < conexionesV.size(); i++)
+            {
+                if (conexionesV[i].puerto != 67)
+                {
+                    nombresPorComputadoraUnicos.insert(conexionesV[i].conex);
+                    ipsUnicas.insert(conexionesV[i].ip);
+                }
+            }
+        }
+    }
+    return ipsUnicas;
+}
+
+std::map< std::string, int> conexionesPorDia(tm date, std::vector<UserFila> datos)
+{
+    std::map< std::string, int> numeroDeOcurrencias;
+
+    for (int i = 0; i < datos.size(); i++)
+    {
+        if (datos[i].fecha.tm_mday == date.tm_mday && datos[i].fecha.tm_mon == date.tm_mon && datos[i].fecha.tm_year == date.tm_year)
+        {
+            if (datos[i].nombreDestino.find(".reto.com") == std::string::npos && datos[i].nombreDestino.find("-") == std::string::npos)
+            {
+                numeroDeOcurrencias[datos[i].nombreDestino]++;
+            }
+        }
+    }
+    return numeroDeOcurrencias;
+}
+
+void printMap(std::map<std::string, int> numeroDeOcurrencias)
+{
+    std::map< std::string, int>::iterator it;
+    for ( it = numeroDeOcurrencias.begin(); it != numeroDeOcurrencias.end(); ++it)
+    {
+        std::cout << it->first << ":\t" << it->second << std::endl;
+    }
 }
 
 void fillCompu( std::map< std::string, ConexionesComputadora> &computadoras, std::vector<UserFila> datos)
@@ -365,7 +340,7 @@ std::string foundAnomalo( std::map< std::string, ConexionesComputadora> computad
 
 int main()
 {
-    Administrador admin(read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7.csv"));
+    Administrador admin;
 
     std::vector<UserFila> datos = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7.csv" );
 
