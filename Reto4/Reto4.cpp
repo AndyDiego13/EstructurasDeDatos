@@ -179,7 +179,7 @@ void fillCompu( std::map< std::string, ConexionesComputadora> &computadoras, std
 }
 
 
-void conexionesDiariasGrafos( std::map<Date, Graph<std::string>> &grafosPorDia, std::set<Date> allDates, std::string ipA, std::map<Date, int> &conexionesEntrantesPorDia, std::map<Date, int> &conexionesSalientesPorDia, std::map<std::string, ConexionesComputadora> todasLasComputadoras)
+void conexionesDiariasGrafos( std::map<Date, Graph<std::string>> &grafosPorDia, std::set<Date> allDates, std::string ipA, std::map<Date, int> &conexionesEntrantesPorDia, std::map<Date, int> &conexionesSalientesPorDia, std::map<std::string, ConexionesComputadora> allCompu)
 {
     //Iteramos por día y creamos el grafo
     for ( std::set<Date>::iterator hoy = allDates.begin(); hoy != allDates.end(); ++hoy)
@@ -187,7 +187,7 @@ void conexionesDiariasGrafos( std::map<Date, Graph<std::string>> &grafosPorDia, 
         Graph<std::string> grafoI;
 
         //Iteramos todas las computadoras para añadir los nodos
-        for ( std::map<std::string, ConexionesComputadora>::iterator compu = todasLasComputadoras.begin(); compu != todasLasComputadoras.end(); ++compu)
+        for ( std::map<std::string, ConexionesComputadora>::iterator compu = allCompu.begin(); compu != allCompu.end(); ++compu)
         {
             //Si es interna, añadir al grafo
             if (isInterna(compu->first))
@@ -197,7 +197,7 @@ void conexionesDiariasGrafos( std::map<Date, Graph<std::string>> &grafosPorDia, 
         }
 
         //Iteramos todas las computadoras para añadir los edges
-        for ( std::map< std::string, ConexionesComputadora>::iterator compu = todasLasComputadoras.begin(); compu != todasLasComputadoras.end(); ++compu)
+        for ( std::map< std::string, ConexionesComputadora>::iterator compu = allCompu.begin(); compu != allCompu.end(); ++compu)
         {
             std::string iIp = compu->first;
 
@@ -348,25 +348,23 @@ int main()
     fillCompu(allCompu, datos);
 
     // Ip interna, llamada A, la cual esta en la red interna
-    
-    std::string ipInternaA = "172.22.162.70"; //Betty
+    /*
+        Betty - 172.22.162.70
+    */
+    std::string ipInternaA = "172.22.162.70"; 
     ConexionesComputadora A = allCompu[ipInternaA];
 
     // Sitio con nombre anómalo
-    //1.100.63.176 creo que tiene que ser el nombre
-    //esta ip es la unica rara interna 
-    // fecha: 19-8-2020, hora:10:15:34, ipOrigen:1.100.63.176, puertoOrigen:5509, no tiene nombreOrigen -, ipdestino 172.22.162.212, puertoDestino 443, nombreDestino server.reto.com
-    //std::cout << ipAnomalaB << std::endl;
     //Los nombres de los sitios raros son: 3jb6992rz5rtdc2id9c5.net y jhntee9opzbxvdv2unkx.net solo que son diferentes ip a la que me salio como anomala
 
     // Sitio con nombre anómalo
     std::string ipAnomalaB = foundAnomalo(allCompu);
     ConexionesComputadora B = allCompu[ipAnomalaB];
-    std::cout << "\t" << (foundAnomalo(allCompu) != "" ? "Sí." : "No.") << std::endl;
-    std::cout << ipAnomalaB << std::endl;
+    //std::cout << "\t" << (foundAnomalo(allCompu) != "" ? "Sí." : "No.") << std::endl;
+    //std::cout << ipAnomalaB << std::endl;
 
     //Sitio con mucho tráfico en un dia 
-    std::string ipTraficoC = "73.227.113.60"; //freemailserver
+    std::string ipTraficoC = "73.227.113.60"; //fandom
     ConexionesComputadora C = allCompu[ipTraficoC];
 
     /* 1. Utilizando un grafo con las conexiones entre las ip de la red interna, 
@@ -430,6 +428,7 @@ int main()
         Date hoy = it->first;
         std::cout << hoy.toString() << ":\t" << it->second << std::endl;
     }
+    std::cout << ipAnomalaB << std::endl;
     
     return 0;
 }
