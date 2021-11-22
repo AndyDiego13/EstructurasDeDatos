@@ -79,10 +79,10 @@ void UserFila::print()
     this->printDate();
     std::cout << "\t" << this->hora 
     << "\t" << this->ipOrigen
-    << "\t" << this->puertoOrigen
+    << "\t" << this->puerto_Origen
     << "\t" << this->nombreOrigen
     << "\t" << this->ipDestino
-    << "\t" << this->puertoDestino
+    << "\t" << this->puerto_Destino
     << "\t" << this->nombreDestino
     <<std::endl << "=======================" <<std::endl;
 }
