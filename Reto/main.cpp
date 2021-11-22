@@ -29,7 +29,7 @@ int busquedaSecuencial( std::vector<UserFila> d, bool (*condicion)(UserFila r))
 {
     for (int i = 0; i < d.size(); i++)
     {
-        if (condicion(d[i], r))
+        if (condicion(d[i]))
         {
             return i;
         }
@@ -129,7 +129,7 @@ bool callServer(UserFila r)
 
 bool correo(UserFila r)
 {
-    if (r.puertoDestino == 993)
+    if (r.puerto_Destino == 993)
     {
         mails[r.nombreDestino]++;
     }
@@ -138,9 +138,9 @@ bool correo(UserFila r)
 
 bool puerto(UserFila r)
 {
-    if (r.puertoDestino < 1000 && r.puertoDestino > 0)
+    if (r.puerto_Destino < 1000 && r.puerto_Destino > 0)
     {
-        puertos[r.puertoDestino]++;
+        puertos[r.puerto_Destino]++;
     }
     return false;
 }
