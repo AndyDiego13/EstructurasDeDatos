@@ -43,6 +43,7 @@ class ConexionesComputadora //Nuestra clase principal de conexiones entre las co
         
         void insertConexionesEntrantes(std::string ip, int puerto, std::string conex, tm fecha);
         void insertConexionesSalientes(std::string ip, int puerto, std::string conex, tm fecha);
+        void fill(std::vector<UserFila> datos);
 
         std::string ultimaConexionEntrante();
 
@@ -63,6 +64,32 @@ void ConexionesComputadora::insertConexionesSalientes(std::string ip, int puerto
 std::string ConexionesComputadora::ultimaConexionEntrante() //Metodo que nos ayudara a obtener la ultima conexión 
 {
     return conexionesEntrantes.front().getIp();
+}
+
+void ConexionesComputadora::fill(std::vector<UserFila> datos)
+{
+    for (int i = 0; i < datos.size(); i++)
+    {
+        if (datos[i].ipDestino == this->ip)
+        {
+            this->insertConexionesEntrantes(
+                datos[i].ipOrigen,
+                datos[i].puerto_Origen,
+                datos[i].nombreOrigen,
+                datos[i].fecha
+            );
+        }
+
+        if (datos[i].ipOrigen == this->ip)
+        {
+            this->insertConexionesSalientes(
+                datos[i].ipDestino,
+                datos[i].puerto_Destino,
+                datos[i].nombreDestino,
+                datos[i].fecha
+            );
+        }
+    }
 }
 
 #endif // !ConexionesComputadora_hpp

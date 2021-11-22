@@ -342,7 +342,7 @@ int main()
 {
     Administrador admin;
 
-    std::vector<UserFila> datos = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7.csv" );
+    std::vector<UserFila> datos = admin.file();
 
     std::map< std::string, ConexionesComputadora> allCompu;
     fillCompu(allCompu, datos);
