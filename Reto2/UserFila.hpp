@@ -10,156 +10,87 @@
 
 */
 
+
 #ifndef UserFila_hpp
 #define UserFila_hpp
 
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
-class UserFila {
-public:
-    string fecha;
-    string hora;
-    string ipOrigen;
-    string puertoOrigen;
-    string nombreOrigen;
-    string ipDestino;
-    string puertoDestino;
-    string nombreDestino;
-    
+class UserFila
+{
+    public:
 
-    int origenPuerto;
-    int destinoPuerto;
-    
-    //Constructor
-    UserFila(string f, string h, string iO, string pO, string nO, string iD, string pD, string nD)
-    {
-        fecha = f;
-        hora = h;
-        ipOrigen = iO;
+        UserFila(std::string fecha,
+                 std::string hora,
+                 std::string ipOrigen,
+                 std::string puertoOrigen,
+                 std::string nombreOrigen,
+                 std::string ipDestino,
+                 std::string puertoDestino,
+                 std::string nombreDestino
+        );
 
-        if (pO == "-")
-        {
-            origenPuerto = 0;
-        }
-        else
-        {
-            try
-            {
-                origenPuerto = stoi(pO);
-            }
-            catch(const std::invalid_argument& ia)
-            {
-                origenPuerto = 0;
-                std::cout << "error" << pO << std::endl;
-            }
-            
-        }
+        UserFila();
 
-        nombreOrigen = nO;
-        ipDestino = iD;
+        tm fecha;
+        std::string fechaString;
+        std::string hora;
+        std::string ipOrigen;
+        int puerto_Origen;
+        std::string nombreOrigen;
+        std::string ipDestino;
+        int puerto_Destino;
+        std::string nombreDestino;
 
-        if (pD == "-")
-        {
-            destinoPuerto = 0;
-        }
-        else
-        {
-            try
-            {
-                destinoPuerto = stoi(pD);
-            }
-            catch(const std::invalid_argument& ia)
-            {
-                destinoPuerto = 0;
-                std::cout << "error" << pD <<std::endl;
-            }
-            
-        }
-        nombreDestino = nD;
-    }
-    //UserFila(){}
-    
-    //destructor
-    ~UserFila(){}
-    
-    //sobrecarga de operador para imrimir y poder ser ocupado en otras clases
-    friend std::ostream & operator<<(std::ostream & os, const UserFila & userFila)
-    {
-        
-        os << userFila.fecha << " - ";
-        os << userFila.hora << " - ";
-        os << userFila.ipOrigen << " - ";
-        os << userFila.puertoOrigen << " - ";
-        os << userFila.nombreOrigen << " - ";
-        os << userFila.ipDestino << " - ";
-        os << userFila.puertoDestino << " - ";
-        os << userFila.nombreDestino << " - ";
-        os << endl;
-    
-    
-        return os;
-
-    }
-           
-    //Obtener Fecha
-    string getFecha()
-    {
-        return fecha;
-    }
-
-    //Obtener Hora
-    string getHora()
-    {
-        return hora;
-    }
-
-    //Obtener Ip Origen
-    string getIpO()
-    {
-        return ipOrigen;
-    }
-
-    string getPuertoO()
-    {
-        return puertoOrigen;
-    }
-
-    //Obtener nombre del puerto origen
-    string getNombreO()
-    {
-        return nombreOrigen;
-    }
-
-    //Obtener ip Destino
-    string getIpD()
-    {
-        return ipDestino;
-    }
-
-    //Obtener nombre del puerto destino
-    string getPuertoD()
-    {
-        return puertoDestino;
-    }
-
-    string getNombreD()
-    {
-        return nombreDestino;
-    }
-
-    //para comparar todo por fecha
-
-    static bool fecha_asc(UserFila co, UserFila b)
-    {
-        return co.fecha < b.fecha;
-    }
-
-
+        void print();
+        void printDate(); 
 };
 
+UserFila::UserFila(std::string f, std::string h, std::string iO, std::string pO, std::string nO, std::string iD, std::string pD, std::string nD)
+{
+    struct tm tm;
+    const char *fechas = f.c_str();
+    strptime(fechas, "%d-%m-%y", &this->fecha);
+    this->fechaString = f;
+    this->hora = h;
+    this->ipOrigen = iO;
+    this->nombreOrigen = nO;
+    this->ipDestino = iD;
+    this->nombreDestino = nD;
+
+    try
+    {
+        this->puerto_Origen = stoi(pO, nullptr, 10);
+        this->puerto_Destino = stoi(pO,nullptr, 10);
+    }
+    catch(...)
+    {
+        this->puerto_Origen = -1;
+        this->puerto_Destino = -1;
+    }
+};
+
+void UserFila::print()
+{
+    this->printDate();
+    std::cout << "\t" << this->hora 
+    << "\t" << this->ipOrigen
+    << "\t" << this->puerto_Origen
+    << "\t" << this->nombreOrigen
+    << "\t" << this->ipDestino
+    << "\t" << this->puerto_Destino
+    << "\t" << this->nombreDestino
+    <<std::endl << "=======================" <<std::endl;
+}
+
+void UserFila::printDate()
+{
+    std::cout << this->fecha.tm_mday << "/" << this->fecha.tm_mon + 1 << "/" << this->fecha.tm_year + 1900 << std::endl;
+}
 
 #endif /* UserFila_hpp */
