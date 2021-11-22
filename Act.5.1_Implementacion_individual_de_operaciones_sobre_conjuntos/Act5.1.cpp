@@ -9,17 +9,33 @@
     Fecha de realizacion: 22 / 11 /2021
 
 */
+
 #include <iostream>
 #include "HashMap.hpp"
 
 int main(int argc, const char * argv[]) {
     
     int capacity = 5;
+    int a[]= {15, 11, 27, 8, 12};
+    int n = sizeof(a)/sizeof(a[0]);
+
+    HashMap<int, int> hash(7);
+
+    for (int i = 0; i < n; i++)
+    {
+        hash.insertItem(a[i]);
+    }
     
-    /* Crear un HashMap */
+    hash.deleteItem(12);
+
+    hash.displayHash();
+
+    
+    
+    /* Crear un HashMap 
     HashMap<int, int> * tabla = new HashMap<int, int>(capacity);
-    
-    /* Insertar elementos */
+    */
+    /* Insertar elementos 
     std::cout << tabla->put(1, 1) << std::endl;
     std::cout << tabla->put(5, 5) << std::endl;
     std::cout << tabla->put(11, 11) << std::endl;
@@ -32,9 +48,7 @@ int main(int argc, const char * argv[]) {
     std::cout << tabla->get(8) << std::endl;
     
     std::cout << *tabla;
-    
-    /* Eliminar la tabla */
-    delete tabla;
+    */
     
     return 0;
 }

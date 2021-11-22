@@ -31,7 +31,7 @@ class HashMap {
     std::list<int> *table;
     
 public:
-    HashMap(int);
+    //HashMap(int);
     ~HashMap();
     // constructor chain
     HashMap(int v);
@@ -54,6 +54,7 @@ public:
     friend std::ostream & operator <<(std::ostream & os, const HashMap<Kn,Vn> & hm);
 };
 
+
 template <class K, class V>
 HashMap<K,V>::HashMap(int capacity)
 {
@@ -64,6 +65,7 @@ HashMap<K,V>::HashMap(int capacity)
     
     fill(_status.begin(), _status.end(), "vacio");
 }
+
 
 template <class K, class V>
 HashMap<K,V>::~HashMap()
