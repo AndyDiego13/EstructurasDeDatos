@@ -72,7 +72,7 @@ UserFila::UserFila(std::string f, std::string h, std::string iO, std::string pO,
         this->puerto_Origen = -1;
         this->puerto_Destino = -1;
     }
-}
+};
 
 void UserFila::print()
 {
