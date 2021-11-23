@@ -24,23 +24,10 @@ class HashMap {
     int _size = 0;
     
     int hash_function(K) const;
-
-    //hash bucket chain 
-    int bucket;
-    //list
-    std::list<int> *table;
     
 public:
-    //HashMap(int);
+    HashMap(int);
     ~HashMap();
-    // constructor chain
-    HashMap(int v);
-
-    //funciones para chain
-    void insertItem(int x);
-    void deleteItem(int key);
-    int hashBucket(int x);
-    void displayHash();
     
     bool empty() const;
     int size() const;
@@ -190,54 +177,6 @@ std::ostream & operator <<(std::ostream & os, const HashMap<K,V> & hm)
     }
     
     return os;
-}
-
-template<class K, class V>
-HashMap<K,V>::HashMap(int v)
-{
-    this->bucket = v;
-    table = new std::list<int>[bucket];
-}
-
-template<class K, class V>
-void HashMap<K,V>::insertItem(int key)
-{
-    int index = hashBucket(key);
-    table[index].push_back(key);
-}
-
-template<class K, class V>
-void HashMap<K,V>::deleteItem(int key)
-{
-    int index = hashBucket(key);
-
-    std::list<int>::iterator it;
-
-    for (it = table[index].begin(); it != table[index].end(); it++)
-    {
-        if (*it == key)
-        {
-            break;
-        }
-    }
-
-    if (it != table[index].end())
-    {
-        table[index].erase(it);
-    }
-}
-
-template<class K, class V>
-void HashMap<K,V>::displayHash()
-{
-    for (int i = 0; i < bucket; i++)
-    {
-        std::cout << i << std::endl;
-        for ( auto x : table[i])
-        {
-            std::cout << " --> " << x << std::endl;
-        }
-    }
 }
 
 

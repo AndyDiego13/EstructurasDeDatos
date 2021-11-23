@@ -12,14 +12,16 @@
 
 #include <iostream>
 #include "HashMap.hpp"
+#include "hashSimple.hpp"
 
-int main(int argc, const char * argv[]) {
+int main()
+{
     
     int capacity = 5;
     int a[]= {15, 11, 27, 8, 12};
     int n = sizeof(a)/sizeof(a[0]);
 
-    HashMap<int, int> hash(7);
+    hashSimple hash(7);
 
     for (int i = 0; i < n; i++)
     {

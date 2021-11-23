@@ -29,7 +29,10 @@ class hashSimple
         
         void insertItem(int x);
         void deleteItem(int key);
-        int hashBucket(int x);
+        int hashBucket(int x)
+        {
+            return(x % bucket);
+        }
         void displayHash();
 };
 
@@ -69,11 +72,12 @@ void hashSimple::displayHash()
 {
     for (int i = 0; i < bucket; i++)
     {
-        std::cout << i << std::endl;
+        std::cout << i;
         for ( auto x : table[i])
         {
-            std::cout << " --> " << x << std::endl;
+            std::cout << " --> " << x;
         }
+        std::cout << std::endl;
     }
 }
 
