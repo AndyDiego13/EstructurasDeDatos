@@ -23,7 +23,13 @@ public:
     
     ~Libro() {}
     
-    friend std::ostream & operator<<(std::ostream &, const Libro &);
+    friend std::ostream & operator<<(std::ostream &os, const Libro &libro)
+    {
+        os << libro.isbn << "-" << libro.titulo << "(" << libro.paginas << ")" << std::endl;
+
+        return os;
+    }
 };
+
 
 #endif /* Libro_hpp */
