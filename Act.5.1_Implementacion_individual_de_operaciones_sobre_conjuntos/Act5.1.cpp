@@ -11,46 +11,47 @@
 */
 
 #include <iostream>
-#include "HashMap.hpp"
-#include "hashSimple.hpp"
+#include <map>
+#include <vector>
+#include <list>
+#include "Libro_Act5_1.hpp"
+
 
 int main()
 {
-    
-    int capacity = 5;
-    int a[]= {15, 11, 27, 8, 12};
-    int n = sizeof(a)/sizeof(a[0]);
+    std::cout << "Manejo de desbordamiento por encadenamiento (chain)" << std::endl;
 
-    hashSimple hash(7);
+    std::map<int, std::vector<std::string>> personas;
 
-    for (int i = 0; i < n; i++)
+    personas[1].push_back("Lorena");
+    personas[5].push_back("Yahir");
+    personas[13].push_back("Gabriel");
+    personas[24].push_back("Karla");
+
+    for(auto iter = personas.begin(); iter != personas.end(); iter++)
     {
-        hash.insertItem(a[i]);
+        std::cout << iter->first << ":" <<std::endl;
+
+        for ( std::string per:personas[iter->first])
+        {
+            std::cout << per << std::endl;
+        }
+        std::cout << std::endl;
+    }
+
+    std::cout << "=== Manejo de desbordamiento lineal (lineal) ===" << std::endl;
+
+    std::map< std::string, Libro> libros;
+    libros["1"] = Libro("1","El corazón de las tinieblas",800);
+    libros["3"] = Libro("3", "La dama de blanco", 550);
+    libros["6"] = Libro("6", "El señor de las moscas", 900);
+    libros["8"] = Libro("8", "Perdida", 760);
+
+    for ( auto element : libros)
+    {
+        std::cout << "ISBN: " << element.first << ", Libro: " << element.second << std::endl;
     }
     
-    hash.deleteItem(12);
 
-    hash.displayHash();
-
-    
-    
-    /* Crear un HashMap 
-    HashMap<int, int> * tabla = new HashMap<int, int>(capacity);
-    */
-    /* Insertar elementos 
-    std::cout << tabla->put(1, 1) << std::endl;
-    std::cout << tabla->put(5, 5) << std::endl;
-    std::cout << tabla->put(11, 11) << std::endl;
-    std::cout << tabla->put(15, 15) << std::endl;
-    std::cout << tabla->put(2, 2) << std::endl;
-    std::cout << tabla->put(8, 8) << std::endl;
-    
-    std::cout << tabla->get(5) << std::endl;
-    std::cout << tabla->get(15) << std::endl;
-    std::cout << tabla->get(8) << std::endl;
-    
-    std::cout << *tabla;
-    */
-    
     return 0;
 }
