@@ -1,3 +1,14 @@
+/*
+    Actividad 5.1: Implementación de operaciones sobre conjuntos (Técnica de Hashing)
+
+    Created by:  
+    - Serrano Diego Andrea (A01028728)
+    - García Puebla Diego Fernando (A01028597)
+    
+    Fecha de realizacion: 24 / 11 /2021
+
+*/
+
 #ifndef Libro_Act5_1_hpp
 #define Libro_Act5_1_hpp
 
