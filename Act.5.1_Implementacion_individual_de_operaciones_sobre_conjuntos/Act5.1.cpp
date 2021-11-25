@@ -43,10 +43,10 @@ int main()
     std::cout << "=== Manejo de desbordamiento lineal (lineal) ===" << std::endl;
 
     std::map< std::string, Libro> libros;
-    libros["1"] = Libro("1","El corazón de las tinieblas",800);
-    libros["3"] = Libro("3", "La dama de blanco", 550);
-    libros["6"] = Libro("6", "El señor de las moscas", 900);
-    libros["8"] = Libro("8", "Perdida", 760);
+    libros["1"] = Libro("5","El corazón de las tinieblas",800);
+    libros["3"] = Libro("8", "La dama de blanco", 550);
+    libros["6"] = Libro("13", "El señor de las moscas", 900);
+    libros["8"] = Libro("10", "Perdida", 760);
 
     for ( auto element : libros)
     {
