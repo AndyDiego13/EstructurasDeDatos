@@ -15,6 +15,7 @@
 #include <vector>
 #include <list>
 #include "Libro_Act5_1.hpp"
+#include "hashSimple.hpp"
 
 
 int main()
@@ -52,6 +53,19 @@ int main()
         std::cout << "ISBN: " << element.first << ", Libro: " << element.second << std::endl;
     }
     
+    std::cout << "=== Manejo de desbordamiento por encadenamiento (chain raw) ===" << std::endl;
+
+    int lista[] = {15, 8, 9, 3, 21};
+    int n = sizeof(lista)/sizeof(lista[0]);
+
+    hashSimple hs(4);
+
+    for (auto i = 0; i < n; i++)
+    {
+        hs.insertItem(lista[i]);
+    }
+
+    hs.displayHash();
 
     return 0;
 }
