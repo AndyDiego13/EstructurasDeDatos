@@ -1,8 +1,18 @@
+/*
+    "appGrafos.cpp"
+    
+    Created by:
+    Serrano Diego Andrea - A01028728
+    Garcia Puebla Diego Fernando - A01028597 
+
+    Fecha: 26/11/2021
+*/
+
 #ifndef LinkedList_hpp
 #define LinkedList_hpp
 
 #include <iostream>
-#include "Node.hpp"
+#include "NodeLL.hpp"
 
 template <class T>
 class LinkedList {
