@@ -18,7 +18,7 @@
 #include <stack>
 #include <unordered_map>
 #include "GraphVertex.hpp"
-#include "Node.hpp"
+#include "NodeAG.hpp"
 
 template <class T>
 class Graph
@@ -27,6 +27,7 @@ class Graph
         
         std::vector<GraphVertex<T>> nodes;
         bool isDirected;
+        std::unordered_map<T, Node<T> *> nodos;
         
 
     public:
@@ -51,7 +52,16 @@ class Graph
             {
                 nodes[dst].addToAdj(src);
             }  
-        };
+        }
+
+        void agregarNodo(T val)
+        {
+            if (nodos.find(val) == nodos.end())
+            {
+                Node<T> *nuevo = new Node<T>(val);
+                nodos[val] = nuevo;
+            }   
+        }
 
         void BFS(int startVertex)
         {
@@ -67,14 +77,14 @@ class Graph
 
             adjacents = nodes.at(startVertex).getAdj();
 
-            for (int i = 0; i < adjacents; i++)
+            for (int i = 0; i < adjacents.size(); i++)
             {
                 vecinos.push(adjacents.at(i));
             }
 
             while (!vecinos.empty())
             {
-                int temp = vecino.front();
+                int temp = vecinos.front();
 
                 if (visited.at(temp) == 0)
                 {
@@ -130,31 +140,37 @@ class Graph
             std::cout << std::endl;
         }
 
-        std::unordered_map<T, Node<T>> nodes;
-        std::vector< std::vector<int>> matrix;
-        int iA;
-
-        Graph()
+        void agregarArcoDirigidoConPeso(T nodo1, T nodo2, int peso)
         {
-            iA = 0;
-        }
-
-        void loadGraph(T value)
-        {
-            if (nodes.find(value) == nodes.end())
+		    if(nodos.find(nodo1)!=nodos.end() && nodos.find(nodo2)!=nodos.end())
             {
-                Node<T> nuevo(iActual, value);
-                nodes[value] = nuevo;
-                iA++;
-                std::vector<int> nuevaFila;
-
-                for (int i = 0; i < iActual; i++)
-                {
-                    matrix[i].push_back(0);
-                    nuevaFila.push_back(0);
-                }
+			    nodos[nodo1]->agregarArcoDirigidoConPeso(nodos[nodo2], peso);
             }
+		}
+
+        void agregarArcoDirigido(T nodo1, T nodo2)
+        {
+		    agregarArcoDirigidoConPeso(nodo1, nodo2, 1);
+	    }
+
+        void agregarArcoConPeso(T nodo1, T nodo2, int peso)
+        {
+		    agregarArcoDirigidoConPeso(nodo1, nodo2, peso);
+		    agregarArcoDirigidoConPeso(nodo2, nodo1, peso);
         }
+
+        void agregarArco(T nodo1, T nodo2)
+        {
+		    agregarArcoConPeso(nodo1, nodo2, 1);
+	    }
+
+        void imprimirGrafo()
+        {
+		    for(auto parValorNodo: nodos)
+            {
+			    parValorNodo.second->imprimirNode();
+		    }
+	    }
 };
 
 #endif // !Graph_hpp

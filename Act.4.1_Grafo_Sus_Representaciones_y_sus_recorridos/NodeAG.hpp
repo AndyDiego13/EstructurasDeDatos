@@ -1,3 +1,6 @@
+#ifndef NodeAG_hpp
+#define NodeAG_hpp
+
 #include <iostream>
 #include <unordered_map>
 
@@ -8,7 +11,6 @@ class Node
         T value;
         bool visited;
         std::unordered_map<Node<T> *, int> siguientes;
-        int iA;
 
         Node(T val)
         {
@@ -16,21 +18,10 @@ class Node
             visited = false;
         }
 
-        Node()
-        {
-            this->iA = 0;
-            this->value = NULL;
-        }
-
-        Node(int iA, T value)
-        {
-            this->iA = iA;
-            this->value = value;
-        }
 
         void agregarArcoDirigidoConPeso(Node<T> *sig, int peso)
         {
-            if (siguientres.find(sig) == siguientes.end())
+            if (siguientes.find(sig) == siguientes.end())
             {
                 siguientes[sig] = peso;
             }  
@@ -52,3 +43,5 @@ class Node
             std::cout << std::endl;
         }
 };
+
+#endif // !NodeAG_hpp

@@ -13,29 +13,13 @@
 #include <vector>
 #include "Graph.hpp"
 #include "GraphVertex.hpp"
-#include "Node.hpp"
+#include "NodeAG.hpp"
 
 int main() 
 {
     std::cout << "Grafos: sus representaciones y sus recorridos" << std::endl;
 
-    // loadGraph 
-    std::vector< std::vector<int>> m;
-    std::vector<int> n;
-
-    n.push_back(0);
-    n.push_back(1);
-
-    m.push_back(n);
-
-    for (auto fila : m)
-    {
-        for (int valor : fila)
-        {
-            std::cout << valor << ",";
-        }
-        std::cout << "          " << std::endl;
-    }
+    /*loadGraph */
     
     Graph<std::string> graph;
 
@@ -61,6 +45,16 @@ int main()
 
     graph.BFS(0);
     graph.DFS(0);
+
+    graph.agregarNodo("CDMX");
+    graph.agregarNodo("Tlaxcala");
+    graph.agregarNodo("Puebla");
+    graph.agregarNodo("Toluca");
+    graph.agregarArcoDirigidoConPeso("CDMX", "Tlaxcala", 50);
+    graph.agregarArcoConPeso("CDMX", "CDMX", 20);
+    graph.agregarArcoConPeso("CDMX", "Puebla", 100);
+    graph.agregarArco("Puebla", "Puebla");
+    graph.imprimirGrafo();
 
     
     return 0;
