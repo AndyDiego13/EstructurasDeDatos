@@ -10,36 +10,58 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "Graph.hpp"
-#include "IteratorG.hpp"
+#include "GraphVertex.hpp"
+#include "Node.hpp"
 
 int main() 
 {
     std::cout << "Grafos: sus representaciones y sus recorridos" << std::endl;
 
-    Graph g;
+    // loadGraph 
+    std::vector< std::vector<int>> m;
+    std::vector<int> n;
 
-    //BFT iterator
-    std::cout << "Bft Iterator: \n" << std::endl;
-    IteratorG *gBftIt = g.createBftIterator(0);
+    n.push_back(0);
+    n.push_back(1);
 
-    std::cout << "Next " + gBftIt->next() <<std::endl;
+    m.push_back(n);
 
-    while (gBftIt->hNext() != 0)
+    for (auto fila : m)
     {
-        std::cout << "Next " + gBftIt->next() << std::endl;
+        for (int valor : fila)
+        {
+            std::cout << valor << ",";
+        }
+        std::cout << "          " << std::endl;
     }
+    
+    Graph<std::string> graph;
 
-    //DFT iterator
-    std::cout << "Dft Iterator: \n" << std::endl;
-    IteratorG *gDftIt = g.createDftIterator(0);
+    graph.addNode("A");
+    graph.addNode("B");
+    graph.addNode("C");
+    graph.addNode("D");
+    graph.addNode("E");
+    graph.addNode("F");
+    graph.addNode("G");
+    graph.addNode("H");
 
-    std::cout << "Next " + gDftIt->next() << std::endl;
+    graph.addEdge(0, 1);
+    graph.addEdge(0, 2);
+    graph.addEdge(0, 3);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+    graph.addEdge(3, 5);
+    graph.addEdge(3, 6);
+    graph.addEdge(5, 6);
+    graph.addEdge(5, 7);
+    graph.addEdge(4, 7);
 
-    while (gDftIt->hNext() != 0)
-    {
-        std::cout << "Next " + gDftIt->next() << std::endl;
-    }
+    graph.BFS(0);
+    graph.DFS(0);
+
     
     return 0;
 }

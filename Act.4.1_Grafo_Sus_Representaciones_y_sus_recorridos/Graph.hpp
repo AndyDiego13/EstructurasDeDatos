@@ -139,7 +139,7 @@ class Graph
             iA = 0;
         }
 
-        void agregarNode(T value)
+        void loadGraph(T value)
         {
             if (nodes.find(value) == nodes.end())
             {
