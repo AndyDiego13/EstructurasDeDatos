@@ -130,48 +130,30 @@ class Graph
             std::cout << std::endl;
         }
 
-        std::unordered_map<T, Node<T> *> nodes;
+        std::unordered_map<T, Node<T>> nodes;
+        std::vector< std::vector<int>> matrix;
+        int iA;
+
+        Graph()
+        {
+            iA = 0;
+        }
 
         void agregarNode(T value)
         {
             if (nodes.find(value) == nodes.end())
             {
-                Node<T> *nuevo = new Node<T>(value);
-                nodes[values] = nuevo;
+                Node<T> nuevo(iActual, value);
+                nodes[value] = nuevo;
+                iA++;
+                std::vector<int> nuevaFila;
+
+                for (int i = 0; i < iActual; i++)
+                {
+                    matrix[i].push_back(0);
+                    nuevaFila.push_back(0);
+                }
             }
-        }
-
-        void agregarArcoDirigidoConPeso(T node1, T node2, int peso)
-        {
-            if (nodes.find(node1) != nodes.end() && nodes.find(node2) != nodes.end())
-            {
-                nodes[node1]->agregarArcoDirigidoConPeso(nodes[node2], peso);
-            }
-        }
-
-        void agregarArcoDirigido(T node1, T node2)
-        {
-            agregarArcoDirigidoConPeso(node1, node2, 1);
-        }
-
-        void agregarArcoConPeso(T node1, T node2, 1);
-        {
-            agregarArcoDirigidoConPeso(node1, node2, peso);
-            agregarArcoDirigidoConPeso(node2, node1, peso);
-        }
-
-        void agregarArco(T node1, T node2)
-        {
-            agregarArcoConPeso(node1, node2, 1);
-        }
-
-        void imprimirGrafo()
-        {
-            for (auto parValorNode : nodes)
-            {
-                parValorNode.second->imprimirNode();
-            }
-            
         }
 };
 

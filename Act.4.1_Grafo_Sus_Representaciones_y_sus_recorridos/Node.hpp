@@ -8,11 +8,24 @@ class Node
         T value;
         bool visited;
         std::unordered_map<Node<T> *, int> siguientes;
+        int iA;
 
         Node(T val)
         {
             value = val;
             visited = false;
+        }
+
+        Node()
+        {
+            this->iA = 0;
+            this->value = NULL;
+        }
+
+        Node(int iA, T value)
+        {
+            this->iA = iA;
+            this->value = value;
         }
 
         void agregarArcoDirigidoConPeso(Node<T> *sig, int peso)
