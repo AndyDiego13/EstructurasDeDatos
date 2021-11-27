@@ -1,5 +1,11 @@
-/* 
+/*
+    "GraphVertex.hpp"
+    
+    Created by:
+    Serrano Diego Andrea - A01028728
+    Garcia Puebla Diego Fernando - A01028597 
 
+    Fecha: 26/11/2021
 */
 
 #ifndef GraphVertex_hpp
