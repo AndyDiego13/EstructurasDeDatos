@@ -16,7 +16,9 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <unordered_map>
 #include "GraphVertex.hpp"
+#include "Node.hpp"
 
 template <class T>
 class Graph
@@ -126,6 +128,50 @@ class Graph
                 }
             }
             std::cout << std::endl;
+        }
+
+        std::unordered_map<T, Node<T> *> nodes;
+
+        void agregarNode(T value)
+        {
+            if (nodes.find(value) == nodes.end())
+            {
+                Node<T> *nuevo = new Node<T>(value);
+                nodes[values] = nuevo;
+            }
+        }
+
+        void agregarArcoDirigidoConPeso(T node1, T node2, int peso)
+        {
+            if (nodes.find(node1) != nodes.end() && nodes.find(node2) != nodes.end())
+            {
+                nodes[node1]->agregarArcoDirigidoConPeso(nodes[node2], peso);
+            }
+        }
+
+        void agregarArcoDirigido(T node1, T node2)
+        {
+            agregarArcoDirigidoConPeso(node1, node2, 1);
+        }
+
+        void agregarArcoConPeso(T node1, T node2, 1);
+        {
+            agregarArcoDirigidoConPeso(node1, node2, peso);
+            agregarArcoDirigidoConPeso(node2, node1, peso);
+        }
+
+        void agregarArco(T node1, T node2)
+        {
+            agregarArcoConPeso(node1, node2, 1);
+        }
+
+        void imprimirGrafo()
+        {
+            for (auto parValorNode : nodes)
+            {
+                parValorNode.second->imprimirNode();
+            }
+            
         }
 };
 
