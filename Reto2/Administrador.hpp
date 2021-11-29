@@ -10,7 +10,6 @@
 
 */
 
-
 #ifndef Administrador_hpp
 #define Administrador_hpp
 
@@ -47,25 +46,25 @@ class Administrador
 
             std::string fecha;
             std::string hora;
-            std::string ipOrigen;
+            std::string ip_Origen;
             std::string puertoOrigen;
-            std::string nombreOrigen;
-            std::string ipDestino;
+            std::string nombre_Origen;
+            std::string ip_Destino;
             std::string puertoDestino;
-            std::string nombreDestino;
+            std::string nombre_Destino;
 
             while (f.good())
             {
                 getline(f, fecha, ',');
                 getline(f, hora, ',');
-                getline(f, ipOrigen, ',');
+                getline(f, ip_Origen, ',');
                 getline(f, puertoOrigen, ',');
-                getline(f, nombreOrigen, ',');
-                getline(f, ipDestino, ',');
+                getline(f, nombre_Origen, ',');
+                getline(f, ip_Destino, ',');
                 getline(f, puertoDestino, ',');
-                getline(f, nombreDestino, '\n');
+                getline(f, nombre_Destino, '\n');
 
-                registros.push_back(UserFila(fecha, hora, ipOrigen, puertoOrigen, nombreOrigen, ipDestino, puertoDestino, nombreDestino));
+                registros.push_back(UserFila(fecha, hora, ip_Origen, puertoOrigen, nombre_Origen, ip_Destino, puertoDestino, nombre_Destino));
             }
 
             f.close();

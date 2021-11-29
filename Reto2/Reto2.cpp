@@ -61,14 +61,14 @@ std::string ipUsuario;
 
 bool confirmarIp(UserFila r)
 {
-    return r.ipOrigen == ipUsuario;
+    return r.ip_Origen == ipUsuario;
 }
 
 //Obtener la ip base
 std::string takeIpBase(vector<UserFila> d)
 {
-    int i = busquedaSecuencial(d,[](UserFila r) {return r.ipOrigen != "-";});
-    std::string ip = d[i+1].ipOrigen;
+    int i = busquedaSecuencial(d,[](UserFila r) {return r.ip_Origen != "-";});
+    std::string ip = d[i+1].ip_Origen;
     for (int i = 0; i < 3; i++)
     {
         ip.pop_back();
@@ -113,21 +113,21 @@ void fill(vector<UserFila> datos, ConexionesComputadora &conexInput)
 {
     for (int i = 0; i < datos.size(); i++)
     {
-        if (datos[i].ipDestino == conexInput.ip)
+        if (datos[i].ip_Destino == conexInput.ip)
         {
             conexInput.insertConexionesEntrantes(
-                datos[i].ipOrigen,
+                datos[i].ip_Origen,
                 datos[i].puerto_Origen,
-                datos[i].nombreOrigen
+                datos[i].nombre_Origen
             );
         }
 
-        if (datos[i].ipOrigen == conexInput.ip)
+        if (datos[i].ip_Origen == conexInput.ip)
         {
             conexInput.insertConexionesSalientes(
-                datos[i].ipDestino,
+                datos[i].ip_Destino,
                 datos[i].puerto_Destino,
-                datos[i].nombreDestino
+                datos[i].nombre_Destino
             );
         }
     }
@@ -173,7 +173,7 @@ int main()
     int usuarioIndex = askNumber(datos);
     std::string ipBase = takeIpBase(datos);
 
-    std::string nombreUsuario = datos[usuarioIndex].nombreOrigen;
+    std::string nombreUsuario = datos[usuarioIndex].nombre_Origen;
 
     ConexionesComputadora conexUsuario = ConexionesComputadora(ipUsuario, nombreUsuario);
     std::cout << "La ip interna es: " << conexUsuario.ip << std::endl;

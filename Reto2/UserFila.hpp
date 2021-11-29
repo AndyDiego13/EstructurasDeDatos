@@ -40,12 +40,12 @@ class UserFila
         tm fecha;
         std::string fechaString;
         std::string hora;
-        std::string ipOrigen;
+        std::string ip_Origen;
         int puerto_Origen;
-        std::string nombreOrigen;
-        std::string ipDestino;
+        std::string nombre_Origen;
+        std::string ip_Destino;
         int puerto_Destino;
-        std::string nombreDestino;
+        std::string nombre_Destino;
 
         void print();
         void printDate(); 
@@ -58,10 +58,10 @@ UserFila::UserFila(std::string f, std::string h, std::string iO, std::string pO,
     strptime(fechas, "%d-%m-%y", &this->fecha);
     this->fechaString = f;
     this->hora = h;
-    this->ipOrigen = iO;
-    this->nombreOrigen = nO;
-    this->ipDestino = iD;
-    this->nombreDestino = nD;
+    this->ip_Origen = iO;
+    this->nombre_Origen = nO;
+    this->ip_Destino = iD;
+    this->nombre_Destino = nD;
 
     try
     {
@@ -79,12 +79,12 @@ void UserFila::print()
 {
     this->printDate();
     std::cout << "\t" << this->hora 
-    << "\t" << this->ipOrigen
+    << "\t" << this->ip_Origen
     << "\t" << this->puerto_Origen
-    << "\t" << this->nombreOrigen
-    << "\t" << this->ipDestino
+    << "\t" << this->nombre_Origen
+    << "\t" << this->ip_Destino
     << "\t" << this->puerto_Destino
-    << "\t" << this->nombreDestino
+    << "\t" << this->nombre_Destino
     <<std::endl << "=======================" <<std::endl;
 }
 
