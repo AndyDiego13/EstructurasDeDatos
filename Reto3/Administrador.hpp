@@ -19,7 +19,6 @@
 #include <sstream>
 #include <fstream>
 #include "UserFila.hpp"
-#include "Ordenamiento_reto1.hpp"
 #include <vector>
 #include <iterator>
 #include <algorithm>
@@ -37,7 +36,7 @@ class Administrador
 
         std::vector<UserFila> file()
         {
-            std::ifstream f("/Users/andydiego13/Downloads/Requipo7.csv");
+            std::ifstream f("equipo7.csv");
             std::vector<UserFila> registros;
 
             if (!f.is_open())
