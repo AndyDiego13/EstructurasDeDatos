@@ -92,33 +92,13 @@ bool esPosterior(UserFila a, UserFila b)
 bool perteneceA(UserFila r)
 {
     return(
-        r.nombreOrigen == "amy.reto.com" ||
-        r.nombreOrigen == "anna.reto.com" ||
+        r.nombreOrigen == "jeffrey.reto.com" ||
         r.nombreOrigen == "betty.reto.com" ||
-        r.nombreOrigen == "catherine.reto.com" ||
-        r.nombreOrigen == "charles.reto.com" ||
-        r.nombreOrigen == "christopher.reto.com" ||
-        r.nombreOrigen == "cynthia.reto.com" ||
-        r.nombreOrigen == "david.reto.com" ||
-        r.nombreOrigen == "dennis.reto.com" ||
-        r.nombreOrigen == "emma.reto.com" ||
-        r.nombreOrigen == "george.reto.com" ||
-        r.nombreOrigen == "jack.reto.com" ||
-        r.nombreOrigen == "james.reto.com" ||
-        r.nombreOrigen == "janet.reto.com" ||
-        r.nombreOrigen == "jason.reto.com" ||
-        r.nombreOrigen == "jerry.reto.com" ||
-        r.nombreOrigen == "kathleen.reto.com" ||
-        r.nombreOrigen == "kevin.reto.com" ||
-        r.nombreOrigen == "kimberly.reto.com" ||
-        r.nombreOrigen == "mark.reto.com" ||
-        r.nombreOrigen == "michelle.reto.com" ||
-        r.nombreOrigen == "nicole.reto.com" ||
-        r.nombreOrigen == "rachel.reto.com" ||
-        r.nombreOrigen == "raymond.reto.com" ||
+        r.nombreOrigen == "katherine.reto.com" ||
         r.nombreOrigen == "scott.reto.com" ||
-        r.nombreOrigen == "stephanie.reto.com"
-
+        r.nombreOrigen == "benjamin.reto.com" ||
+        r.nombreOrigen == "samuel.reto.com" ||
+        r.nombreOrigen == "raymond.reto.com"
     );
 }
 
@@ -177,28 +157,28 @@ int main(void)
 
     std::cout << "En el segundo día (" << std::endl;
     datos[segundoDiaCount].printDate();
-    std::cout << ") hubieron " << segundoDiaCount << " datos." << std::endl << std::endl;
+    std::cout << ") hubieron " << segundoDiaCount << "  datos." << std::endl << std::endl;
 
-    std::cout << "3." << std::endl;
+    std::cout << "3. ¿Alguna de las computadoras pertenece a Jeffrey, Betty, Katherine, Scott, Benjamin, Samuel o Raymond? ¿A quiénes?" << std::endl;
     int perteneceCount = busquedaSecuencial(datos, *perteneceA);
     std::cout << ( perteneceCount == 0 ? "No." : "Sí.") << std::endl;
 
-    std::cout << "4." << std::endl;
+    std::cout << "4. ¿Cuál es la dirección de la red interna de la compañía? " << std::endl;
     std::cout << "La direccion de la red interna es: " << obtenerIpBase(datos)<< std::endl;
 
-    std::cout << "5." << std::endl;
+    std::cout << "5. ¿Alguna computadora se llama server.reto.com? " << std::endl;
     int serverCount = busquedaSecuencial(datos, *callServer);
     std::cout << (serverCount < 0 ? "No." : "Sí.") << std::endl;
 
-    std::cout << "6." << std::endl;
+    std::cout << "6. ¿Qué servicio de correo electrónico utilizan (algunas ideas: Gmail, Hotmail, Outlook, Protonmail)?" << std::endl;
     int mailCount = busquedaSecuencial(datos, *correo);
-    std::cout << "Mail" << "\t\t" << "Cantidad" << "\n" << std::endl;
-    for (const auto &x : mails)
+    std::cout << "Mail" << "\t" << "Cantidad" << "\n" << std::endl;
+    for ( const auto &z : mails)
     {
-        std::cout << x.first << "\t" << x.second <<  "\n" <<std::endl;
+        std::cout << z.first << "\t" << z.second <<  "\n" <<std::endl;
     }
     
-    std::cout << "7." << std::endl;
+    std::cout << "7. Considerando solamente los puertos destino ¿Qué puertos abajo del 1000 se están usando? Lista los puertos e investiga qué aplicación/servicio lo utiliza generalmente" << std::endl;
     int puertoCount = busquedaSecuencial(datos, *puerto);
     std::cout << "Puerto" << " \t" << "Cantidad" << "\n" << std::endl;
     for ( const auto &x : puertos)
