@@ -92,26 +92,26 @@ bool esPosterior(UserFila a, UserFila b)
 bool perteneceA(UserFila r)
 {
     return(
-        r.nombreOrigen == "jeffrey.reto.com" ||
-        r.nombreOrigen == "betty.reto.com" ||
-        r.nombreOrigen == "katherine.reto.com" ||
-        r.nombreOrigen == "scott.reto.com" ||
-        r.nombreOrigen == "benjamin.reto.com" ||
-        r.nombreOrigen == "samuel.reto.com" ||
-        r.nombreOrigen == "raymond.reto.com"
+        r.nombre_Origen == "jeffrey.reto.com" ||
+        r.nombre_Origen == "betty.reto.com" ||
+        r.nombre_Origen == "katherine.reto.com" ||
+        r.nombre_Origen == "scott.reto.com" ||
+        r.nombre_Origen == "benjamin.reto.com" ||
+        r.nombre_Origen == "samuel.reto.com" ||
+        r.nombre_Origen == "raymond.reto.com"
     );
 }
 
 bool callServer(UserFila r)
 {
-    return r.nombreOrigen == "server.reto.com" || r.nombreDestino == "server.com";
+    return r.nombre_Origen == "server.reto.com" || r.nombre_Destino == "server.com";
 }
 
 bool correo(UserFila r)
 {
     if (r.puerto_Destino == 993)
     {
-        mails[r.nombreDestino]++;
+        mails[r.nombre_Destino]++;
     }
     return false;
 }
@@ -127,8 +127,8 @@ bool puerto(UserFila r)
 
 std::string obtenerIpBase( std::vector<UserFila> d)
 {
-    int i = busquedaSecuencial(d, [](UserFila r) {return r.ipOrigen != "-";});
-    std::string ip = d[i+1].ipOrigen;
+    int i = busquedaSecuencial(d, [](UserFila r) {return r.ip_Origen != "-";});
+    std::string ip = d[i+1].ip_Origen;
 
     for (int i = 0; i < 3; i++)
     {
