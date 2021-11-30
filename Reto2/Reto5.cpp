@@ -1,3 +1,16 @@
+/*
+    Situacion Problema - Ataques Cibernéticos
+    Reto5.cpp
+
+    Created by:  
+    - Serrano Diego Andrea (A01028728)
+    - García Puebla Diego Fernando (A01028597)
+    
+    Fecha de realizacion: 29 / 11 /2021
+
+*/
+
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -185,7 +198,7 @@ int main()
     std::cout << "3. De las computadoras pertenecientes al dominio reto.com determina la cantidad de ips que tienen al menos una conexión entrante." << std::endl;
     std::cout << "\t" << computadorasConConexionesEntrantes(computadoras) << " computadoras de la red interna con al menos una conexion entrante"<< std::endl;
 
-    std::cout << "4. Toma algunas computadoras que no sean server.reto.com o el servidor dhcp. Pueden ser entre 5 y 150. Obtén las ip únicas de las conexiones entrantes." << std::endl;
+    std::cout << "4. Toma algunas computadoras que no sean server.reto.com o el servidor dhcp. Pueden ser entre 5 y 10. Obtén las ip únicas de las conexiones entrantes." << std::endl;
     std::set<std::string> conexiones = obtenerIpsEntrantes(computadoras);
 
     for (auto it = conexiones.begin(); it != conexiones.end(); ++it)
