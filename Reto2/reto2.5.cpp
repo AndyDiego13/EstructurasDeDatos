@@ -91,7 +91,7 @@ void agregarNoRetoASetyLlenarComputadoras(std::set<std::string> s, std::map<std:
 
 bool esAnomalo(std::string nombre)
 {
-    if (nombre == "jhntee9opzbxvdv2unkx.net")
+    if (nombre.size() >= 20)
     {
         return true;
     }
