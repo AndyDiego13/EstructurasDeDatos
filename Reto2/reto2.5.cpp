@@ -172,7 +172,8 @@ int main()
     agregarNoRetoASetyLlenarComputadoras(notReto, computadoras, datos);
     std::cout << "0. Hay " << computadoras.size() << "computadoras" <<std::endl;
 
-    std::cout << "1. ¿Hay algún nombre de dominio que sea anómalo?" << std::endl;
+    std::cout << "1. ¿Hay algún nombre de dominio que sea anómalo? (Esto puede ser con inspección visual)." << std::endl;
+    std::cout << "El nombre del sitio anómalo es 3jb6992rz5rtdc2id9c5.net" << std::endl;
     std::cout << "\t" << (encontrarAnomalos(computadoras) != "" ? "Sí." : "No.") << std::endl;
 
     std::cout << "2. ¿Cuál es su IP? ¿Cómo determinarías esta información de la manera más eficiente en complejidad temporal?" << std::endl;
