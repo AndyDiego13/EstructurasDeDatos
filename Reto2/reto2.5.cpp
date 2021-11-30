@@ -91,20 +91,20 @@ void agregarNoRetoASetyLlenarComputadoras(std::set<std::string> s, std::map<std:
 
 bool esAnomalo(std::string nombre)
 {
-    if (nombre.size() >= 20)
+    if (nombre.size() == 20)
     {
         return true;
     }
-    else if (esAnomalo("3jb6992rz5rtdc2id9c5.net"))
+    
+    
+    for (int i = 0; i < nombre.size(); i++)
     {
-        for (int i = 0; i < nombre.size(); i++)
+        if (isalpha(nombre[i]) == false && nombre[i] != '.' && nombre[i] != '-' && nombre[i] != '/')
         {
-            if (isalpha(nombre[i]) == false && nombre[i] != '.' && nombre[i] != '-' && nombre[i] != '/')
-            {
-                return true;
-            }    
-        }
+            return true;
+        }    
     }
+    
     
     return false;
 }
