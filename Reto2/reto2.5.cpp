@@ -95,12 +95,15 @@ bool esAnomalo(std::string nombre)
     {
         return true;
     }
-    for (int i = 0; i < nombre.size(); i++)
+    else if (esAnomalo("3jb6992rz5rtdc2id9c5.net"))
     {
-        if (isalpha(nombre[i]) == false && nombre[i] != '.' && nombre[i] != '-' && nombre[i] != '/')
+        for (int i = 0; i < nombre.size(); i++)
         {
-            return true;
-        } 
+            if (isalpha(nombre[i]) == false && nombre[i] != '.' && nombre[i] != '-' && nombre[i] != '/')
+            {
+                return true;
+            }    
+        }
     }
     
     return false;
@@ -115,6 +118,7 @@ std::string encontrarAnomalos(std::map<std::string, ConexionesComputadora> compu
         {
             return it->first;
         }
+        
     }
     return "";
 }
