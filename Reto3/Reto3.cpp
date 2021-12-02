@@ -65,7 +65,7 @@ std::set<Date> takeDates(std::vector<UserFila> registros)
     std::set<Date> allDates;
     for (int i = 0; i < registros.size(); i++)
     {
-        Date d(registros[i].fechaTm);
+        Date d(registros[i].fecha);
         allDates.insert(d);
     }
     return allDates;
@@ -82,11 +82,11 @@ std::map<std::string, int> conexionesPorDia(tm date, std::vector<UserFila> regis
     std::map<std::string, int> numRep;
     for (int i = 0; i < registros.size(); i++)
     {
-        if (registros[i].fechaTm.tm_mday == date.tm_mday && registros[i].fechaTm.tm_mon == date.tm_mon && registros[i].fechaTm.tm_year == date.tm_year)
+        if (registros[i].fecha.tm_mday == date.tm_mday && registros[i].fecha.tm_mon == date.tm_mon && registros[i].fecha.tm_year == date.tm_year)
         {
-            if (registros[i].nombreDestino.find(".reto.com") == string::npos && registros[i].nombreDestino.find("-") == string::npos )
+            if (registros[i].nombre_Destino.find(".reto.com") == string::npos && registros[i].nombre_Destino.find("-") == string::npos )
             {
-                numRep[registros[i].nombreDestino]++;
+                numRep[registros[i].nombre_Destino]++;
             }
         }
     }
@@ -147,9 +147,9 @@ void top(BSTr &arbol, int n, tm date, std::map<std::string, int> &numRep, std::m
 
 int main()
 {
-    Administrador admin(read_csv_USERFILA("/Users/andydiego13/Downloads/equipo7.csv"));
+    Administrador admin;
 
-    std::vector <UserFila> registros = read_csv_USERFILA (  "/Users/andydiego13/Downloads/equipo7.csv" );
+    std::vector<UserFila> registros = admin.file();
 
     std::map<std::string, ConexionesComputadora> computadoras;
 

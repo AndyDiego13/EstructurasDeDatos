@@ -72,22 +72,22 @@ void ConexionesComputadora::fill(std::vector<UserFila> datos)
 {
     for (int i = 0; i < datos.size(); i++)
     {
-        if (datos[i].ipDestino == this->ip)
+        if (datos[i].ip_Destino == this->ip)
         {
             this->insertConexionesEntrantes(
-                datos[i].ipOrigen,
+                datos[i].ip_Origen,
                 datos[i].puerto_Origen,
-                datos[i].nombreOrigen,
+                datos[i].nombre_Origen,
                 datos[i].fecha
             );
         }
 
-        if (datos[i].ipOrigen == this->ip)
+        if (datos[i].ip_Origen == this->ip)
         {
             this->insertConexionesSalientes(
-                datos[i].ipDestino,
+                datos[i].ip_Destino,
                 datos[i].puerto_Destino,
-                datos[i].nombreDestino,
+                datos[i].nombre_Destino,
                 datos[i].fecha
             );
         }
